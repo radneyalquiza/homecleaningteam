@@ -1,4 +1,4 @@
 homecleaningteam
 ================
 
-The HomeCleaningTeam's RTQ web application and the backend system
+The HomeCleaningTeam's RTQ web application and its backend system
