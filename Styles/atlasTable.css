@@ -1,0 +1,484 @@
+﻿/*******************************************************/
+/* STYLESHEET FOR ATLAS TABLE JQUERY PLUGIN */
+/*******************************************************/
+
+*
+{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.atlasTable
+{
+    width:100%;
+    font-size:1.2em;
+    color:#575757;
+    border-width:1px;
+    border:1px solid #808080;
+    border-radius:3px;
+    border-collapse:separate;
+    text-align:left;
+    box-shadow:1px 1px 1px #b9b9b9;
+    font-family: 'Open Sans', sans-serif;
+    display:none;
+    table-layout:fixed
+}
+
+.atlasTableContainer
+{
+    min-height:110px;
+    position:relative;
+}
+
+.containerClass
+{
+    margin:auto;
+}
+
+.atlasTableContainer .header
+{
+    width:100%;
+    padding:3px;
+    background-color:#64bbee;
+    color:white;
+    font-size:2em;
+    margin-bottom:4px;
+    text-align:left;
+    padding-left:7px;
+    box-shadow:0px 1px 1px #4f4f4f;
+}
+
+.atlasTableContainer span.tableToggle
+{
+    display:inline-block;
+    float:right;
+    margin-top:5px;
+    margin-right:5px;
+    height:20px;
+    width:20px;
+    background-image:url('img/icons/down.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+    box-shadow: 1px 1px 1px #b9b9b9;
+}
+    .atlasTableContainer span.tableToggle:hover
+    {
+        cursor:pointer;
+    }
+    .atlasTableContainer span.tableToggle:active
+    {
+        margin-top:7px;
+    }
+    
+
+    .atlasTable td
+    {
+        margin-left:0;
+        margin-right:0;
+        padding:4px;
+        padding-left:6px;
+        border-left:1px solid #8f8f8f;
+        word-wrap:break-word;
+    }
+
+        .atlasTable td:first-child
+        {
+            border-left:0;
+        }
+
+    .atlasTable tr.head
+    {
+        background-color:#3ea4e8;
+        color:white;
+        font-size:1.15em;
+        word-wrap:break-word;
+    }
+
+        .atlasTable tr.head th
+        {
+            padding:8px;
+            border-left:1px solid #b2e0ff;
+        }
+            .atlasTable tr.head th:hover
+            {
+                cursor:url('img/icons/sort.png'), pointer;
+            }
+        .atlasTable tr.head th:first-child
+        {
+            border-left:0;
+        }
+
+    .atlasTable tr
+    {
+        border-width:0px 1px 0px 0px;
+    }
+    
+        .atlasTable tr:not(.head):hover
+        {
+            background-color:#46b8f2;
+            color:white;
+            cursor:pointer;
+        }
+
+    .atlasTable .odd
+    {
+        background-color:#b2e0ff;
+    }
+    .atlasTable .even
+    {
+        background-color:white;
+    }
+
+
+.atlasModal .modalForm
+{
+    width:80%;
+    margin:auto;
+}
+
+.cover
+{
+    display:none;
+    min-width:100%;
+    min-height:100%;
+    opacity:0.7;
+    z-index:10;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:white;
+}
+
+.atlasTableContainer .entry-count
+{
+    font-size:0.85em;
+    padding:4px;
+    float:left;
+    margin-top:3px;
+    color:#555
+}
+
+.atlasTableContainer .page-counter
+{
+    background-color:#b2e0ff;
+    font-size:0.85em;
+    padding:5px;
+    margin:auto;
+    margin-top:3px;
+    border-radius:3px;
+    text-align:center;
+    width:auto;
+}
+
+    .atlasTableContainer .page-counter ul
+    {
+        margin:auto;
+        text-align:center;
+        list-style:none;
+        text-align:center;
+        padding:0;
+    }
+        .atlasTableContainer .page-counter ul li
+        {
+            margin:auto;
+            margin-left:2px;
+            display:inline-block;
+            width:15px;
+            height:15px;
+            background-color:white;
+        }
+            .atlasTableContainer .page-counter ul li:hover
+            {
+                cursor:pointer;
+                background-color:#2893e4;
+                color:white;
+            }
+
+
+/* ====================================================== */
+/* SYMBOLIC REPRESENTATIONS */
+/* ====================================================== */
+.active
+{
+    background-color:#82ca74;
+    color:white;
+    font-size:0.90em;
+    font-weight:600;
+    padding:2px;
+    border-radius:2px;
+    margin-left:2px;
+}
+.edit
+{
+    background-color:#7ec156;
+    color:white;
+    font-size:0.90em;
+    font-weight:600;
+    padding:3px;
+    border-radius:2px;
+    margin-left:2px;
+    display:inline-block;
+    height:19px;
+    width:19px;
+    background-image:url('img/icons/edit.png');
+    background-repeat: no-repeat;
+    background-position:center center;
+}
+    .edit:hover
+    {
+        background-color:#2f851e;
+        border-radius:99px;
+    }
+
+.delete
+{
+    background-color:#dc5b5b;
+    height:19px;
+    width:19px;
+    background-image:url('img/icons/delete.png');
+    background-repeat: no-repeat;
+    background-position:center center;
+    padding:3px;
+    border-radius:2px;
+    margin-left:2px;
+    display:inline-block;
+}
+    .delete:hover
+    {
+        background-color:#4f4f4f;
+        border-radius:99px;
+    }
+
+.delete-side
+{
+    position:absolute;
+    width:50px;
+    height:20px;
+    z-index:0;
+    background-color:#82ca74;
+    transition:all 0.2s ease-in-out;
+}
+
+
+.addButton
+{
+    border:none;
+    background-color:#6fa4cc;
+    background-image:url('img/icons/plus.png');
+    background-repeat: no-repeat;
+    background-position:center center;
+    font-size:1.2em;
+    padding:5px;
+    border-top-left-radius:2px;
+    border-bottom-left-radius:2px;
+    margin-top:-15px;
+    text-shadow: 1px 1px #2c6f89;
+    box-shadow: inset 0 1px 0 rgba(256, 256, 256, .35);
+    position:absolute;
+    left:-30px;
+    width:30px;
+    height:30px;
+    top:50%;
+    z-index:0
+}
+    .addButton:hover
+    {
+        background-color:#1089d9;
+        color:white;
+        transition:all 0.1s ease-in-out;
+        box-shadow: 1px 1px 3px #b9b9b9;
+        cursor:pointer;
+    }
+
+    .addButton:active
+    {
+        margin-top:-10px;
+        background-color:#82ca74;
+    }
+
+.updating-cell
+{
+    transition:all 0.4s ease-in-out;
+    background-color:#808080;
+    color:white;
+}
+
+/* ====================================================== */
+/* FORM */
+/* ====================================================== */
+.atlasModal
+{
+    border-radius:5px;
+    background-color:white;
+    box-shadow: 0 2px 5px 2px #9a9a9a;
+    position:fixed;
+    display:none;
+    z-index:2;
+    text-align:center;
+    min-width:480px;
+}
+
+    .atlasModal .formBtn
+    {
+        border:none;
+        background-color:#767676;
+        color:white;
+        padding:2px;
+        font-size:1.2em;
+        border-radius:2px;
+        margin-top:5px;
+        margin-left:2px;
+    }
+        .atlasModal .formBtn:hover
+        {
+            background-color:#46b8f2;
+            cursor:pointer;
+        }
+
+        .atlasModal .formBtn:active
+        {
+            margin-top:2px;
+        }
+
+    .atlasModal .cont
+    {
+        width:95%;
+        margin:auto;
+        height:95%;
+        margin-bottom:10px;
+        position:relative;
+    }
+
+    .atlasModal .foot
+    {
+        height:35px;
+        background-color:#ffc467;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;
+    }
+
+    .atlasModal .modalTitle
+    {
+        width:100%;
+        background-color:#3f7fb5;
+        color:white;
+        padding:7px;
+        font-size:1.7em;
+        font-weight:600;
+        border-top-left-radius:5px;
+        border-top-right-radius:5px;
+    }
+
+div.inputholder
+{
+    border: 1px solid #ccc;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 5px;
+    transition:all 1s;
+    text-align:left;
+    width:100%;
+}
+div.inputholderhalf
+{
+    width:49.5% !important;
+    float:left;
+    margin-left:2px;
+}
+
+    div.inputholderhalf label
+    {
+        min-width:80px !important;
+    }
+    div.inputholderhalf input[type='text']
+    {
+        min-width:120px !important;
+    }
+
+    div.inputholder input[type='text']
+    {
+        border: none;
+        margin-left: 10px;
+        height:22px;
+        font-size:1.1em;
+        transition:all 0.5s;
+        width:50%;
+        background-color:#f7f7f7;
+        padding-left:3px;
+    }
+        div.inputholder input[type='text']:disabled
+        {
+            background:none;
+            color:#3f7fb5;
+        }
+    div.inputholder input[type='checkbox']
+    {
+        margin-left:10px;
+        background:none;
+    }
+    div.inputholder input[type='text']:focus
+    {
+        outline:none;
+    }
+
+        div.inputholder input[type='button']
+        {
+            min-width:80px;
+            font-size:0.8em;
+            height:15px;
+            background:none;
+            color:#44a6ef;
+            transition:all 0.3s;
+            padding:0px !important;
+            text-align:left;
+            margin-left:0px;
+            border:none;
+
+        }
+            div.inputholder input[type='button']:hover
+            {
+                color:#ff8400;
+                cursor:pointer;
+            }
+
+div.inputholder label
+{
+    font-family: arial;
+    font-size: 1.02em;
+    color: #ffa220;
+    min-width:100px;
+    display:inline-block;
+}
+div.inputholder span
+{
+    position:absolute;
+    right:10px;
+    top:7px;
+    color:red;
+}
+
+::-webkit-input-placeholder
+{
+    color: #3f7fb5;
+    opacity: 0.4;
+}
+
+:-moz-placeholder
+{ /* Firefox 18- */
+    color: #3f7fb5;
+    opacity: 0.4;
+}
+
+::-moz-placeholder
+{ /* Firefox 19+ */
+    color: #3f7fb5;
+    opacity: 0.4;
+}
+
+:-ms-input-placeholder
+{
+    color: #3f7fb5;
+    opacity: 0.4;
+}

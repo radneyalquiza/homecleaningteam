@@ -1,0 +1,25 @@
+TODO:
+
+1. Add class to show custom error messages.
+2. Include this class to all manager classes.
+3. All manager classes will handle data returned, and
+	dynamic HTML creation (like tables).
+4. create custom icons to replace small buttons
+5. create dynamic div forms for different ADD functions
+6. create the ADD form div with code-behind
+7. keyboard shortcuts
+
+
+
+
+//////////////////////////////////////////////////
+// WHAT I LEARNED
+//////////////////////////////////////////////////
+
+1. Circular references while passing from EF to Javascrip(JSON)
+   will happen if down the road, your references will point to
+   a parent/grandparent. Use [JSONIGNORE] on the navigation properties
+   you don't want loaded with the serialization. 
+2. Circular references are usually apparent on ICollection Navigation Properties
+   I can JSONIGNORE the virtual ICollection references and not touch the virtual
+   singleton references.

@@ -1,0 +1,22 @@
+BACKUP DATABASE:
+- Using MSSQL Management Studio, right click on the database, select TASKS then GENERATE SCRIPTS.
+- Make sure that you select SCRIPT ALL OBJECTS to get the DATA (INSERTS) as well.
+- There will be a .sql file that will be produced. This script can be run on the new database/copy.
+
+PROJECT:
+- Delete the Model.edmx and Model.tt.
+- Uncomment/Remove the connection string in the Web.config file.
+- Create a new Model.edmx and Model.tt with any database copy you want (local/remote).
+- For general testing, USE LOCAL. For performance, USE REMOTE.
+
+LOCAL DATABASE COPY:
+- If you have a database backup sql file, simply connect to .\sqlexpress and freely
+  create a database with the same name as your remote database so that your Entities identifier
+  doesn't get messed up.
+- Once the local database is created, run the database backup script file.
+
+LOCAL TO REMOTE:
+1. Create scripts of table and data through Management studio.
+2. Re-run scripts made from creating scripts from Local db.
+3. (If table names become messed up, delete all tables and re-run scripts)
+4. Delete model and tt, then reconnect the database through VS2012.

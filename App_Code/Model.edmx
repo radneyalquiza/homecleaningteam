@@ -1,0 +1,1330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hctDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="hctDBModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="hctDBModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AppItems" EntityType="hctDBModel.Store.AppItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Areas" EntityType="hctDBModel.Store.Areas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CleaningTypes" EntityType="hctDBModel.Store.CleaningTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customers" EntityType="hctDBModel.Store.Customers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employees" EntityType="hctDBModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Events" EntityType="hctDBModel.Store.Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HouseItems" EntityType="hctDBModel.Store.HouseItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HouseTypes" EntityType="hctDBModel.Store.HouseTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Invoices" EntityType="hctDBModel.Store.Invoices" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OptionItems" EntityType="hctDBModel.Store.OptionItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="People" EntityType="hctDBModel.Store.People" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PresetItems" EntityType="hctDBModel.Store.PresetItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Properties" EntityType="hctDBModel.Store.Properties" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Quotes" EntityType="hctDBModel.Store.Quotes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoomItems" EntityType="hctDBModel.Store.RoomItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rooms" EntityType="hctDBModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RTQApps" EntityType="hctDBModel.Store.RTQApps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RTQOptions" EntityType="hctDBModel.Store.RTQOptions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RTQOptionSubs" EntityType="hctDBModel.Store.RTQOptionSubs" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AppItemOptionItem" Association="hctDBModel.Store.FK_AppItemOptionItem">
+            <End Role="AppItems" EntitySet="AppItems" />
+            <End Role="OptionItems" EntitySet="OptionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaProperty" Association="hctDBModel.Store.FK_AreaProperty">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CleaningTypeHouseItem" Association="hctDBModel.Store.FK_CleaningTypeHouseItem">
+            <End Role="CleaningTypes" EntitySet="CleaningTypes" />
+            <End Role="HouseItems" EntitySet="HouseItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerInvoice" Association="hctDBModel.Store.FK_CustomerInvoice">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerPerson" Association="hctDBModel.Store.FK_CustomerPerson">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerProperty" Association="hctDBModel.Store.FK_CustomerProperty">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeAddress" Association="hctDBModel.Store.FK_EmployeeAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseItemRoomItem" Association="hctDBModel.Store.FK_HouseItemRoomItem">
+            <End Role="HouseItems" EntitySet="HouseItems" />
+            <End Role="RoomItems" EntitySet="RoomItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseTypeProperty" Association="hctDBModel.Store.FK_HouseTypeProperty">
+            <End Role="HouseTypes" EntitySet="HouseTypes" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceEvent" Association="hctDBModel.Store.FK_InvoiceEvent">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyAddress" Association="hctDBModel.Store.FK_PropertyAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuoteInvoice" Association="hctDBModel.Store.FK_QuoteInvoice">
+            <End Role="Quotes" EntitySet="Quotes" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomItemAppItem" Association="hctDBModel.Store.FK_RoomItemAppItem">
+            <End Role="RoomItems" EntitySet="RoomItems" />
+            <End Role="AppItems" EntitySet="AppItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomRTQApp" Association="hctDBModel.Store.FK_RoomRTQApp">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="RTQApps" EntitySet="RTQApps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTQAppRTQOption" Association="hctDBModel.Store.FK_RTQAppRTQOption">
+            <End Role="RTQApps" EntitySet="RTQApps" />
+            <End Role="RTQOptions" EntitySet="RTQOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTQOptionRTQOptionSub" Association="hctDBModel.Store.FK_RTQOptionRTQOptionSub">
+            <End Role="RTQOptions" EntitySet="RTQOptions" />
+            <End Role="RTQOptionSubs" EntitySet="RTQOptionSubs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bldg" Type="int" />
+          <Property Name="unit" Type="int" />
+          <Property Name="street" Type="nvarchar(max)" />
+          <Property Name="city" Type="nvarchar(max)" />
+          <Property Name="postal" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AppItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="RoomItem_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fromMin" Type="nvarchar" MaxLength="9" />
+          <Property Name="toMax" Type="nvarchar" MaxLength="9" />
+          <Property Name="areaVal" Type="real" />
+        </EntityType>
+        <EntityType Name="CleaningTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="cTypeValue" Type="real" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="custID" Type="nvarchar(max)" />
+          <Property Name="status" Type="nvarchar(max)" />
+          <Property Name="joinDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="empID" Type="nvarchar(max)" />
+          <Property Name="status" Type="nvarchar(max)" />
+          <Property Name="hireDate" Type="datetime" />
+          <Property Name="removeDate" Type="datetime" />
+          <Property Name="type" Type="nvarchar(max)" />
+          <Property Name="Address_Id" Type="int" Nullable="false" />
+          <Property Name="rate" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="fname" Type="nvarchar" MaxLength="20" />
+          <Property Name="lname" Type="nvarchar" MaxLength="20" />
+          <Property Name="homePhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="workPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="email1" Type="nvarchar" MaxLength="60" />
+          <Property Name="email2" Type="nvarchar" MaxLength="60" />
+          <Property Name="mobilePhone" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="startDate" Type="datetime" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="startTime" Type="int" />
+          <Property Name="endTime" Type="int" />
+          <Property Name="Invoice_Id" Type="int" Nullable="false" />
+          <Property Name="allDay" Type="nvarchar" MaxLength="10" />
+          <Property Name="eventId" Type="nvarchar" MaxLength="15" />
+          <Property Name="empList" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="HouseItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="otherInfo" Type="nvarchar(max)" />
+          <Property Name="CleaningType_Id" Type="int" Nullable="false" />
+          <Property Name="HouseType" Type="nvarchar(max)" />
+          <Property Name="Area" Type="nvarchar" MaxLength="20" />
+          <Property Name="Pets" Type="nvarchar" MaxLength="30" />
+          <Property Name="HouseName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="HouseTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="hTypeValue" Type="real" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="nvarchar(max)" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="dateCreated" Type="datetime" />
+          <Property Name="dateModified" Type="datetime" />
+          <Property Name="paymentStatus" Type="nvarchar(max)" />
+          <Property Name="jobStatus" Type="nvarchar(max)" />
+          <Property Name="paymentMethod" Type="nvarchar(max)" />
+          <Property Name="paymentDate" Type="datetime" />
+          <Property Name="Customer_Id" Type="int" Nullable="false" />
+          <Property Name="Quote_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OptionItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="time" Type="int" />
+          <Property Name="AppItem_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="nvarchar(max)" />
+          <Property Name="lname" Type="nvarchar(max)" />
+          <Property Name="homePhone" Type="nvarchar(max)" />
+          <Property Name="workPhone" Type="nvarchar(max)" />
+          <Property Name="mobilePhone" Type="nvarchar(max)" />
+          <Property Name="email1" Type="nvarchar(max)" />
+          <Property Name="email2" Type="nvarchar(max)" />
+          <Property Name="Customer_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="PresetItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="price" Type="decimal" />
+          <Property Name="time" Type="int" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="startDate" Type="datetime" />
+          <Property Name="endDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Properties">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="Address_Id" Type="int" Nullable="false" />
+          <Property Name="Area_Id" Type="int" Nullable="false" />
+          <Property Name="Customer_Id" Type="int" Nullable="false" />
+          <Property Name="HouseType_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Quotes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="quoteCode" Type="nvarchar(max)" />
+          <Property Name="totalPrice" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="totalTime" Type="int" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="quotePath" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RoomItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nickName" Type="nvarchar(max)" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="HouseItem_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RTQApps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="status" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="Room_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RTQOptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="time" Type="int" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="status" Type="nvarchar(max)" />
+          <Property Name="RTQApp_Id" Type="int" Nullable="false" />
+          <Property Name="ctype" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RTQOptionSubs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="time" Type="int" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="RTQOption_Id" Type="int" Nullable="false" />
+          <Property Name="ctype" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_AppItemOptionItem">
+          <End Role="AppItems" Type="hctDBModel.Store.AppItems" Multiplicity="1" />
+          <End Role="OptionItems" Type="hctDBModel.Store.OptionItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OptionItems">
+              <PropertyRef Name="AppItem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaProperty">
+          <End Role="Areas" Type="hctDBModel.Store.Areas" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Store.Properties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CleaningTypeHouseItem">
+          <End Role="CleaningTypes" Type="hctDBModel.Store.CleaningTypes" Multiplicity="1" />
+          <End Role="HouseItems" Type="hctDBModel.Store.HouseItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CleaningTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HouseItems">
+              <PropertyRef Name="CleaningType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerInvoice">
+          <End Role="Customers" Type="hctDBModel.Store.Customers" Multiplicity="1" />
+          <End Role="Invoices" Type="hctDBModel.Store.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerPerson">
+          <End Role="Customers" Type="hctDBModel.Store.Customers" Multiplicity="0..1" />
+          <End Role="People" Type="hctDBModel.Store.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerProperty">
+          <End Role="Customers" Type="hctDBModel.Store.Customers" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Store.Properties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeAddress">
+          <End Role="Addresses" Type="hctDBModel.Store.Addresses" Multiplicity="1" />
+          <End Role="Employees" Type="hctDBModel.Store.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseItemRoomItem">
+          <End Role="HouseItems" Type="hctDBModel.Store.HouseItems" Multiplicity="1" />
+          <End Role="RoomItems" Type="hctDBModel.Store.RoomItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomItems">
+              <PropertyRef Name="HouseItem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseTypeProperty">
+          <End Role="HouseTypes" Type="hctDBModel.Store.HouseTypes" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Store.Properties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="HouseType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceEvent">
+          <End Role="Invoices" Type="hctDBModel.Store.Invoices" Multiplicity="1" />
+          <End Role="Events" Type="hctDBModel.Store.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="Invoice_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyAddress">
+          <End Role="Addresses" Type="hctDBModel.Store.Addresses" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Store.Properties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuoteInvoice">
+          <End Role="Quotes" Type="hctDBModel.Store.Quotes" Multiplicity="1" />
+          <End Role="Invoices" Type="hctDBModel.Store.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quotes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Quote_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomItemAppItem">
+          <End Role="RoomItems" Type="hctDBModel.Store.RoomItems" Multiplicity="1" />
+          <End Role="AppItems" Type="hctDBModel.Store.AppItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AppItems">
+              <PropertyRef Name="RoomItem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomRTQApp">
+          <End Role="Rooms" Type="hctDBModel.Store.Rooms" Multiplicity="1" />
+          <End Role="RTQApps" Type="hctDBModel.Store.RTQApps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RTQApps">
+              <PropertyRef Name="Room_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTQAppRTQOption">
+          <End Role="RTQApps" Type="hctDBModel.Store.RTQApps" Multiplicity="1" />
+          <End Role="RTQOptions" Type="hctDBModel.Store.RTQOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RTQApps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RTQOptions">
+              <PropertyRef Name="RTQApp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTQOptionRTQOptionSub">
+          <End Role="RTQOptions" Type="hctDBModel.Store.RTQOptions" Multiplicity="1" />
+          <End Role="RTQOptionSubs" Type="hctDBModel.Store.RTQOptionSubs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RTQOptions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RTQOptionSubs">
+              <PropertyRef Name="RTQOption_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hctDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="hctDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="hctDBModel.Address" />
+          <EntitySet Name="AppItems" EntityType="hctDBModel.AppItem" />
+          <EntitySet Name="Areas" EntityType="hctDBModel.Area" />
+          <EntitySet Name="CleaningTypes" EntityType="hctDBModel.CleaningType" />
+          <EntitySet Name="Customers" EntityType="hctDBModel.Customer" />
+          <EntitySet Name="Employees" EntityType="hctDBModel.Employee" />
+          <EntitySet Name="Events" EntityType="hctDBModel.Event" />
+          <EntitySet Name="HouseItems" EntityType="hctDBModel.HouseItem" />
+          <EntitySet Name="HouseTypes" EntityType="hctDBModel.HouseType" />
+          <EntitySet Name="Invoices" EntityType="hctDBModel.Invoice" />
+          <EntitySet Name="OptionItems" EntityType="hctDBModel.OptionItem" />
+          <EntitySet Name="People" EntityType="hctDBModel.Person" />
+          <EntitySet Name="PresetItems" EntityType="hctDBModel.PresetItem" />
+          <EntitySet Name="Properties" EntityType="hctDBModel.Property" />
+          <EntitySet Name="Quotes" EntityType="hctDBModel.Quote" />
+          <EntitySet Name="RoomItems" EntityType="hctDBModel.RoomItem" />
+          <EntitySet Name="Rooms" EntityType="hctDBModel.Room" />
+          <EntitySet Name="RTQApps" EntityType="hctDBModel.RTQApp" />
+          <EntitySet Name="RTQOptions" EntityType="hctDBModel.RTQOption" />
+          <EntitySet Name="RTQOptionSubs" EntityType="hctDBModel.RTQOptionSub" />
+          <AssociationSet Name="FK_EmployeeAddress" Association="hctDBModel.FK_EmployeeAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyAddress" Association="hctDBModel.FK_PropertyAddress">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AppItemOptionItem" Association="hctDBModel.FK_AppItemOptionItem">
+            <End Role="AppItems" EntitySet="AppItems" />
+            <End Role="OptionItems" EntitySet="OptionItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomItemAppItem" Association="hctDBModel.FK_RoomItemAppItem">
+            <End Role="RoomItems" EntitySet="RoomItems" />
+            <End Role="AppItems" EntitySet="AppItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AreaProperty" Association="hctDBModel.FK_AreaProperty">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CleaningTypeHouseItem" Association="hctDBModel.FK_CleaningTypeHouseItem">
+            <End Role="CleaningTypes" EntitySet="CleaningTypes" />
+            <End Role="HouseItems" EntitySet="HouseItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerInvoice" Association="hctDBModel.FK_CustomerInvoice">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerPerson" Association="hctDBModel.FK_CustomerPerson">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerProperty" Association="hctDBModel.FK_CustomerProperty">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceEvent" Association="hctDBModel.FK_InvoiceEvent">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseItemRoomItem" Association="hctDBModel.FK_HouseItemRoomItem">
+            <End Role="HouseItems" EntitySet="HouseItems" />
+            <End Role="RoomItems" EntitySet="RoomItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HouseTypeProperty" Association="hctDBModel.FK_HouseTypeProperty">
+            <End Role="HouseTypes" EntitySet="HouseTypes" />
+            <End Role="Properties" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuoteInvoice" Association="hctDBModel.FK_QuoteInvoice">
+            <End Role="Quotes" EntitySet="Quotes" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomRTQApp" Association="hctDBModel.FK_RoomRTQApp">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="RTQApps" EntitySet="RTQApps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTQAppRTQOption" Association="hctDBModel.FK_RTQAppRTQOption">
+            <End Role="RTQApps" EntitySet="RTQApps" />
+            <End Role="RTQOptions" EntitySet="RTQOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTQOptionRTQOptionSub" Association="hctDBModel.FK_RTQOptionRTQOptionSub">
+            <End Role="RTQOptions" EntitySet="RTQOptions" />
+            <End Role="RTQOptionSubs" EntitySet="RTQOptionSubs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bldg" Type="Int32" />
+          <Property Name="unit" Type="Int32" />
+          <Property Name="street" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="postal" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="hctDBModel.FK_EmployeeAddress" FromRole="Addresses" ToRole="Employees" />
+          <NavigationProperty Name="Properties" Relationship="hctDBModel.FK_PropertyAddress" FromRole="Addresses" ToRole="Properties" />
+        </EntityType>
+        <EntityType Name="AppItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RoomItem_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OptionItems" Relationship="hctDBModel.FK_AppItemOptionItem" FromRole="AppItems" ToRole="OptionItems" />
+          <NavigationProperty Name="RoomItem" Relationship="hctDBModel.FK_RoomItemAppItem" FromRole="AppItems" ToRole="RoomItems" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fromMin" Type="String" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="toMax" Type="String" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="areaVal" Type="Single" />
+          <NavigationProperty Name="Properties" Relationship="hctDBModel.FK_AreaProperty" FromRole="Areas" ToRole="Properties" />
+        </EntityType>
+        <EntityType Name="CleaningType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="cTypeValue" Type="Single" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="HouseItems" Relationship="hctDBModel.FK_CleaningTypeHouseItem" FromRole="CleaningTypes" ToRole="HouseItems" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custID" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="joinDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Invoices" Relationship="hctDBModel.FK_CustomerInvoice" FromRole="Customers" ToRole="Invoices" />
+          <NavigationProperty Name="People" Relationship="hctDBModel.FK_CustomerPerson" FromRole="Customers" ToRole="People" />
+          <NavigationProperty Name="Properties" Relationship="hctDBModel.FK_CustomerProperty" FromRole="Customers" ToRole="Properties" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empID" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hireDate" Type="DateTime" Precision="3" />
+          <Property Name="removeDate" Type="DateTime" Precision="3" />
+          <Property Name="type" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address_Id" Type="Int32" Nullable="false" />
+          <Property Name="rate" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="fname" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="lname" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="homePhone" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="workPhone" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="email1" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="email2" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="mobilePhone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Address" Relationship="hctDBModel.FK_EmployeeAddress" FromRole="Employees" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="startTime" Type="Int32" />
+          <Property Name="endTime" Type="Int32" />
+          <Property Name="Invoice_Id" Type="Int32" Nullable="false" />
+          <Property Name="allDay" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="eventId" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="empList" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Invoice" Relationship="hctDBModel.FK_InvoiceEvent" FromRole="Events" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="HouseItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="otherInfo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CleaningType_Id" Type="Int32" Nullable="false" />
+          <Property Name="HouseType" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Pets" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="HouseName" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CleaningType" Relationship="hctDBModel.FK_CleaningTypeHouseItem" FromRole="HouseItems" ToRole="CleaningTypes" />
+          <NavigationProperty Name="RoomItems" Relationship="hctDBModel.FK_HouseItemRoomItem" FromRole="HouseItems" ToRole="RoomItems" />
+        </EntityType>
+        <EntityType Name="HouseType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hTypeValue" Type="Single" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Properties" Relationship="hctDBModel.FK_HouseTypeProperty" FromRole="HouseTypes" ToRole="Properties" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="dateCreated" Type="DateTime" Precision="3" />
+          <Property Name="dateModified" Type="DateTime" Precision="3" />
+          <Property Name="paymentStatus" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="jobStatus" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="paymentMethod" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="paymentDate" Type="DateTime" Precision="3" />
+          <Property Name="Customer_Id" Type="Int32" Nullable="false" />
+          <Property Name="Quote_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="hctDBModel.FK_CustomerInvoice" FromRole="Invoices" ToRole="Customers" />
+          <NavigationProperty Name="Events" Relationship="hctDBModel.FK_InvoiceEvent" FromRole="Invoices" ToRole="Events" />
+          <NavigationProperty Name="Quote" Relationship="hctDBModel.FK_QuoteInvoice" FromRole="Invoices" ToRole="Quotes" />
+        </EntityType>
+        <EntityType Name="OptionItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="time" Type="Int32" />
+          <Property Name="AppItem_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AppItem" Relationship="hctDBModel.FK_AppItemOptionItem" FromRole="OptionItems" ToRole="AppItems" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="lname" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="homePhone" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="workPhone" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="mobilePhone" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="email1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="email2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Customer_Id" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="hctDBModel.FK_CustomerPerson" FromRole="People" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="PresetItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="time" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="title" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address_Id" Type="Int32" Nullable="false" />
+          <Property Name="Area_Id" Type="Int32" Nullable="false" />
+          <Property Name="Customer_Id" Type="Int32" Nullable="false" />
+          <Property Name="HouseType_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="hctDBModel.FK_PropertyAddress" FromRole="Properties" ToRole="Addresses" />
+          <NavigationProperty Name="Area" Relationship="hctDBModel.FK_AreaProperty" FromRole="Properties" ToRole="Areas" />
+          <NavigationProperty Name="Customer" Relationship="hctDBModel.FK_CustomerProperty" FromRole="Properties" ToRole="Customers" />
+          <NavigationProperty Name="HouseType" Relationship="hctDBModel.FK_HouseTypeProperty" FromRole="Properties" ToRole="HouseTypes" />
+        </EntityType>
+        <EntityType Name="Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quoteCode" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="totalTime" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="quotePath" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Invoices" Relationship="hctDBModel.FK_QuoteInvoice" FromRole="Quotes" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="RoomItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nickName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="HouseItem_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AppItems" Relationship="hctDBModel.FK_RoomItemAppItem" FromRole="RoomItems" ToRole="AppItems" />
+          <NavigationProperty Name="HouseItem" Relationship="hctDBModel.FK_HouseItemRoomItem" FromRole="RoomItems" ToRole="HouseItems" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RTQApps" Relationship="hctDBModel.FK_RoomRTQApp" FromRole="Rooms" ToRole="RTQApps" />
+        </EntityType>
+        <EntityType Name="RTQApp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Room_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Room" Relationship="hctDBModel.FK_RoomRTQApp" FromRole="RTQApps" ToRole="Rooms" />
+          <NavigationProperty Name="RTQOptions" Relationship="hctDBModel.FK_RTQAppRTQOption" FromRole="RTQApps" ToRole="RTQOptions" />
+        </EntityType>
+        <EntityType Name="RTQOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="time" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RTQApp_Id" Type="Int32" Nullable="false" />
+          <Property Name="ctype" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RTQApp" Relationship="hctDBModel.FK_RTQAppRTQOption" FromRole="RTQOptions" ToRole="RTQApps" />
+          <NavigationProperty Name="RTQOptionSubs" Relationship="hctDBModel.FK_RTQOptionRTQOptionSub" FromRole="RTQOptions" ToRole="RTQOptionSubs" />
+        </EntityType>
+        <EntityType Name="RTQOptionSub">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="time" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RTQOption_Id" Type="Int32" Nullable="false" />
+          <Property Name="ctype" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RTQOption" Relationship="hctDBModel.FK_RTQOptionRTQOptionSub" FromRole="RTQOptionSubs" ToRole="RTQOptions" />
+        </EntityType>
+        <Association Name="FK_EmployeeAddress">
+          <End Role="Addresses" Type="hctDBModel.Address" Multiplicity="1" />
+          <End Role="Employees" Type="hctDBModel.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyAddress">
+          <End Role="Addresses" Type="hctDBModel.Address" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="Address_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AppItemOptionItem">
+          <End Role="AppItems" Type="hctDBModel.AppItem" Multiplicity="1" />
+          <End Role="OptionItems" Type="hctDBModel.OptionItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OptionItems">
+              <PropertyRef Name="AppItem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomItemAppItem">
+          <End Role="RoomItems" Type="hctDBModel.RoomItem" Multiplicity="1" />
+          <End Role="AppItems" Type="hctDBModel.AppItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AppItems">
+              <PropertyRef Name="RoomItem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AreaProperty">
+          <End Role="Areas" Type="hctDBModel.Area" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="Area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CleaningTypeHouseItem">
+          <End Role="CleaningTypes" Type="hctDBModel.CleaningType" Multiplicity="1" />
+          <End Role="HouseItems" Type="hctDBModel.HouseItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CleaningTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HouseItems">
+              <PropertyRef Name="CleaningType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerInvoice">
+          <End Role="Customers" Type="hctDBModel.Customer" Multiplicity="1" />
+          <End Role="Invoices" Type="hctDBModel.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerPerson">
+          <End Role="Customers" Type="hctDBModel.Customer" Multiplicity="0..1" />
+          <End Role="People" Type="hctDBModel.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerProperty">
+          <End Role="Customers" Type="hctDBModel.Customer" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceEvent">
+          <End Role="Invoices" Type="hctDBModel.Invoice" Multiplicity="1" />
+          <End Role="Events" Type="hctDBModel.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="Invoice_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseItemRoomItem">
+          <End Role="HouseItems" Type="hctDBModel.HouseItem" Multiplicity="1" />
+          <End Role="RoomItems" Type="hctDBModel.RoomItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomItems">
+              <PropertyRef Name="HouseItem_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HouseTypeProperty">
+          <End Role="HouseTypes" Type="hctDBModel.HouseType" Multiplicity="1" />
+          <End Role="Properties" Type="hctDBModel.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HouseTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Properties">
+              <PropertyRef Name="HouseType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuoteInvoice">
+          <End Role="Quotes" Type="hctDBModel.Quote" Multiplicity="1" />
+          <End Role="Invoices" Type="hctDBModel.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quotes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Quote_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomRTQApp">
+          <End Role="Rooms" Type="hctDBModel.Room" Multiplicity="1" />
+          <End Role="RTQApps" Type="hctDBModel.RTQApp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RTQApps">
+              <PropertyRef Name="Room_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTQAppRTQOption">
+          <End Role="RTQApps" Type="hctDBModel.RTQApp" Multiplicity="1" />
+          <End Role="RTQOptions" Type="hctDBModel.RTQOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RTQApps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RTQOptions">
+              <PropertyRef Name="RTQApp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTQOptionRTQOptionSub">
+          <End Role="RTQOptions" Type="hctDBModel.RTQOption" Multiplicity="1" />
+          <End Role="RTQOptionSubs" Type="hctDBModel.RTQOptionSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RTQOptions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RTQOptionSubs">
+              <PropertyRef Name="RTQOption_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hctDBModelStoreContainer" CdmEntityContainer="hctDBEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="hctDBModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="bldg" ColumnName="bldg" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="postal" ColumnName="postal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppItems">
+            <EntityTypeMapping TypeName="hctDBModel.AppItem">
+              <MappingFragment StoreEntitySet="AppItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="RoomItem_Id" ColumnName="RoomItem_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="hctDBModel.Area">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="fromMin" ColumnName="fromMin" />
+                <ScalarProperty Name="toMax" ColumnName="toMax" />
+                <ScalarProperty Name="areaVal" ColumnName="areaVal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CleaningTypes">
+            <EntityTypeMapping TypeName="hctDBModel.CleaningType">
+              <MappingFragment StoreEntitySet="CleaningTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cTypeValue" ColumnName="cTypeValue" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="hctDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="custID" ColumnName="custID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="joinDate" ColumnName="joinDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="hctDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="hireDate" ColumnName="hireDate" />
+                <ScalarProperty Name="removeDate" ColumnName="removeDate" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Address_Id" ColumnName="Address_Id" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="homePhone" ColumnName="homePhone" />
+                <ScalarProperty Name="workPhone" ColumnName="workPhone" />
+                <ScalarProperty Name="email1" ColumnName="email1" />
+                <ScalarProperty Name="email2" ColumnName="email2" />
+                <ScalarProperty Name="mobilePhone" ColumnName="mobilePhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="hctDBModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="Invoice_Id" ColumnName="Invoice_Id" />
+                <ScalarProperty Name="allDay" ColumnName="allDay" />
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="empList" ColumnName="empList" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HouseItems">
+            <EntityTypeMapping TypeName="hctDBModel.HouseItem">
+              <MappingFragment StoreEntitySet="HouseItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="otherInfo" ColumnName="otherInfo" />
+                <ScalarProperty Name="CleaningType_Id" ColumnName="CleaningType_Id" />
+                <ScalarProperty Name="HouseType" ColumnName="HouseType" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Pets" ColumnName="Pets" />
+                <ScalarProperty Name="HouseName" ColumnName="HouseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HouseTypes">
+            <EntityTypeMapping TypeName="hctDBModel.HouseType">
+              <MappingFragment StoreEntitySet="HouseTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="hTypeValue" ColumnName="hTypeValue" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="hctDBModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+                <ScalarProperty Name="jobStatus" ColumnName="jobStatus" />
+                <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+                <ScalarProperty Name="paymentDate" ColumnName="paymentDate" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Quote_Id" ColumnName="Quote_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OptionItems">
+            <EntityTypeMapping TypeName="hctDBModel.OptionItem">
+              <MappingFragment StoreEntitySet="OptionItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="AppItem_Id" ColumnName="AppItem_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="hctDBModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="homePhone" ColumnName="homePhone" />
+                <ScalarProperty Name="workPhone" ColumnName="workPhone" />
+                <ScalarProperty Name="mobilePhone" ColumnName="mobilePhone" />
+                <ScalarProperty Name="email1" ColumnName="email1" />
+                <ScalarProperty Name="email2" ColumnName="email2" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PresetItems">
+            <EntityTypeMapping TypeName="hctDBModel.PresetItem">
+              <MappingFragment StoreEntitySet="PresetItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="hctDBModel.Property">
+              <MappingFragment StoreEntitySet="Properties">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Address_Id" ColumnName="Address_Id" />
+                <ScalarProperty Name="Area_Id" ColumnName="Area_Id" />
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="HouseType_Id" ColumnName="HouseType_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quotes">
+            <EntityTypeMapping TypeName="hctDBModel.Quote">
+              <MappingFragment StoreEntitySet="Quotes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="quoteCode" ColumnName="quoteCode" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="totalTime" ColumnName="totalTime" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="quotePath" ColumnName="quotePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomItems">
+            <EntityTypeMapping TypeName="hctDBModel.RoomItem">
+              <MappingFragment StoreEntitySet="RoomItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nickName" ColumnName="nickName" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="HouseItem_Id" ColumnName="HouseItem_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="hctDBModel.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RTQApps">
+            <EntityTypeMapping TypeName="hctDBModel.RTQApp">
+              <MappingFragment StoreEntitySet="RTQApps">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RTQOptions">
+            <EntityTypeMapping TypeName="hctDBModel.RTQOption">
+              <MappingFragment StoreEntitySet="RTQOptions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="RTQApp_Id" ColumnName="RTQApp_Id" />
+                <ScalarProperty Name="ctype" ColumnName="ctype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RTQOptionSubs">
+            <EntityTypeMapping TypeName="hctDBModel.RTQOptionSub">
+              <MappingFragment StoreEntitySet="RTQOptionSubs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="RTQOption_Id" ColumnName="RTQOption_Id" />
+                <ScalarProperty Name="ctype" ColumnName="ctype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

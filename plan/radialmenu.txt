@@ -1,0 +1,51 @@
+        /*
+        .menu li
+        {
+            background: #337abe;
+            color: #fff;
+            font-size: 12px;
+            width:200px;
+        }
+
+            .menu li:hover
+            {
+                background-color: #91bfdb;
+            }
+        .menu a
+        {
+            text-decoration: none;
+            color: #fff;
+        }
+
+
+        #examples
+        {
+            margin-left: 200px;
+        }
+
+            #examples > div
+            {
+                display: none;
+                width: 300px;
+                height: 300px;
+                border: 1px solid black;
+                position: relative;
+                overflow: hidden;
+            }
+
+        .menu
+        {
+            position: absolute;
+        }
+
+        .menu li:first-child {
+            background:#f00;
+            font-weight:bold;
+            font-family:arial black;
+            font-size:200%;
+            border-color: #fff;
+            border-width: 2px;
+            border-style: solid;
+            box-shadow: 0 0 2px 1px #aaa;
+        }
+        */

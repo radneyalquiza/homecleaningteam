@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5020e3f387554fd4b6075890f0500f20" Name="Diagram1">
+        <EntityTypeShape EntityType="hctDBModel.Address" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.AppItem" Width="1.5" PointX="15.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Area" Width="1.5" PointX="3.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.CleaningType" Width="1.5" PointX="8.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Customer" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Employee" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Event" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.HouseItem" Width="1.5" PointX="11" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.HouseType" Width="1.5" PointX="3.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Invoice" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.OptionItem" Width="1.5" PointX="17.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Person" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.PresetItem" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Property" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Quote" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.RoomItem" Width="1.5" PointX="13.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.Room" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.RTQApp" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.RTQOption" Width="1.5" PointX="10.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hctDBModel.RTQOptionSub" Width="1.5" PointX="12.5" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="hctDBModel.FK_EmployeeAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_PropertyAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_AppItemOptionItem" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_RoomItemAppItem" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_AreaProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_CleaningTypeHouseItem" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_CustomerInvoice" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_CustomerPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_CustomerProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_InvoiceEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_HouseItemRoomItem" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_HouseTypeProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_QuoteInvoice" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_RoomRTQApp" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_RTQAppRTQOption" ManuallyRouted="false" />
+        <AssociationConnector Association="hctDBModel.FK_RTQOptionRTQOptionSub" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,223 @@
+﻿/*******************************************************/
+/* STYLESHEET FOR ATLAS PAGE TRANSITIONS JQUERY PLUGIN */
+/*******************************************************/
+
+
+.pageTransContainer
+{
+    position: relative;
+    height: inherit;
+    width: inherit;
+    background-color: #B0B0B0;
+    overflow:hidden;
+    min-height:100px;
+}
+
+.pageTransItem
+{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    min-height:100px;
+    background-color: #77c0d8;
+    visibility: hidden;
+    text-align: center;
+    opacity: 0;
+    text-align:center;
+}
+
+.pageTransItem p 
+{
+    width:80%;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.current
+{
+    visibility: visible;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+}
+
+.controlLeft, .controlRight, .controlCenter
+{
+    position: absolute;
+    top: 50%;
+    transition: all 0.4s;
+    z-index: 99;
+    background-color: #6196b9;
+    color: white;
+    border-radius: 5px;
+    padding: 9px;
+    text-align: center;
+    font-size: 1em;
+    min-width: 40px;
+    height: 45px;
+    width: 3%;
+}
+
+.controlCenter
+{
+    min-width:100px;
+    width:10%;
+    top:89%;
+    left:50%;
+    margin-left:-5%;
+}
+
+
+.controlLeft
+{
+    left: 10px;
+}
+
+.controlRight
+{
+    right: 10px;
+}
+
+    .controlLeft:hover, .controlRight:hover
+    {
+        cursor: pointer;
+        color: #484848;
+        background-color: #fff;
+    }
+
+    .controlCenter:hover
+    {
+        cursor: pointer;
+        color: #484848;
+        background-color: #fff;
+    }
+
+.pagelist
+{
+    position: absolute;
+    z-index: 99;
+    bottom: 0px;
+    width: 100%;
+    background-color: #808080;
+    text-align: center;
+    background-color: #6196b9;
+    padding: 2px;
+}
+
+    /* 
+   the list item widths are calculated and set in the atlasPageTransition plugin 
+   because there can be variable number of pages
+*/
+
+    .pagelist li
+    {
+        display: inline-block;
+        color: #fff;
+        background-color: #ff9400;
+        margin: auto;
+        text-align: center;
+        margin-left: 2px;
+        font-size: 0.9em;
+        border-radius: 2px;
+        transition: all 0.4s;
+        height: 25px;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        .pagelist li:hover
+        {
+            cursor: pointer;
+            background-color: #ffd293;
+            color: #484848;
+        }
+
+li.active
+{
+    background-color: #ff4600;
+    color: white;
+}
+
+
+
+
+/************************************************************/
+/* RESPONSIVE */
+/************************************************************/
+
+@media only screen and (max-width: 768px)
+{
+    .pageTransItem
+    {
+        padding-top: 10px;
+    }
+    .controlCenter
+    {
+        left:50%;
+        margin-left:-8%;
+        font-size:0.9em;
+    }
+}
+
+@media only screen and (max-width: 480px)
+{
+    .controlLeft
+    {
+        left: 5px;
+        top:2%;
+    }
+
+    .controlRight
+    {
+        right: 5px;
+        top:2%;
+    }
+
+    .controlCenter
+    {
+        left:2%;
+        font-size:0.8em;
+        top:5px;
+        width:70px;
+        height:4%;
+        line-height:10px;
+    }
+    .current
+    {
+        height:100%;
+    }
+    .pageTransItem
+    {
+        overflow:scroll;
+    }
+}
+
+@media only screen and (max-width: 360px)
+{
+    
+    .pageTransContainer
+    {
+        overflow:visible;
+    }
+
+}
+
+
+/************************************************************/
+/* HELPER */
+/************************************************************/
+
+.alignDiv
+{
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+.DivHelper
+{
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}

@@ -1,0 +1,88 @@
+﻿body {
+}
+
+
+
+
+.navButton
+{
+    height:40px;
+    width:40px;
+    background-color:#ff6a00;
+}
+
+nav
+{
+    margin: auto;
+    left:3px;
+    top:3px;
+    display:inline-block;
+    font-size:1em;
+}
+
+    nav ul
+    {
+        padding:5px;
+        list-style:none;
+    }
+
+        nav ul li
+        {
+            background-color:#83bfff;
+            color:#fff;
+            padding:3px 0 3px 0;
+            display:inline-block;
+            width:80px;
+            height:80px;
+            border-radius:5px;
+        }
+
+            nav ul li a
+            {
+                text-decoration:none;
+                color:white;
+            }
+
+        nav ul li:hover
+        {
+            background-color:#ffb540;
+            color:#000;
+            transition: all 0.4s;
+            cursor:pointer
+        }
+
+/*=========================================================================*/
+/* RESPONSIVE */
+/*=========================================================================*/
+@media only screen and (max-width: 1100px)
+{
+    nav ul li
+    {
+        width:60px;
+    }
+}
+
+@media only screen and (max-width: 840px)
+{
+    nav
+    {
+        width:50px;
+        height:50px;
+        background-color:#4d98f3;
+        position:fixed;
+        left:10px;
+        top:10px;
+    }
+        nav:hover
+        {
+            cursor:pointer;
+            background-color:#447aad;
+            color:white;
+            border-radius:99px;
+            transition:all 0.4s;
+        }
+    nav ul li
+    {
+        display:none;
+    }
+}

@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+<head id="Head1" runat="server">
+    <title>The HomeCleaningTeam</title>
+
+    <!-- STYLE -->
+    <link href="~/Styles/tipTip.css" rel="stylesheet" />
+    <link href="~/Styles/grid.css" rel="stylesheet" />
+    <link href="~/Styles/Site.css" rel="stylesheet" />
+    <link href="~/Styles/mainmenu.css" rel="stylesheet" />
+    <link href="~/Styles/atlasPageTransitions.css" rel="stylesheet" />
+    
+    
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/jquery.tipTip.js"></script>
+    <script src="Scripts/jquery.transit.min.js"></script>
+    <script src="Scripts/masonry.pkgd.min.js"></script>
+    <script src="Scripts/myScript.js"></script>
+    <script src="Scripts/respond.min.js"></script>
+    <script src="Scripts/jquery.mask.js"></script>
+    <script src="Scripts/jquery.atlasPageTransition.js"></script>
+   
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <div class="hctTopBar">
+            <div class="topBarDiv">
+                <div class="topBarImage">
+                </div>
+                <div class="topBarContent">
+                    <nav class="mainMenu">
+                        <ul>
+                            <li>
+                                <div class="alignDiv"><asp:HyperLink ID="HyperLink1" NavigateUrl="admin/admin.aspx" runat="server" cssClass="menuItem">Admin</asp:HyperLink></div><div class="DivHelper"></div>
+                            </li>
+                            <li>
+                                <div class="alignDiv"><a class="menuItem">About Us</a></div><div class="DivHelper"></div>
+                            </li>
+                            <li>
+                                <div class="alignDiv"><a class="menuItem">Gallery</a></div><div class="DivHelper"></div>
+                            </li>
+                            <li>
+                                <div class="alignDiv"><a class="menuItem">Services</a></div><div class="DivHelper"></div>
+                            </li>
+                            <li>
+                                <div class="alignDiv"><a class="menuItem">Contact</a></div><div class="DivHelper"></div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <br style="clear:both" />
+            </div>
+        </div>
+
+    <div class="pad"></div>
+        <div class="page">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

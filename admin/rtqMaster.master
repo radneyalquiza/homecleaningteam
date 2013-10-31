@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="rtqMaster.master.cs" Inherits="admin_rtqMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The HomeCleaningTeam - RTQ</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic-ext,greek,vietnamese,greek-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css' />
+    <script src="../Scripts/modernizr.custom.js"></script>
+    
+    <link href="../Styles/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    <style>
+        form, .page
+        {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="page">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

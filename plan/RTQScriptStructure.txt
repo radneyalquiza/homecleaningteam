@@ -1,0 +1,57 @@
+Auto-filled PDFs at the end of an RTQ (backside only)
+Customer Management - search and edit from table.
+Quote created notification, quotes table ordered .
+
+RTQ skeloton flow - design up to me
+
+Multiple addresses per customer. customer is user object, contact is the person themselves
+
+Add option for keys if Condo and Apartment
+
+Different service types and property type will decide the ADDITIONAL INFORMATION included in the invoice. 
+Create a quote & invoice without RTQ Options (for quick services)
+
+Delete inactive quotes after 2 weeks (email a customer if they want to book)
+
+Quote date is needed, not date booked
+
+Payment methods include Cheque, cash and email money transfer
+
+Generate next available date that can accommodate the length of the job
+
+# of employees working:
+Sq ft size
+certain RTQ options selected
+number of hours > 6 + 
+
+
+/ after launch
+List View of calendar. -try to sync with Google Calendar
+Graphical view of the calendar system, employee viewable, manager editable (site/android app)
+
+RTQ Flow;
+1. Service type.
+2. Date of job. (urgency options, like a range of time)
+3. Property type
+4. Sq ft.
+5. Accordion for each room.
+how many rooms, proceed with options + question that will ask if they want to apply to all rooms.
+6. At the end of quote, display total price, hours and a textbox for email and instructions.
+7. The user enters email and proceeds, the email with conf code + pdf (of quote summary) + a link for registration.
+
+popup with the code + choice of if they want to register.
+
+-initial link from customer to quote is email
+
+8. If the user proceeds with registration, go to reg page, then scheduling.
+
+9. select a date for the quote.
+
+10. done (customer side) if no conflict.
+- if there is a conflict, choose again or call
+- email notification if no conflict to both user and manager
+
+11. - manager side
+- if no conflict, email received will have link to schedule employees for the job.
+
+12. final invoice (2-sided) for manager to print

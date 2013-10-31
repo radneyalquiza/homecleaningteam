@@ -1,0 +1,216 @@
+﻿/* =============================================== */
+/* Stylesheet for the AtlasChecklist jQuery Plugin */
+/* =============================================== */
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* this class will be the container for the checklist*/
+.atlasChecklistContainer
+{
+    position: relative;
+    padding: 5px;
+    font-size: 0.8em;
+}
+
+.atlasChecklistContainer .header
+{
+    background-color: #808080;
+    padding: 1px;
+    text-align: center;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin-top: 2px;
+    color: white;
+    font-size: 1.05em;
+}
+
+
+.atlasChecklistContainer .listholder
+{
+    width: 98%;
+    margin: auto;
+    list-style: none;
+    padding-left: 0;
+}
+
+.atlasChecklistContainer .list:not(.header)
+{
+    width: 98%;
+    height: auto;
+    background-color: #ffa425;
+    color: white;
+    padding: 1px;
+    transition: all 0.25s;
+    border: 1px solid #ca7625;
+    font-size: 14px;
+    text-align:left;
+    margin:auto;
+    margin-top: 1px;
+}
+
+    .atlasChecklistContainer .list:not(.header) span
+    {
+        margin-left: 2px;
+        display:inline-block;
+        max-width:93%;
+    }
+
+.listholder .list:hover:not(.header)
+{
+    background-color: #ff7d00;
+    color: white;
+    cursor: pointer;
+}
+
+    .listholder .list:hover:not(.header) > span
+    {
+        margin-left: 10px;
+        transition: all 0.2s;
+    }
+
+.listholder .list.checked:not(.header)
+{
+    background-color: #60a9e0;
+    background-image: url(img/icons/check.png); /* 16px x 16px */
+    /*padding-left: 20px;      make text start to the right of the image */
+    background-repeat: no-repeat; /* make the background image appear only once */
+    background-position:right;
+    transition: all 0.1s ease-in-out;
+    border:1px solid #6195bd;
+}
+
+    .listholder .list.checked:not(.header):hover
+    {
+        background-image: url(img/icons/checklight.png) !important; /* 16px x 16px */
+        /*padding-left: 20px;      make text start to the right of the image */
+        background-repeat: no-repeat; /* make the background image appear only once */
+        background-position:right;
+    }
+
+.listholder .list.checkedWithSub:not(.header)
+{
+    background-color: #60a9e0;
+    background-image: url(img/icons/check.png) !important; /* 16px x 16px */
+    /*padding-left: 20px;      make text start to the right of the image */
+    background-repeat: no-repeat !important; /* make the background image appear only once */
+    background-position:right !important;
+    transition: all 0.1s ease-in-out;
+    border:1px solid #6195bd;
+}
+
+    .listholder .list.checkedWithSub:not(.header):hover
+    {
+        background-image: url(img/icons/down.png) !important; /* 16px x 16px */
+        background-repeat: no-repeat !important; /* make the background image appear only once */
+        background-position: right !important;
+    }
+
+
+.listWithSub
+{
+    background-image: url(img/icons/down.png) !important; /* 16px x 16px */
+    /*padding-left: 20px;      make text start to the right of the image */
+    background-repeat: no-repeat !important; /* make the background image appear only once */
+    background-position: right !important;
+    position:relative !important;
+}
+
+/* if the sub options are below the parent option */
+.sub-bottom
+{
+    display:none;
+    position:absolute;
+    /*margin-top:2px !important;*/
+    background-color:white;
+    border:1px solid #888888;
+    text-align:center;
+    z-index:999999 !important;
+    box-shadow:1px 2px 2px #888888;
+    border-radius:3px;
+}
+
+.sub-bottom:after, .sub-bottom:before { bottom: 100%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+.sub-bottom:after { border-color: rgba(255, 255, 255, 0); border-bottom-color: #ffffff; border-width: 7px; left: 50%; margin-left: -7px; }
+.sub-bottom:before { border-color: rgba(203, 233, 255, 0); border-bottom-color: #888888; border-width: 8px; left: 50%; margin-left: -8px; }
+
+    .sub.hidetail::after
+    {
+        display:none;
+    }
+    
+/* if the sub options are on the right of the parent option */
+.sub-right
+{
+    display:none;
+    position:absolute;
+    background-color:white;
+    border:1px solid #888888;
+    text-align:center;
+    z-index:999999 !important;
+    box-shadow:1px 2px 2px #888888;
+    border-radius:3px;
+    left:101%;
+    top:-20px;
+}
+
+.sub-right:after, .sub-right:before { right: 100%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+.sub-right:after { border-color: rgba(255, 255, 255, 0); border-right-color: #ffffff; border-width: 7px; top: 50%; margin-top: -7px; }
+.sub-right:before { border-color: rgba(65, 75, 82, 0); border-right-color: #888888; border-width: 8px; top: 50%; margin-top: -8px; }
+
+/* if the sub options are on the top of the parent option */
+.sub-top
+{
+    display:none;
+    position:absolute;
+    background-color:white;
+    border:1px solid #888888;
+    text-align:center;
+    z-index:999999 !important;
+    box-shadow:1px 2px 2px #888888;
+    border-radius:3px;
+    left:0px;
+    top:0;
+    margin-top:-40% !important;
+}
+
+.sub-top:after, .sub-top:before { top: 100%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+.sub-top:after { border-color: rgba(255, 255, 255, 0); border-top-color: #ffffff; border-width: 7px; left: 50%; margin-left: -7px; }
+.sub-top:before { border-color: rgba(203, 233, 255, 0); border-top-color: #888888; border-width: 8px; left: 50%; margin-left: -8px; }
+
+
+/* if the sub options are on the left of the parent option */
+.sub-left
+{
+    display:none;
+    position:absolute;
+    background-color:white;
+    border:1px solid #888888;
+    text-align:center;
+    z-index:999999 !important;
+    box-shadow:1px 2px 2px #888888;
+    border-radius:3px;
+    top:-20px;
+    left:-105%;
+}
+
+.sub-left:after, .sub-left:before { left: 100%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+.sub-left:after { border-color: rgba(255, 255, 255, 0); border-left-color: #ffffff; border-width: 7px; top: 50%; margin-top: -7px; }
+.sub-left:before { border-color: rgba(203, 233, 255, 0); border-left-color: #888888; border-width: 8px; top: 50%; margin-top: -8px; }
+
+.showSubs
+{
+    background-color: #888888 !important;
+    color: white !important;
+    background-image:none !important;
+    transition:background-image 0.1s;
+}
+
+.cancelhide
+{
+    overflow-x:visible !important;
+}
+
+.hidden-sub-list
+{
+    display:none;
+}

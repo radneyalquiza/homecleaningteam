@@ -1,0 +1,1686 @@
+﻿/* MAIN RTQ STYLESHEET */
+
+*
+{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+body
+{
+    margin: 0px;
+    padding: 0px;
+    position:relative;
+    height:100%;
+    overflow:hidden;
+}
+
+.pad
+{
+    height:60px;
+    padding-top:70px;
+    padding-left:130px;
+}
+
+.rtqDiv
+{
+    width: 97%;
+    min-height: 50px;
+    /*border:1px dashed #808080;*/
+    margin-top: 5px;
+    /*box-shadow: 0 8px 6px -6px #808080;*/
+    padding: 5px 15px 15px 15px;
+    display: none;
+    margin: auto;
+}
+
+.rtqDivPrelim
+{
+    width: 40%;
+    min-height: 160px;
+    /*border:1px dashed #808080;*/
+    margin-top: 5px;
+    /*box-shadow: 0 8px 6px -6px #808080;*/
+    padding: 5px 15px 15px 15px;
+    display: none;
+    float: left;
+    border: 1px dashed #808080;
+    margin-left: 5px;
+}
+
+.summaryDiv
+{
+    width: 65%;
+    background-color: #f5f5f5;
+    color: black;
+    min-height: 25px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    margin: auto;
+    margin-top: 60px;
+    border-radius:5px;
+}
+
+.summaryInnerDiv
+{
+    width:40%;
+    background-color:#5bb0e8;
+    color:white;
+    border:2px solid #3d6eaa;
+    box-shadow: 1px 1px 2px #808080;
+    margin-top:6px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:10px 10px 10px 10px;
+    border-radius:3px;
+}
+
+    .summaryInnerDiv h5
+    {
+        font-size:1.4em;
+        color:#ffffff;
+        text-align:left;
+        margin-top:15px;
+        line-height:0px;
+
+    }
+    .summaryInnerDiv h2
+    {
+        font-size:1.8em;
+        color:#ffd97d;
+        text-align:center;
+    }
+
+.enterEmailDiv
+{
+    color: #3d6eaa;
+    width: 75%;
+    margin: auto;
+    margin-top: 15px;
+    border: 1px dotted #3d6eaa;
+    min-height: 90px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+}
+
+
+
+.roomContent
+{
+    /*border:1px dashed white;*/
+    /*display:none;*/
+    padding: 1px 15px 15px 15px;
+    min-height: 150px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;
+    color: black;
+    /* background-color:#e2e2e2;*/
+}
+
+.roomMainContainer
+{
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    display: none;
+}
+
+.roomHeadContainer
+{
+    width: 100%;
+    background-color: #5bb0e8;
+    margin: auto;
+    height: 30px;
+    padding: 5px 0px 5px 0px;
+}
+
+.roomHead
+{
+    font-size: 23px;
+    color: white;
+    font-weight: 600;
+}
+
+.beginBtn
+{
+    min-width: 40%;
+    height: 30px;
+    padding: 1px 5px 5px 5px;
+    border: 0px;
+    background-color: #0094ff;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 7px;
+    border-radius: 5px;
+}
+
+    .beginBtn:hover
+    {
+        cursor: pointer;
+        background-color: #73c2fb;
+    }
+
+.beginBtnSmall
+{
+    min-width: 40%;
+    height: 30px;
+    padding: 5px 5px 5px 5px;
+    border: 0px;
+    background-color: #ffa65a;
+    color: white;
+    font-size: 12px;
+    margin-top: 6px;
+    border-radius: 5px;
+}
+
+    .beginBtnSmall:hover
+    {
+        cursor: pointer;
+        background-color: #de7e21;
+    }
+
+.mainBtn, .mainBtnApply
+{
+    width: 35%;
+    min-width: 200px;
+    height: 55px;
+    color: white;
+    border-radius: 5px;
+    border: 0px;
+    background-color: #0094ff;
+    font-size: 17px;
+    transition: all 0.4s;
+    box-shadow: 1px 1px 2px #808080;
+    margin: auto;
+    margin-top: 20px;
+}
+
+    .mainBtn:hover, .mainBtnApply:hover
+    {
+        background-color: #73c2fb;
+        color: #333;
+        cursor: pointer;
+        border: 1px solid #d9d9d9;
+    }
+
+    .mainBtn:active, .mainBtnApply:active
+    {
+        transition: background-color 0.1s;
+        box-shadow: 1px 0px 0px #808080;
+        background-color: #ffa65a;
+        color: #3d6eaa;
+    }
+
+.mainBtnApply
+{
+    width:18%;
+    height:50px;
+    font-size:15px;
+}
+
+
+.resetBtn
+{
+    width: 90px;
+    float: right;
+    color: white;
+    font-size: 9px;
+    background-color: #73c2fb;
+    border: 0px;
+    height: 15px;
+}
+
+    .resetBtn:hover
+    {
+        background-color: #3d6eaa;
+        cursor: pointer;
+    }
+
+input[class^='doneBtn']
+{
+    width: 80px;
+    color: white;
+    font-size: 12px;
+    background-color: #73c2fb;
+    border: 0px;
+    height: 25px;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+    input[class^='doneBtn']:hover
+    {
+        background-color: #0094ff;
+        cursor: pointer;
+    }
+
+.contentContainer, .roomContentContainer
+{
+    padding-top: 100px;
+    padding-bottom: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 55%;
+    min-height:500px;
+    margin: auto;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.roomContentContainer
+{
+    padding-left:10%;
+    padding-right:10%;
+    min-height:500px;
+    margin: auto;
+    font-size: 1.2em;
+}
+
+.roomMain
+{
+    width:80%;
+    text-align:center;
+    margin:auto;
+}
+
+#loadercontainer
+{
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-top:-60px;
+    margin-left:-60px;
+    z-index:999999;
+}
+
+#BathroomContainer
+{
+    position:relative;
+}
+#BedroomContainer
+{
+    position:relative;
+}
+#KitchenContainer
+{
+    position:relative;
+}
+#DiningRoomContainer
+{
+    position:relative;
+}
+#LivingRoomContainer
+{
+    position:relative;
+}
+#OfficeContainer
+{
+    position:relative;
+}
+
+
+/* =========================================================================== */
+/* SIDE BAR */
+/* =========================================================================== */
+
+/* for the bar that floats on the left side of the screen, containing all
+    property information */
+.sidebar
+{
+    border:1px solid #5c5c5c;
+    border-radius:3px;
+    left:0;
+    top:15%;
+    position:fixed;
+    font-family:Arial;
+    margin-left:0;
+    text-align:right;
+    width:130px;
+    padding:3px;
+    box-shadow: 1px 1.5px 1.5px #808080;
+    background-color:#fff;
+    transition:all 0.3s ease-in-out;
+    margin-left:-135px;
+    cursor:pointer;
+    z-index:9;
+}
+    
+.sidebar table
+{
+    width:125px;
+    text-align:center;
+}
+    .sidebar table .header
+    {
+        color:#000;
+        background-color:#ccc;
+        font-size:0.75em;
+        border:none;
+        border-radius:2px;
+        letter-spacing:0.5px;
+        padding:1px;
+    }
+
+    .sidebar table .data
+    {
+        color:#3d6eaa;
+        font-size:0.7em;
+        border:none;
+        padding:1px;
+    }
+
+.slideIn
+{
+    margin-left:-5px;
+    display:block;
+    transition:all 0.3s;
+}
+
+.slideUp
+{
+    display:block;
+    transition:all 0.3s;
+    margin-top:-5px;
+}
+
+/* =========================================================================== */
+/* QUOTE TYPE SELECTOR */
+/* =========================================================================== */
+.quotetype
+{
+    margin:auto;
+    height:160px;
+    display:none;
+    position:relative;
+    left:0;
+    top:20%;
+    text-align:center;
+}
+
+    .quotetype ul
+    {
+        width:95%;
+        text-align:center;
+        list-style:none; 
+        height:90px;
+    }
+        .quotetype ul li
+        {
+            position: relative;
+            padding:10px;
+            width:200px;
+            height:45px;
+            display:inline-block;
+            background-color:#7bc1f7;
+            border-radius:3px;
+            box-shadow:1px 1.5px 1.5px #808080;
+            font-family: 'Open Sans', sans-serif;
+            font-size:0.80em;
+            color:#3d3d3d;
+            text-align:center;
+            margin-top:5px;
+            -webkit-transform: translateZ(0); /* webkit flicker fix */
+            -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+        }
+        .quotetype ul li:hover
+        {
+            background-color:#0094ff;
+            color:white;
+            transition:all 0.3s;
+            cursor:pointer;
+        }
+            .quotetype ul li:active
+            {
+                transition:all 0.2s;
+                background-color:#ffa65a;
+                color:white;
+            }
+.tooltipcontainer
+{
+    position:relative;
+}
+.tooltipcontainer .tooltip {
+    
+    background: #7bc1f7;
+    font-size:0.8em;
+    top: 100%;
+    color: #494949;
+    display: block;
+    left: 0px;
+    margin-bottom: 15px;
+    opacity: 0;
+    padding: 10px;
+    position: absolute;
+    visibility: hidden;
+    text-align:left;
+    -webkit-transform: translateY(0px);
+       -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+         -o-transform: translateY(0px);
+            transform: translateY(0px);
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+}
+
+.tooltipcontainer .tooltipside {
+    
+    background: #7bc1f7;
+    border-radius:3px;
+    top: 0;
+    color: black;
+    display: block;
+    left: 5px;
+    margin-left: 5px;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    visibility: hidden;
+    min-width: 220px;
+    text-align:left;
+    -webkit-transform: translateX(0px);
+       -moz-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+         -o-transform: translateX(0px);
+            transform: translateX(0px);
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out;
+        -ms-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+}
+
+.tooltip h3
+{
+    text-align:center;
+}
+.tooltip span
+{
+    color:white;
+    font-size:1.05em;
+    font-weight:600
+}
+.tooltip p  /* for tooltips below */
+{
+    background-color:#5a94b6;
+    padding:5px;
+    border-radius:2px;
+    border:1px solid #547796;
+    font-size:1.05em !important;
+}
+.tooltipside p  /* for tooltips on the right */
+{
+    font-size:0.8em;
+    font-weight:500;
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.tooltipcontainer .tooltip:before {
+    bottom: -20px;
+    content: " ";
+    display: block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}  
+
+/* tooltip triangle */
+.tooltipcontainer .tooltip:after {
+    border-left: solid transparent 8px;
+    border-right: solid transparent 8px;
+    border-bottom: solid #7bc1f7 10px;
+    top: -10px;
+    content: "";
+    height: 0;
+    left: 50%;
+    margin-left: -13px;
+    position: absolute;
+    width: 0;
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.tooltipcontainer .tooltipside:before {
+    left: -20px;
+    content: " ";
+    display: block;
+    width: 20px;
+    top: 0;
+    position: absolute;
+    height: 100%;
+}  
+
+/* tooltip triangle */
+.tooltipcontainer .tooltipside:after {
+    border-top: solid transparent 5px;
+    border-bottom: solid transparent 5px;
+    border-right: solid #7bc1f7 10px;
+    left:0px;
+    content: "";
+    height: 0;
+    top: 10%;
+    position: absolute;
+    margin-left:-8px;
+    width: 0;
+}
+  
+.tooltipcontainer:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateY(12px);
+       -moz-transform: translateY(12px);
+        -ms-transform: translateY(12px);
+         -o-transform: translateY(12px);
+            transform: translateY(12px);
+}
+.tooltipcontainer:hover .tooltipside {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateX(20px);
+       -moz-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+         -o-transform: translateX(20px);
+            transform: translateX(20px);
+}
+
+#nextroom
+{
+    background-color:#73c2fb;
+    color:white;
+    height:55px;
+    width:55px;
+    font-size:0.86em;
+    padding:2px;
+    border-radius:99px;
+    position:fixed;
+    top:50%;
+    right:20px;
+    text-align:center;
+    background-image:url('img/nextroom.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+    #nextroom:hover
+    {
+        cursor:pointer;
+        background-color:#419fd5;
+        transition:all 0.3s;
+    }
+    #nextroom:active
+    {
+        margin-top:3px;
+    }
+
+#finish
+{
+    background-color:#73c2fb;
+    color:white;
+    height:35px;
+    width:120px;
+    font-size:0.75em;
+    padding-left:35px;
+    padding-top:9px;
+    border-radius:3px;
+    position:fixed;
+    top:50%;
+    right:20px;
+    background-image:url('img/finish_flag.png');
+    background-repeat:no-repeat;
+    background-position:left center;
+}
+
+    #finish:hover
+    {
+        cursor:pointer;
+        background-color:#3d6eaa;
+        transition:all 0.3s;
+    }
+    #finish:active
+    {
+        margin-top:3px;
+    }
+
+/* =========================================================================== */
+/* TIPS */
+/* =========================================================================== */
+.tips
+{
+    min-width:250px;
+    margin:auto;
+    /*border:1px solid #808080;*/
+    font-family: 'Open Sans', sans-serif;
+    font-size:0.80em;
+    position:absolute;
+    top:15%;
+    margin-left:140px;
+    text-align:center;
+    display:none;
+    padding:2px;
+}
+
+    .ok2
+    {
+        font-size:0.75em;
+        border:1px solid #808080;
+        background-image: url(img/icons/check.png); /* 16px x 16px */
+        padding-left: 18px;     /* make text start to the right of the image */
+        background-color: white; /* make the button transparent */
+        background-repeat: no-repeat;  /* make the background image appear only once */
+        border-radius:2px;
+        width:100px;
+        height:20px;
+        vertical-align: middle; /* align the text vertically centered */
+        margin-top:4px;
+        box-shadow:1px 1.5px 1.5px #808080;
+        margin-left:3px;
+     }
+        
+        .ok2:hover
+        {
+            background-color:#50a9d0;
+            color:white;
+        }
+        .ok2:active
+        {
+            background-color:#0094ff
+        }
+
+    .tips p
+    {
+        margin:auto;
+        margin-top:7px;
+        width:95%;
+        text-align:left;
+        padding:7px;
+        border-radius:3px;
+        background-color:#a7cce9;
+        color:#656565;
+        border:1px solid #7895a9;
+        display:none;
+        opacity:0;
+        transition:all 0.4s;
+        position:absolute;
+        display:inline-block;
+    }
+
+    .tips .slideUp
+    {
+        opacity:1;
+        margin-top:-5px;
+        display:block;
+    }
+
+.tips strong
+{
+    color:white;
+}
+
+
+/* =========================================================================== */
+/* ROOMS */
+/* =========================================================================== */
+.roomCont
+{
+    position:absolute;
+    width:320px;
+    display:inline-block;
+    margin-left:-160px;
+    left:50%;
+    transition:all 0.3s ease-in-out;
+}
+
+.roomCont-back
+{
+    opacity:0.08;
+}
+.roomCont-back:hover
+{
+    opacity:1;
+    z-index:20;
+}
+
+    .roomtitle
+    {
+        width:300px;
+        border:2px solid #419fd5;
+        color:white;
+        height:28px;
+        font-size:0.9em;
+        font-weight:600;
+        background-color:#419fd5;
+        position:relative;
+        border-top-left-radius:3px;
+        border-bottom-left-radius:3px;
+        padding-left:5px;
+    }
+        
+        .roomtitle span.arrowdown, .roomtitle span.xbtn
+        {
+            background-image: url(img/icons/down.png); /* 16px x 16px */
+            padding-left: 18px;     /* make text start to the right of the image */
+            background-repeat: no-repeat;  /* make the background image appear only once */
+            background-position:center;
+            background-color:#419fd5;
+            height:28px;
+            width:25px;
+            position:absolute;
+            left:100%;
+            top:-2px;
+            padding:2px;
+            border:2px solid #419fd5;
+            border-top-right-radius:3px;
+            border-bottom-right-radius:3px;
+        }
+
+        .roomtitle span.xbtn
+        {
+            display:none;
+            background-image: url(img/icons/x.png); /* 16px x 16px */
+        }
+            .roomtitle span.xbtn:hover
+            {
+                background-color:white;
+                cursor:pointer;
+            }
+
+        .roomtitle .gifarrow
+        {
+            background-image: url(img/Arrow_red_down.gif); /* 16px x 16px */
+            padding-left: 18px;     /* make text start to the right of the image */
+            background-repeat: no-repeat;  /* make the background image appear only once */
+            background-position:center;
+            background-color:transparent;
+            height:34px;
+            width:23px;
+            position:absolute;
+            top:-38px;
+            left:101%;
+            padding:2px;
+            /*
+    -moz-transform:rotate(45deg);
+
+    -webkit-transform:rotate(45deg);
+
+    -o-transform:rotate(45deg);
+
+    -ms-transform:rotate(45deg);
+
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476);
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476)";
+    */    }
+
+            .roomtitle .gifarrow:hover
+            {
+                cursor:pointer;
+            }
+
+            .roomtitle span.arrowdown:hover
+            {
+                background-color:white;
+                cursor:pointer;
+            }
+.appslist
+{
+    display:none;
+    position:absolute;
+    box-shadow: 1px 1px 3px #808080;
+    background-color:white;
+}
+
+
+li.appname
+{
+    height:22px;
+    font-size:0.9em;
+    background-color:#808080;
+    color:white;
+}
+
+.addroom
+{
+    width:80px;
+    height:20px;
+    font-size:0.65em;
+    border:1px solid #808080;
+    background-image: url(img/icons/add.png); /* 16px x 16px */
+    padding-left: 20px;     /* make text start to the right of the image */
+    background-color: white; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    border-radius:2px;
+    vertical-align: middle; /* align the text vertically centered */
+    margin-top:6px;
+    margin-left:7px;
+    margin-bottom:7px;
+}
+
+    .addroom:hover
+    {
+        background-color:#fe8b29;
+        color:white;
+        cursor:pointer;
+    }
+
+.bigprompt
+{
+    width:50%;
+    margin-left:-25%;
+    background-color:#d9d9d9;
+    color:#4e4e4e;
+    padding:15px;
+    font-size:0.9em;
+    position:absolute;
+    top:40%;
+    left:50%;
+    transition:all 0.4s;
+    border-radius:2px;
+    display:none;
+}
+
+.typeselector
+{
+    height:30px;
+    padding:5px;
+    width:96%;
+    margin:auto;
+    background-color:#6cb5e5;
+    border-radius:1px;
+    color:#fff;
+    font-size:0.8em;
+    margin-bottom:15px;
+}
+
+
+/* ------------------------------------------------------------------------------------------- */
+/* TEXT */
+/* ------------------------------------------------------------------------------------------- */
+h3
+{
+    line-height: 1.4em;
+    color: #3d6eaa;
+    font-size: 1.4em;
+    text-shadow: 1px 1px 0px #e2e2e2;
+}
+
+.topBar
+{
+    color: white;
+    height: 90px;
+    /*background-color:rgba(50,50,0,0.9);*/
+    background-color: rgba(0,116,183,0.8);
+    /*background-color:#0074b7;
+    background-color:#535353;*/
+    top: 0;
+    left: 0;
+    z-index: 999;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    position: fixed;
+    transition:all 0.3s ease-in-out;
+}
+
+.topBar-shrink
+{
+    transition:all 0.5s ease-in-out;
+    font-size:0.40em;
+    width:125px;
+    color:white !important;
+    opacity:0.4;
+    border-radius:1px;
+    background-color:#ffa56a;
+    padding:0;
+    letter-spacing:0px;
+    font-weight:900;
+}
+
+.topBar-pullup
+{
+    margin-top:-65px;
+    transition:all 0.3s ease-in-out;
+    position:relative !important;
+}
+
+.topBarDiv-pullup
+{
+    position:absolute;
+    bottom:2px;
+    left:7px;
+    width:100%;
+}
+
+.topBar-pullup .topBarDiv p
+{
+    text-align:left;
+    position:absolute;
+    bottom:0;
+    left:10px;
+    font-size:0.9em;
+    margin:0;
+    width:500px;
+}
+    .topBar-pullup .topBarDiv p span
+    {
+        font-size:0.6em;
+        color:#ffd274
+    }
+
+.topBar-pullup .resetBtn
+{
+    position:absolute;
+    right:15px;
+    bottom:2px;
+}
+
+    .topBar-pullup:hover
+    {
+        margin-top:-50px;
+    }
+        .topBar-pullup:hover .topBarDiv p
+        {
+            font-size:1.4em;
+            transition:all 0.2s ease-in-out;
+        }
+            .topBar-pullup:hover .topBarDiv p span
+            {
+                margin-left:15px;
+            }
+        .topBar-pullup:hover .topBarDiv .resetBtn
+        {
+            height:30px;
+            font-size:1em;
+        }
+
+       /* .topBar-pullup:hover .pad
+        {
+            height:90px;
+            padding-top:90px;
+        }*/
+
+    .topBar-shrink img
+    {
+        width:70px;
+        height:40px;
+        margin-top:3px;
+    }
+
+    .topBar-shrink:hover
+    {
+        opacity:1;
+    }
+
+    .topBar h1, div h1
+    {
+        font-weight: 300;
+        font-size: 1.8em;
+        letter-spacing: 5px;
+        text-align: center;
+        text-transform: uppercase;
+        word-spacing: -0.1em;
+        line-height: 1;
+        margin-top: 25px;
+        margin-bottom: 2px;
+    }
+
+    .topBar h4
+    {
+        font-size: 0.9em;
+        font-weight:600;
+        color:#f2a944;
+    }
+
+div h4
+{
+    font-weight: 400;
+    font-size: 0.7em;
+    text-align: center;
+    letter-spacing: 5px;
+    font-family: Verdana;
+    color: white;
+    margin-top: 1px;
+}
+
+h1
+{
+    color: white;
+    font-size: 1.4em;
+    top: 15%;
+    width: 100%;
+    font-weight: 300;
+    font-size: 4.4em;
+    line-height: 2;
+    letter-spacing: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    word-spacing: -0.4em;
+}
+
+h4.sub
+{
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+h1.subHead
+{
+    position: static;
+    color: #0094ff;
+    font-size: 1.3em;
+    color: #fff;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-weight:600;
+}
+
+h1.introH1
+{
+    line-height: 1;
+    color: #3d6eaa;
+}
+
+    h1.introH1 span
+    {
+        color: #ffaf4c;
+    }
+
+    h1.introH1 strong
+    {
+        color: white;
+    }
+
+p
+{
+    font-size: 0.9em;
+}
+
+/* =============================================================================== */
+/* ROOM ITEM SECTION */
+/* =============================================================================== */
+
+div [id^='RoomFolder']
+{
+    display: none;
+    width: 80%;
+}
+
+
+div [class^='appselection']
+{
+    width: 45%;
+    float: left;
+    /*background-color:#ff6a00;*/
+}
+
+div [class^='appchoices']
+{
+    float: right;
+    /*position:fixed;*/
+    /*right:30px;
+    top:30px;*/
+    /*background-color:#7aa7d8;*/
+    min-height: 30px;
+    min-width: 45%;
+    padding: 15px 15px 15px 15px;
+}
+
+
+div [class^="rtqapp"]
+{
+    border: 1px solid #808080;
+    height: 17px;
+    width: 300px;
+    background-color: #ffa65a;
+    font-size: 15px;
+    padding: 5px 5px 5px 5px;
+    margin-top: 4px;
+}
+
+    div [class^="rtqapp"]:hover
+    {
+        cursor: pointer;
+        background-color: #73c2fb;
+    }
+
+div [class^="rtqoption"]
+{
+    height: 15px;
+    width: 300px;
+    /*background-color:#ffd800;*/
+    font-size: 12px;
+    padding: 5px 5px 5px 5px;
+    background-color: #dcebf6;
+    border: 1px solid #808080;
+}
+
+    div [class^="rtqoption"]:hover
+    {
+        cursor: pointer;
+        background-color: #73c2fb;
+    }
+
+div [class^='optioncontainer']
+{
+    width: 305px;
+    display: none;
+}
+
+div [class^='choicecontainer']
+{
+    border: 1px solid white;
+    width: 280px;
+}
+
+#rtqDone
+{
+    display: none;
+}
+
+#showSummary
+{
+    text-align: center;
+}
+
+#regpop
+{
+    text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    display: none;
+    color: black;
+    background-color: white;
+    border-radius: 2px;
+    width: 500px;
+    padding: 15px 15px 15px 15px;
+    z-index: 9999;
+    -moz-box-shadow: 0 2px 5px 2px #ccc;
+    -webkit-box-shadow: 0 2px 5px 2px #ccc;
+    box-shadow: 0 2px 5px 2px #ccc;
+}
+
+.disabledDiv
+{
+    opacity: 0.3;
+    transition: opacity .25s ease-in-out;
+}
+
+
+.lineCheck
+{
+}
+
+
+
+/*==============================================================================*/
+/* CONTROLS */
+/*==============================================================================*/
+
+.ttextbox
+{
+    border: 1px solid #999;
+    width: 240px;
+    min-width: 10%;
+    height: 45px;
+    font-size: 15px;
+    font-weight:600;
+    color:#676767;
+    padding: 4px 4px 4px 4px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0px 0px 8px #d9d9d9;
+    -moz-box-shadow: 0px 0px 8px #d9d9d9;
+    -webkit-box-shadow: 0px 0px 8px #d9d9d9;
+}
+
+    .ttextbox:focus
+    {
+        outline: none;
+        border: 1px solid #7bc1f7;
+        box-shadow: 0px 0px 8px #7bc1f7;
+        -moz-box-shadow: 0px 0px 8px #7bc1f7;
+        -webkit-box-shadow: 0px 0px 8px #7bc1f7;
+    }
+
+
+/*===================================================================================*/
+/* POPUP */
+/*===================================================================================*/
+
+.numpick
+{
+    font-family:Verdana, Geneva, sans-serif;
+	font-size:0.9em;
+	text-align:center;
+	display:none;
+	color:black;
+	background-color:white;
+	border-radius:5px;
+	width:30%;
+	padding:15px 15px 15px 15px;
+	z-index:999;
+    min-height:200px;
+    min-width:300px;
+	
+  -moz-box-shadow:    0 2px 5px 2px #ccc;
+  -webkit-box-shadow: 0 2px 5px 2px #ccc;
+  box-shadow:         0 2px 5px 2px #ccc;
+}
+
+
+
+/* Popup close */
+.bClose{
+	text-align:center;
+    position:absolute;
+    right:10px;
+    top:5px;
+	background-color:#333;
+	color:white;
+	width:20px;
+	height:20px;
+}
+.bClose:hover
+{
+	cursor:pointer;
+	background-color:#ff8400;	
+}
+
+
+.numList
+{
+    margin-top:20px;
+}
+
+
+
+/*===================================================================================*/
+/* INVOICE DATA */
+/*===================================================================================*/
+#invoiceDiv
+{
+   display:none;
+   padding:10px 10px 10px 10px;
+   width:2550px;
+   height:3300px;
+   position:absolute;
+   left:0px;
+   top:0px;
+   background-color:white;
+   color:#337abe;
+   z-index:2;   /* always position this invoice div to the back so it's not visible */
+}
+
+.invoiceSummary
+{
+    width:100%;
+    /*border:1px solid #404040;*/
+    padding:10px;
+}
+
+    .invoiceSummary p
+    {
+        font-size:1.5em;
+    }
+
+    .invoiceSummary a
+    {
+        font-size:1.5em;
+    }
+
+    .invoiceSummary h3
+    {
+        font-size:1.5em;
+    }
+
+.invoicefoot
+{
+    position:fixed;
+    bottom:0px;
+    width:100%;
+    border:2px solid #4a4a4a;
+}
+    .invoicefoot p
+    {
+        font-size:1.4em;
+    }
+
+    .invoicefoot a
+    {
+        font-size:1.4em;
+    }
+    .invoicefoot h3
+    {
+        font-size:1.4em;
+    }
+
+.serviceDetailCont
+{
+    width:90%;
+    margin:auto;
+}
+
+#serviceDetailDiv
+{
+    width:90%;
+    margin:auto;
+}
+
+.roomtable
+{
+    margin-top:12px;
+    margin-left:10px;
+    width:470px;
+    /*width:25%;*/
+    border:3px solid #484848;
+    padding:5px;
+    /*display:inline-block;*/
+}
+
+table.roomtable tr
+{
+    border:1px solid #808080;
+    padding:3px;
+}
+
+table th
+{
+    background-color:#5bb0e8;
+    color:white;
+    border:1px solid #808080;
+    padding:3px;
+    font-size:1.4em;
+}
+
+table td
+{
+    color:#3b3b3b;
+    font-size:1.4em;
+    border:1px solid #808080;
+}
+
+    table td.appname
+    {
+        background-color:#ff9400;
+        color:white;
+        padding:3px 3px 3px 3px;
+    }
+
+.houseInfo
+{
+    border:3px solid #4b4b4b;
+    padding:5px;
+    width:25%;
+    margin:auto;
+    text-align:center;
+}
+
+    .houseInfo p
+    {
+        line-height:1px;
+        font-size:1.6em;
+    }
+    .houseInfo span
+    {
+        font-size:1.2em;
+        color:black;
+    }
+
+
+/*===================================================================================*/
+/* RESPONSIVE */
+/*===================================================================================*/
+@media only screen and (max-width: 840px)
+{
+    .summaryInnerDiv
+    {
+        width:90%;
+    }
+    .summaryDiv
+    {
+        width:80%;
+    }
+}
+
+
+
+@media only screen and (max-width: 768px)
+{ /*
+    .topBar h1
+    {
+        margin-top: 15px;
+        font-size: 1.2em;
+        text-align: left;
+    }
+
+    .topBar h4
+    {
+        text-align: left;
+    }
+     */
+    div h4
+    {
+        font-size: 0.65em;
+    }
+
+    h1.subHead
+    {
+        margin-top: 7px;
+        margin-bottom: 4px;
+        font-size: 1.1em;
+    }
+
+
+    h4.sub
+    {
+        font-size: 0.7em;
+        padding: 0 2px 0 2px;
+    }
+
+    .topBar
+    {
+        position: static;
+        margin-top: -15px;
+        padding-top: 10px;
+        padding-left: 10px;
+        z-index: 999999;
+        height: 130px;
+    }
+
+    .pad
+    {
+        height: 20px;
+    }
+
+    .introH1
+    {
+        top: 0px;
+        font-size:1.1em;
+    }
+
+    .contentContainer
+    {
+        padding-top: 30px;
+        width: 90%;
+    }
+
+    .topBarDiv
+    {
+        margin: 0px;
+        width: 60%;
+    }
+
+    .mainBtn
+    {
+        margin: auto;
+    }
+
+    .topBar h4
+    {
+        font-size: 0.7em;
+    }
+    .roomContentContainer
+    {
+        width:70%;
+    }
+    .summaryInnerDiv
+    {
+        width:90%;
+    }
+    .mainBtn
+    {
+        width:67%;
+    }
+}
+
+@media only screen and (max-width: 640px)
+{
+
+
+    .topBar h1
+    {
+        margin-top: 15px;
+        font-size: 1.2em;
+        text-align: left;
+    }
+
+    .pt-touch-button2
+    {
+        height: 30px;
+    }
+
+    .topBar
+    {
+        position: static;
+        margin-top: -5px;
+        padding-top: 10px;
+        height: 100px;
+    }
+
+    .contentContainer
+    {
+        padding-top: 30px;
+        padding-left:5px;
+        padding-right:5px;
+        width: 90%;
+    }
+
+    .mainBtn
+    {
+        margin: auto;
+        
+    }
+
+    .topBar h4
+    {
+        font-size: 0.7em;
+        text-align: left;
+    }
+    .roomContentContainer
+    {
+        width:80%;
+    }
+    .summaryDiv
+    {
+        width:90%;
+        margin-top:20px;
+    }
+    .summaryInnerDiv
+    {
+        width:90%;
+    }
+    .enterEmailDiv
+    {
+        width:90%;
+    }
+
+}
+
+@media only screen and (max-width: 480px)
+{
+    .topBar
+    {
+        position: static;
+        margin-top: -5px;
+        padding-top: 6px;
+        height: 120px;
+    }
+    .roomContentContainer
+    {
+        width:90%;
+    }
+    .roomMain
+    {
+        width:90%;
+    }
+    .introH1
+    {
+        font-size:0.9em;
+        margin-top:-20px;
+    }
+    .contentContainer
+    {
+        padding-top:50px;
+    }
+    h1.subHead
+    {
+        font-size: 0.9em;
+    }
+    .ttextbox
+    {
+        width:120px;
+        height:28px;
+        margin-top:-5px;
+    }
+    h4.sub
+    {
+        font-size:0.5em;
+    }
+    .mainBtn
+    {
+        width:90%;
+    }
+}
+
+@media only screen and (max-width: 320px)
+{
+    .topBar
+    {
+        position: static;
+        margin-top: -5px;
+        padding-top: 6px;
+        height: 150px;
+    }
+    .roomContentContainer
+    {
+        width:90%;
+    }
+    .roomMain
+    {
+        width:95%;
+        text-align:center;
+        margin:auto;
+    }
+}
+
+@media only screen and (max-height: 400px)
+{
+    .topBar
+    {
+        position: static;
+        margin-top: -25px;
+        padding-top: 25px;
+        height:120px;
+    }
+    .contentContainer
+    {
+        padding-top:30px;
+    }
+
+}
