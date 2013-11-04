@@ -39,7 +39,7 @@
        so that you can actually hover on the tooltip as well */
     .atlas-top:before
     {
-        bottom: -14px;
+        bottom: -10px;
         content: " ";
         display: block;
         height:10px;
@@ -49,7 +49,7 @@
     }
     .atlas-bottom:before
     {
-        top: -14px;
+        top: -10px;
         content: " ";
         display: block;
         height:10px;
@@ -59,7 +59,7 @@
     }
     .atlas-right:before
     {
-        left: -14px;
+        left: -10px;
         content: " ";
         display: block;
         height:100%;
@@ -68,7 +68,7 @@
     }
     .atlas-left:before
     {
-        right: -14px;
+        right: -10px;
         content: " ";
         display: block;
         height:100%;

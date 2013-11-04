@@ -52,7 +52,7 @@ public partial class admin_services_cleaningTypes : System.Web.UI.Page
         types.Add("HouseItem");
 
         if (cl != null)
-            tableCreate = de.populateTable(types, cl);
+          //  tableCreate = de.populateTable(types, cl);
             
         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "tmp", "<script>makeTable(\"" + tableCreate + "\");</script>", false);
     }

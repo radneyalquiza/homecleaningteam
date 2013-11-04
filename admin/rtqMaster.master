@@ -28,5 +28,10 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
+        <!-- footer content -->
+        <div class="footer">
+            <span class="comp">The Home Cleaning Team &copy; 2013</span>
+            <span class="build">Web App by Radney Alquiza @ <strong>Epyphany</strong></span>
+        </div>
 </body>
 </html>

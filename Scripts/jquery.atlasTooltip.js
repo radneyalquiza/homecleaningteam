@@ -82,7 +82,7 @@ making one cover the other.
                     'font-size': settings.textSize,
                 });
                 settings.thisobject.tooltip.offset({
-                    top: vtop - settings.thisobject.tooltip.outerHeight(),
+                    top: vtop - settings.thisobject.tooltip.outerHeight() + 5,
                     left: (vleft + (wt / 2)) - (settings.thisobject.tooltip.outerWidth()/2)
                 });
                 break;
@@ -92,7 +92,7 @@ making one cover the other.
                     'font-size': settings.textSize,
                 });
                 settings.thisobject.tooltip.offset({
-                    top: vtop + ht,
+                    top: vtop + ht + 5,
                     left: (vleft + (wt / 2)) - (settings.thisobject.tooltip.outerWidth() / 2)
                 });
                 break;
@@ -103,7 +103,7 @@ making one cover the other.
                 });
                 settings.thisobject.tooltip.offset({
                     top: (vtop + (ht / 2)) - (settings.thisobject.tooltip.outerHeight() / 2),
-                    left: vleft - settings.thisobject.tooltip.outerWidth()
+                    left: vleft - settings.thisobject.tooltip.outerWidth() - 5
                 });
                 break;
             case 'right':
@@ -113,15 +113,17 @@ making one cover the other.
                 });
                 settings.thisobject.tooltip.offset({
                     top: (vtop + (ht / 2)) - (settings.thisobject.tooltip.outerHeight() / 2),
-                    left: vleft + wt
+                    left: vleft + wt + 5
                 });
                 break;
             default:
                 settings.thisobject.tooltip.addClass('atlas-top');
                 settings.thisobject.tooltip.css({
-                    'font-size': settings.fontSize,
-                    'top': (top - settings.thisobject.tooltip.outerHeight() + 3) + 'px',
-                    'left': ((left + (wt / 2)) - (settings.thisobject.tooltip.outerWidth() / 2)) + 'px'
+                    'font-size': settings.textSize,
+                });
+                settings.thisobject.tooltip.offset({
+                    top: vtop - settings.thisobject.tooltip.outerHeight() + 5,
+                    left: (vleft + (wt / 2)) - (settings.thisobject.tooltip.outerWidth() / 2)
                 });
                 break;
         }

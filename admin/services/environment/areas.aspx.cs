@@ -262,7 +262,7 @@ public partial class admin_services_areas : System.Web.UI.Page
         //types.Add(new HouseItem().GetType());
 
         if (areas != null)
-            tableCreate = de.populateTable(types, areas);
+          //  tableCreate = de.populateTable(types, areas);
             //tableCreate = de.populateTable(o, types, cl);
             
         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "tmp", "<script>makeTable(\"" + tableCreate + "\");</script>", false);

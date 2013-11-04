@@ -21,7 +21,7 @@ body
 {
     height:60px;
     padding-top:70px;
-    padding-left:130px;
+    padding-left:170px;
 }
 
 .rtqDiv
@@ -185,7 +185,7 @@ body
 
 .mainBtn, .mainBtnApply
 {
-    width: 35%;
+    width: 40%;
     min-width: 200px;
     height: 55px;
     color: white;
@@ -321,6 +321,38 @@ input[class^='doneBtn']
 {
     position:relative;
 }
+
+.footer
+{
+    padding-top:5px;
+    height:60px;
+    font-size:0.8em;
+    color:#9b9b9b;
+    position:fixed;
+    width:100%;
+    text-align:center;
+    bottom:2px;
+    z-index:13;
+    border-top:1px solid #e1e1e1;
+    font-family: 'Ubuntu', sans-serif;
+    opacity:0.85;
+}
+    .footer .comp
+    {
+        font-size:1.1em;
+        color:#4387d9;
+        display:block;
+    }
+    .footer .build
+    {
+        display:block;
+        font-size:0.95em;
+    }
+        .footer .build strong
+        {
+            font-weight:500;
+            color:#f2ab48;
+        }
 
 
 /* =========================================================================== */
@@ -1684,3 +1716,977 @@ table td
     }
 
 }
+
+
+
+
+/* UI ELEMENTS */
+.atlas-radio
+{
+    list-style:none;
+    padding-left:0;
+}
+    .atlas-radio li
+    {
+        display:inline-block;
+        padding:2px;
+        border:1px solid #4496c6;
+        background-color:#5bbeff;
+        color:white;
+        font-size:0.85em;
+        border-radius:2px;
+    }
+        .atlas-radio li:hover
+        {
+            background-color:#ffbf66;
+            cursor:pointer;
+        }
+        .atlas-radio li.radioselected
+        {
+            background-color:#0075d8;
+            border-color:#484848;
+        }
+
+
+
+/* =============================================================================================
+
+
+ RTQ DATA 
+
+
+ ============================================================================================= */
+
+.roomheader
+{
+    position:absolute;
+    top:0px;
+    left:0px;
+    height:30px;
+    background-color:#92cdff;
+    color:white;
+    width:100%;
+    font-size:1.3em;
+    text-align:center;
+    padding-top:1px;
+    padding-bottom:5px;
+    text-shadow: 1px 1px 0px #7b9dbe;
+}
+
+
+/* THE ROOM DATA THAT IS SELECTED */
+.rtqroom
+{
+    width:350px;
+    padding:2px;
+}
+
+    .rtqroom .roomname
+    {
+        background-color:#73c2fb;
+        color:white;
+        font-size:1.1em;
+        padding:2px;
+    }
+    .rtqroom .app
+    {
+        background-color:#ffb530;
+        color:white;
+        font-size:0.8em;
+        padding:1px;
+        margin-top:4px;
+        position:relative;
+        display:block;
+    }
+        .rtqroom .app:hover
+        {
+            cursor:pointer;
+        }
+        .rtqroom .app span.appname, .option span.optionname
+        {
+            width:90%;
+            display:inline-block;
+        }
+    .rtqroom .option, .extra-options .option
+    {
+        color:#5c5c5c;
+        font-size:0.75em;
+        padding:2px;
+        margin-top:1px;
+        /*border:1px solid #c4c4c4;*/
+        background-color:#f1f1f1;
+        border-radius:2px;
+        position:relative;
+    }
+        .rtqroom .option .suboptions,  .extra-options .option .suboptions
+        {
+            width:250px;
+            background-color:white;
+            border:1px solid #808080;
+            position:absolute;
+            left:104%;
+            top:50%;
+            padding:2px;
+            z-index:11;
+        }
+        .rtqroom .option .suboptionsname, .extra-options .option .suboptionsname
+        {
+            font-weight:600;
+            font-size:0.9em;
+        }
+        .rtqroom .option .sub, .extra-options .option .sub
+        {
+            background-color:white;
+            border:1px solid #acacac;
+            padding:2px;
+            margin-top:1px;
+            font-size:0.9em;
+        }
+    .rtqroom .suboptions .subclose, .extra-options .suboptions .subclose
+    {
+        display:inline-block;
+        position:absolute;
+        top:2px;
+        right:2px;
+        border-radius:99px;
+        width:17px; height:17px;
+        background-image: url(img/icons/remove.png);
+        background-repeat: no-repeat;  
+        background-position:center;
+    }
+        .rtqroom .suboptions .subclose:hover, .extra-options .suboptions .subclose:hover
+        {
+            background-color:#c7c7c7;
+            cursor:pointer;
+        }
+        .rtqroom .show-extra, .edit-options, .remove-option, .lock-options,
+        .extra-options .show-extra, .extra-options .remove-option
+        {
+            display:inline-block;
+            width:17px;
+            height:17px;
+            color:white;
+            font-size:0.8em !important;
+            border:#808080;
+            text-align:center;
+            right:2px;
+            position:absolute;
+            top:50%;
+            border-radius:99px;
+        }
+
+    .rtqroom .show-extra, .extra-options .show-extra
+    {
+        background-image: url(img/icons/dropdown.png);
+        background-repeat: no-repeat;  
+        background-position:center;
+    }
+    .rtqroom .remove-option, .extra-options .remove-option
+    {
+        display:none;
+        background-image: url(img/icons/remove.png);
+        background-repeat: no-repeat;  
+        background-position:center;
+    }
+    .extra-options .remove-option
+    {
+        display:none;
+        background-image: url(img/icons/append.png);
+        background-repeat: no-repeat;  
+        background-position:center;
+    }
+    .rtqroom .show-extra.hover, .rtqroom .remove-option.hover, .extra-options .show-extra.hover, .extra-options .remove-option.hover
+    {
+        background-color:#c7c7c7;
+        cursor:pointer;
+    }
+        .rtqroom .remove-option.remove-option-secondary,
+        .extra-options .remove-option.remove-option-secondary
+        {
+            margin-right:15px;
+        }
+    .rtqroom .edit-options, .rtqroom .lock-options
+    {
+        width:30px;
+        height:16px;
+        border-radius:5px;
+        margin-right:3px;
+        font-size:0.7em !important;
+        background-color:#f79915;
+        box-shadow:1px 1px 0px 1px #c46c00;
+    }
+    .rtqroom .lock-options
+    {
+        display:none;
+    }
+        .rtqroom .edit-options.hover, .rtqroom .lock-options.hover
+        {
+            cursor:help;
+        }
+        .rtqroom .edit-options:active, .rtqroom .lock-options:active
+        {
+            margin-top:-7px !important;
+            box-shadow:none;
+        }
+
+    .rtqroom .optionscontainer
+    {
+        position:relative;
+    }
+    .rtqroom .appcontainer
+    {
+    }
+
+    .rtqroom .disableoptions
+    {
+        position:absolute;
+        opacity:0.2;
+        background-color:#ccc;
+        top:0;
+        left:0;
+        z-index:10;
+    }
+
+/* ALL AVAILABLE OPTIONS */
+.extra-options
+{
+    position:absolute;
+    right:10%;
+    width:550px;
+    height:50px;
+    top:50px;
+    border-radius:5px;
+    padding:5px;
+}
+    .extra-options .roomname
+    {
+        background-color:#efefef;
+        border-radius:3px;
+        color:#868686;
+        padding:4px;
+    }
+    .extra-options .appcontainer
+    {
+        display:inline-block;
+        width:250px;
+        margin-right:20px;
+        margin-top:20px !important;
+    }
+    .extra-options .app
+    {
+        background-color:#86bfdc;
+        color:white;
+        font-size:0.9em;
+        padding:2px;
+        margin-top:4px;
+        position:relative;
+        display:block;
+    }
+    .extra-options .option
+    {
+        font-size:0.7em;
+        /*border:1px solid #c3c3c3;*/
+        padding:2px !important;
+        background-color:#c6e8ff
+    }
+.extra-options .app span.appname
+{
+    font-size:0.85em;
+}
+    .extra-options .remove-option.hover
+    {
+        cursor:pointer;
+        background-color:#7dc2f6
+    }
+/* =============================================================================================
+
+
+ ============================================================================================= */
+
+
+
+        * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+        #rtqoutercont
+        {
+            width:100%;
+            height:100%;
+            margin:auto;
+            margin-top:-25px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .prelimDiv
+        {
+            margin:auto;
+            border-radius:7px;
+            padding:10px;
+            background-color:white;
+            width:60%;
+        }
+
+        .pr
+        {
+            opacity:0.1;
+        }
+
+
+        select
+        {
+           margin-top:-2px;
+           width:auto;
+           font-size: 0.9em;
+           font-weight:600;
+           line-height: 1;
+           border: 0;
+           height: 25px;
+           -webkit-appearance: none;
+           border-radius:5px;
+           border:1px solid #999;
+           padding:3px;
+           color:#5a5a5a;
+           font-family:Verdana;
+           box-shadow: 1px 1px 1px #808080;
+            /*border:1px dashed #808080;*/
+        }
+            select:focus
+            {
+                outline: none;
+                border: 1px solid #7bc1f7;
+                box-shadow: 0px 0px 8px #7bc1f7;
+                -moz-box-shadow: 0px 0px 8px #7bc1f7;
+                -webkit-box-shadow: 0px 0px 8px #7bc1f7;
+            }
+
+            select.inline
+            {
+                height:22px;
+                font-size:0.85em;
+                margin-left:16px;
+            }
+
+        /* inner container for an appliance */
+        div[class^='choices']
+        {
+            width:99%;
+            margin:auto;
+            text-align:center;
+            min-height:250px;
+            background-color:white;
+            padding:0px 0px 2px 0px;
+            /*box-shadow: 3px 3px 2px #888;*/
+        }
+
+        /* container for each row of appliances in each room
+           this will ensure equal heights of all 3 divs in each row    
+        */
+        div[class^='appRowContainer']
+        {
+            text-align:center;
+            margin:auto;
+        }
+
+        /* container for an appliance */
+        div[class^='choiceContainer']
+        {
+            width:33%;
+            text-align:center;
+            padding:2px 2px 2px 2px;
+            border-radius:5px;
+            /*float:left;*/
+            min-height:250px;
+            display:table-cell;
+            /*box-shadow: 3px 3px 2px #888;*/
+        }
+
+        ul
+        {
+            list-style: none;
+            /*width:95%;*/
+            padding-left:0px;
+            margin:auto;
+        }
+
+        .applist
+        {
+            display: inline;
+        }
+        .outer
+        {
+            text-align: center;
+        }
+
+        /* the title of an appliance*/
+        .appHead
+        {
+            color: white;
+            font-size:20px;
+            font-weight:600;
+            /*background-color:#a7a7a7;*/
+            background-color:#70b8d8;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+            text-align:left;
+            padding:4px;
+            cursor:default;
+            margin-bottom:8px;
+        }
+
+        /* for sub options */
+        div [id^='inner']
+        {
+            width:100%;
+            display: none;
+            position:absolute;
+            z-index:99;
+            /*background-color:#ededed;*/
+            background-color:#3b3b3b;
+            border:3px solid white;
+            padding:5px;
+            border-radius:5px;
+            box-shadow: 0px 3px 1px -1px #808080;
+        }
+
+        /* for value textboxes */
+        div [id^='valuebox']
+        {
+            width:99%;
+            display: none;
+            position:absolute;
+            z-index:99;
+            /*background-color:#ededed;*/
+            background-color:#3b3b3b;
+            border:3px solid white;
+            padding:5px;
+            border-radius:5px;
+            box-shadow: 0px 3px 1px -1px #808080;
+            color:white;
+            text-align:center;
+        }
+
+        select[id^='valueinput']
+        {
+            width:50px;
+            padding:2px;
+        }
+
+
+        li
+        {
+            margin:auto;
+        }
+
+        .prel2
+        {
+            margin:auto;
+            width:90%;
+        }
+
+        			#slider {
+				width:600px;
+				height:250px;
+				
+				/*IE bugfix*/
+				padding:0;
+				margin:0;
+			}
+			
+			#slider li { list-style:none; }
+			
+			#preliminary {
+				width:600px;
+				margin:50px auto;
+                display:none;
+			}
+
+
+        #choicex
+        {
+        }
+        #choicehold
+        {
+            width:80%;
+        }
+        #applistcont
+        {
+            width:200px;
+            height:200px;
+        }
+
+        .box
+        {
+            padding:9px;
+            background-color:white;
+            font-size:0.80em;
+            box-shadow: 0px 3px 1px -1px #999;
+            border-radius:5px;
+            margin-top:8px;
+        }
+
+        .rtqcont1
+        {
+            width:91%;
+            margin:auto;
+        }
+        .item {width: 35%; background-color:#c0e6ff; margin:2px; padding:10px}
+
+        #roomtitle
+        {
+            color:black;
+            font-size:25px;
+            font-weight:600;
+        }
+
+        .roomnumselect
+        {
+            display:inline-block;
+            width:50px;
+            height:50px;
+            background-color:#c0e6ff;
+            color:#484848;
+            border-radius:999px;
+            transition:background-color 0.4s;
+            transition:font-weight 0.3s;
+            transition:color 0.3s;
+            transition:border 0.4s;
+        }
+
+            .roomnumselect:hover
+            {
+                cursor:pointer;
+                background-color:#59a9dd;
+                color:white;
+                font-weight:600;
+                border:12px solid #337abe
+            }
+
+        input[class^='slideoutbtn']
+        {
+            background-color:white;
+            color:#808080;
+            cursor:pointer;
+            position:absolute;
+            right:5%;
+            border:0px;
+           /* opacity:0;*/
+            padding:5px;
+            border-bottom-left-radius:2px;
+            border-bottom-right-radius:2px;
+            box-shadow: 0px 3px 1px -2px #cccccc;
+            font-size:0.8em
+        }
+
+        .selectedNum
+        {
+            background-color:#337AAA;
+            color:#ededed;
+        }
+        .revealTexts
+        {
+            display:none;
+        }
+
+        * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+        .notification
+        {
+            position:absolute;
+            top:50%;
+            left:50%;
+            width:200px;
+            margin-left:-100px;
+            font-size:0.8em;
+            color:white;
+            background-color:black;
+            border:4px solid white;
+            text-align:center;
+            display:none;
+            z-index:99;
+            padding:5px 5px 5px 5px;
+            padding-top:15px;
+            border-radius:5px;
+            box-shadow: 0px 3px 1px -1px #999;
+        }
+            .notification h4
+            {
+                font-size:1.2em;
+                line-height:0.6em;
+                font-weight:600;
+                color:white;
+                letter-spacing:1px;
+            }
+
+        .popupapply
+        {
+            top:50%;
+            left:50%;
+            margin-left:-325px;
+            margin-top:-225px;
+            width:650px;
+            height:450px;
+            background-color:#e8e8e8;
+            border:4px solid #337abe;
+            padding:15px;
+            border-radius:15px;
+            display:none;
+            text-align:center;
+            position:fixed;
+            z-index:999;
+            box-shadow: 0 8px 6px -6px black;
+            color:#484848;
+        }
+            .popupapply h2
+            {
+                margin-top:-2px;
+            }
+
+        .popupapplybtn, .popupunapplybtn
+        {
+            width:28px;
+            height:28px;
+            background-color:#eee;
+            padding:3px;
+            border-radius:5px;
+            display:none;
+            text-align:center;
+            position:absolute;
+            z-index:99;
+            box-shadow: 0px 3px 1px -1px #808080;
+            font-size:0.8em;
+            color:#484848;
+            border:1px solid #337abe;
+            top:5%;
+            left:98%;
+            transition:all 0.3s;
+        }
+
+        .popupapplybtn
+        {
+            background-image:url("../Styles/img/to-do-list_checked3.png");
+            background-repeat:no-repeat;
+            background-position:center; 
+        }
+        .popupunapplybtn
+        {
+            background-image:url("../Styles/img/check-all-delete.png");
+            background-repeat:no-repeat;
+            background-position:center; 
+        }
+
+            .popupapplybtn:hover
+            {
+                cursor:pointer;
+                /*border:1px solid black;*/
+                background-color:#59a9dd;
+                color:white;
+            }
+            .popupunapplybtn:hover
+            {
+                cursor:pointer;
+                /*border:1px solid #d02f2f;*/
+               background-color:#ef8383;
+                color:white;
+            }
+
+            .popupapply p
+            {
+                font-size:0.8em;
+                line-height:1em;
+            }
+        .popupapply span
+        {
+            color:#ff7d00
+        }
+
+        .btnvisible
+        {
+            transition:all 0.5s;
+            display:block;
+            background-color:#337AAA;
+        }
+        .propertyquestionsclass
+        {
+            width:90%;
+            margin:auto;
+            padding:2px;
+            border-radius:5px;
+            display:none;
+            margin-top:110px;
+            text-align:center;
+        }
+            h3.prop
+            {
+                color:#d3d3d3;
+                text-shadow:none;
+                text-align:center;
+                line-height:25px;
+            }
+        .propertyquestioninner
+        {
+            width:99%;
+            margin:auto;
+        }
+        .propertydesc
+        {
+            text-align:center;
+            margin:auto;
+            padding:10px;
+        }
+        li.grid-half
+        {
+            margin-top:-15px;
+        }
+        li.grid-third
+        {
+            margin-top:-15px;
+        }
+        
+        .propertyquestionpart, .servicequestionpart 
+        {
+            display:none;
+            text-align:center;
+            width:700px;
+            margin:auto;
+        }
+
+        .propertydiv
+        {
+            min-height:100px;
+            border-radius:5px;
+            background-color:#91cef6;
+            box-shadow: 0px 3px 1px -1px #999;
+            margin:auto;
+            margin-top:6px;
+            margin-left:6px;
+            padding:20px;
+        }
+
+            .propertydiv h1
+            {
+                color:#484848;
+                font-size:1em;
+                margin-top:2px;
+                margin-bottom:8px;
+                font-weight:600;
+                letter-spacing:1px;
+            }
+
+            .propertydiv h4
+            {
+                color:#484848;
+                font-size:0.8em;
+                letter-spacing:0px;
+            }
+
+            .propertydiv .ttextbox
+            {
+                height:25px;
+            }
+
+        .proptitle
+        {
+            width:99%;
+            background-color:#337AAA;
+            margin:auto;
+            height:55px;
+            padding:5px 5px 5px 5px;
+            border-radius:5px;
+            border:1px solid #065d8f;
+        }
+
+        div[class^='show']
+        {
+            display:none;
+            width:85%;
+            margin:auto;
+        }
+        div.demoimage
+        {
+            margin:auto;
+            position:relative;
+        }
+
+        #quoteBox .quotenumber
+        {
+            color:#337abe;
+            font-size:1.5em;
+        }
+
+        .popup
+        {
+            width:70%;
+        }
+
+        .popupapply img
+        {
+            width:60%;
+            min-width:220px;
+        }
+
+        .tutorial
+        {
+            width:100%;
+            height:300px;
+            position:relative;
+        }
+
+        #closeapply
+        {
+            position:absolute;
+            top:5px;
+            left:5px;
+            background-color:#59a9dd;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:0.8em;
+            padding:5px;
+        }
+            #closeapply:hover
+            {
+                background-color:#337AAA;
+                cursor:pointer;
+            }
+
+        
+
+        html, form, body{ height: 100%; width:100%;  margin: 0px;
+    padding: 0px }
+
+        @media only screen and (max-height: 400px)
+        {
+            form             {
+                overflow:auto;
+            }
+
+        }
+
+        @media only screen and (max-width: 840px)
+        {
+            .propertyquestionsclass
+            {
+                margin-top:120px;
+
+                width:95%;
+            }
+            .propertyquestioninner
+            {
+                width:95%;
+            }
+            .propertydiv select
+            {
+                width:80%;
+            }
+            .propertydiv .ttextbox
+            {
+                width:80%;
+            }
+            .popupapply
+            {
+                width:750px;
+                margin-left:-375px;
+            }
+        }
+
+        @media only screen and (max-width: 768px)
+        {
+            .pageTransItem
+            {
+                padding-top:10px;
+            }
+            .propertyquestionsclass
+            {
+                margin-top:10px;
+
+            }
+            .propertydiv .ttextbox
+            {
+                width:80%;
+            }
+            .propertydiv select
+            {
+                width:80%;
+            }
+            .propertyquestioninner
+            {
+                width:90%;
+            }
+            .popupapply
+            {
+                width:600px;
+                margin-left:-300px;
+            }
+            .pad
+            {
+                padding-top:0px;
+            }
+
+        }
+        @media only screen and (max-width: 640px)
+        {
+            .propertyquestionsclass
+            {
+                margin-top:10px;
+
+            }
+            .propertydiv select
+            {
+                width:80%;
+            }
+            .propertydiv .ttextbox
+            {
+                width:80%;
+            }
+            .popupapply
+            {
+                width:500px;
+                margin-left:-250px;
+            }
+            .pad
+            {
+                padding-top:0px;
+            }
+        }
+
+        @media only screen and (max-width: 480px)
+        {
+            .propertyquestionsclass
+            {
+                margin-top:10px;
+
+            }
+            .propertyquestioninner
+            {
+                width:95%;
+            }
+            .popupapply
+            {
+                width:350px;
+                margin-left:-175px;
+            }
+            .pad
+            {
+                padding-top:0px;
+            }
+        }
+        @media only screen and (max-width: 320px)
+        {
+            .propertyquestionsclass
+            {
+                margin-top:10px;
+
+            }
+            .propertyquestioninner
+            {
+                width:98%;
+            }
+            .popupapply
+            {
+                width:180px;
+                margin-left:-90px;
+            }
+            .pad
+            {
+                padding-top:0px;
+            }
+        }

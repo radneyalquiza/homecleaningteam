@@ -81,6 +81,70 @@ public class RTQManager
         return db.Invoices.OrderBy(i => i.Id).ToList();
     }
 
+
+    //=======================================================================================
+    // RTQ OPTIONS BUILDER
+    //=======================================================================================
+
+    public RoomDataOutDTO getRoomData(string roomname)
+    {
+        Room room = db.Rooms.Where(i => i.name.ToLower().Trim() == roomname.ToLower().Trim()).FirstOrDefault();
+        List<RTQApp> apps = db.RTQApps.Where(i => i.Room_Id == room.Id).ToList();
+
+        RoomDataOutDTO rdto = new RoomDataOutDTO();
+        rdto.RoomName = roomname;
+        List<RoomDataOutDTO.App> applist = new List<RoomDataOutDTO.App>();
+        foreach (RTQApp a in apps)
+        {
+            RoomDataOutDTO.App ap = new RoomDataOutDTO.App();
+            ap.AppName = a.name;
+            List<RTQOption> options = db.RTQOptions.Where(i => i.RTQApp_Id == a.Id).ToList();
+            List<RoomDataOutDTO.Option> dtoptions = new List<RoomDataOutDTO.Option>();
+            foreach (RTQOption o in options)
+            {
+                RoomDataOutDTO.Option dtoo = new RoomDataOutDTO.Option();
+                dtoo.OptionName = o.name;
+
+                // if this option has multiple sub options (which makes this option's time a null),
+                // search for the suboptions that are linked to this option and save them into a
+                // collection to return to the application
+                if (o.time == null)
+                {
+                    // list of data from the db to map from
+                    List<RTQOptionSub> subs = db.RTQOptionSubs.Where(i => i.RTQOption_Id == o.Id).ToList();
+                    // list of data created as a view to map into
+                    List<RoomDataOutDTO.Sub> dtosubs = new List<RoomDataOutDTO.Sub>();
+                    foreach (RTQOptionSub os in subs)
+                    {
+                        RoomDataOutDTO.Sub s = new RoomDataOutDTO.Sub();
+                        s.OptionName = os.name;
+                        s.TimeUnit = os.time.ToString();
+                        s.CType = os.ctype;
+                        dtosubs.Add(s);
+                    }
+                    dtoo.Subs = dtosubs.ToArray();
+                }
+                else
+                {
+                    // map the data to the RTQOptionData DTO
+                    dtoo.TimeUnit = o.time.ToString();
+                    dtoo.CType = o.ctype;
+                }
+                dtoptions.Add(dtoo);
+            }
+            // after the option loop, cast the option list into an option array
+            // and store the data into the dto's Apps.Options array
+            ap.Options = dtoptions.ToArray();
+            applist.Add(ap);
+        }
+        rdto.Apps = applist.ToArray();
+        // at the end, we will have a room object that contains all apps and options
+        // for javascript to format
+        return rdto;
+    }
+
+
+
     //=======================================================================================
     // CREATES
     //=======================================================================================

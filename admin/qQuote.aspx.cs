@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Web.Hosting;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Web.Script.Serialization;
 
 [ScriptService]
 public partial class admin_qQuote : System.Web.UI.Page
@@ -83,7 +84,7 @@ public partial class admin_qQuote : System.Web.UI.Page
             #region Ajax methods
             if (Request.Form["MethodName"] == "CreateRooms")// same Method Name 
             {
-                createRooms();
+                //createRooms();
                 return;
             }
             if (Request.Form["MethodName"] == "createServiceData")// same Method Name 
@@ -95,7 +96,7 @@ public partial class admin_qQuote : System.Web.UI.Page
         }   
     }
 
-    /* a more generic way of dynamically creating rooms depending on user selection */
+    /* a more generic way of dynamically creating rooms depending on user selection
     public void createRooms()
     {
         List<Room> rooms = serv.getRooms();
@@ -139,7 +140,7 @@ public partial class admin_qQuote : System.Web.UI.Page
         Response.Flush();
         Response.End();
 
-    }
+    } */
 
     [WebMethod()]
     public static int createServiceData(string obj, string obj2)
@@ -392,13 +393,15 @@ public partial class admin_qQuote : System.Web.UI.Page
 
     // get a single room
     [WebMethod()]
-    public static string callRoom(int roomnum)
+    public static string callRoom(string roomname)
     {
-        string table = "";
+        /*string table = "";
         if (roomnum > 0)
             table = de.callRoom(roomnum);
 
-        return table;
+        return table;*/
+        JavaScriptSerializer serializer = new JavaScriptSerializer(null);
+        return serializer.Serialize(rtq.getRoomData(roomname)); 
     }
 
 
