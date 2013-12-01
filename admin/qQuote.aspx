@@ -92,6 +92,7 @@
     <link href="../Styles/mainmenu.css" rel="stylesheet" />
 
     <script src="../Scripts/rtq.js"></script>
+    <script src="../Scripts/common-functions.js"></script>
 
     <link href="../Styles/atlasPageTransitions.css" rel="stylesheet" />
     <link href="../Styles/atlasTooltip.css" rel="stylesheet" />
@@ -111,18 +112,55 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+
+    <div id="loadercontainer">
+        <!--<img src="../Styles/img/image.gif" /> 
+            <img src="../Styles/img/84.gif" />-->
+        <img src="../Styles/img/320.GIF" />
+    </div>
+
+    <!-- multipurpose modal cover -->
+    <div class="cover"></div>
+
+
+    <div id="quoteSample">
+        <div id="rooms"></div>
+        <div class="wrap">
+            <div class="edit">I need to make changes.</div>
+            <div class="finish">All is good, Finish!</div>
+        </div>
+    </div>
+
+    <span class="nextGroup"></span>
+
+    <div id="quote-edit">
+        <span class="edit-title">EDIT MODE<span class="close-edit"></span></span>
+        <div class="cont"></div>
+        <span class="load-left"></span>
+        <span class="load-right"></span>
+    </div>
+
+
+
     <div id="rtqoutercont">
+
+        <!-- container for deleted rooms in case the user wants to put it back -->
+        <div class="garbage">
+            <span class="title">Extra Rooms:</span>
+            <div class="tilelist">
+                <div class="tile bathroom"></div>
+                <div class="tile bedroom"></div>
+                <div class="tile kitchen"></div>
+                <div class="tile diningroom"></div>
+                <div class="tile livingroom"></div>
+            </div>
+            <div class="deletedrooms"></div>
+        </div>
+
       <!--  <div class="navButton">
             MENU
         </div>-->
-        
-        <div id="loadercontainer">
-            <!--<img src="../Styles/img/image.gif" /> 
-            <img src="../Styles/img/84.gif" />--><img src="../Styles/img/477.gif" />
-        </div>
 
-                
         <div id="top" class="topBar">
             <div class="topBarDiv">
                 <h1>REAL-TIME QUOTE SYSTEM</h1>
@@ -148,60 +186,10 @@
                     <input type="button" value="Begin Quote" id="startQuote" class="mainBtn" />
                 <div id="out"></div>
 
+
+
+
             </div>
-         <!-- 
-            <ul id="cont" style="width:300px">
-                <li><span>ite34563464 36346436y34</span>
-                    <ul>
-                        <li><span>subitem11</span>
-                            <ul>
-                                <li class="chk"><span>subitem111</span>
-                                    <ul>
-                                        <li class="chk"><span>subitem112</span></li>
-                                        <li><span>subitem112</span></li>
-                                    </ul>
-                                </li>
-                                <li><span>subitem112</span></li>
-                            </ul>
-                        </li>
-                        <li class="chk" data-optionid="test"><span>subitem12</span></li>
-                    </ul>
-                </li>
-                <li><span>item2</span>
-                    <ul class="isRadioList">
-                        <li class="chk"><span>subitem21</span></li>
-                        <li><span>subitem22</span></li>
-                        <li><span>subitem23</span></li>
-                    </ul>
-                </li>
-                <li class="chk" data-optionid="1"><span>item3</span></li>
-            </ul>
-
-            <ul id="cont2" class="isRadioList" style="width:300px">
-                <li><span>item1</span>
-                </li>
-                <li><span>item2</span>
-                </li>
-                <li class="chk"><span>item3</span></li>
-            </ul>
-
-            <input type="button" id="ck" value="get checked text" />
-            <input type="button" id="ck2" value="get checked data" />
-            <input type="button" id="ckall" value="check all" />
-            <input type="button" id="unckall" value="uncheck all" />
-            <input type="button" id="toggle" value="toggle 0" />
-            <input type="button" id="destroy" value="destroy" />
-            <input type="button" id="init" value="init" />
-            <input type="button" id="checkbyclass" value="checkbyclass" />
-            <input type="button" id="expand" value="expand all" />
-            <input type="button" id="setidentifier" value="set data identifier" />
-        
-
-        <div style="width:200px; position:absolute; top:140px; left:2px; padding:5px; background-color:#c0e6ff; border-radius:3px;" id="output">
-            <p>Checked Items:</p>
-        </div>
-       
-            -->
 
         <div id="nextroom"></div>
         <div id="finish">Finish Quote!</div>
@@ -256,7 +244,7 @@
                             <div class="propertydiv padded-inner content-box box">
                                 <h1>Do you have any pets?</h1>
                                         <select id="pets">
-                                            <option value="None">Select...</option>
+                                            <option value="None">Nope.</option>
                                             <option value="Dog/s">Dog/s</option>
                                             <option value="Cat/s">Cat/s</option>
                                         </select>
@@ -292,56 +280,108 @@
                         </li>
                     </ul>
                 </div>
-                <input type="button" id="gotoservicequestions" class="mainBtn" value="Proceed to Service Questions" /> 
-                <br />
+
+                <div class="propertydesc grid-whole equalize">
+                    <input type="button" id="gotoservicequestions" class="mainBtn" value="Proceed to RTQ Options" /> 
+                </div>
                 <br />
             </div>
             <div class="servicequestionpart">
-                <h3 class="prop">Questions about the Service</h3>
-                <div class="propertydesc grid-whole equalize">
+                <h3 class="prop">Your Realtime Quote</h3>
+                <div class="propertydesc equalize" id="serv" style="width:280px">
                     <ul class="ulserviceinfo">
-                        <li class="grid-half s-grid-whole padded">
-                            <div class="propertydiv padded-inner content-box box">
+                        <li>
+                            <div class="box">
                                 <h1>How soon do you need the service?</h1>
-                                <h4>(this is a range so that we can determine where to assign this job)</h4>
                                 <select id="daterange">
                                     <option>Just shopping around</option>
                                     <option>Next 48 hours</option>
                                     <option>This week</option>
                                     <option>Next two weeks</option>
                                     <option>Next month</option>
-                                
+
                                 </select>
                             </div>
                         </li>
-                        <li class="grid-half s-grid-whole padded">
-                            <div class="propertydiv padded-inner content-box box">
+                        <li>
+                            <div class="box">
                                 <h1>What type of cleaning are you looking for?</h1>
-                                <h4>(you can specify every detail of the service later on)</h4>
                                 <select id="cleaningtype">
-                                    <option value="1">Routine Cleaning - Standard</option>
-                                    <option value="2">Routine Cleaning - Premium</option>
-                                    <option value="3">Deep Cleaning - Standard</option>
-                                    <option value="4">Deep Cleaning - Premium</option>
+                                    <option value="">Select below...</option>
+                                    <option value="routine-std">Routine Cleaning - Standard</option>
+                                    <option value="routine-prm">Routine Cleaning - Premium</option>
+                                    <option value="deep-std">Deep Cleaning - Standard</option>
+                                    <option value="deep-prm">Deep Cleaning - Premium</option>
                                 </select>
                             </div>
                         </li>
                     </ul>
+                    <div class="sidebutton"></div>
                 </div>
+                <!--<div class="cleaningtypediv">
+                    <ul>
+                        <li>
+                            <div class="cleaningtype o1" data-val="routine-std">
+                                <span class="title">Routine Cleaning (Standard)</span>
+                                <div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                            </li>
+                        <li>
+                            <div class="cleaningtype o2" data-val="routine-prm">
+                                <span class="title">Routine Cleaning (Premium)</span>
+                                <div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                            </li>
+                        <li>
+                            <div class="cleaningtype o3" data-val="deep-std">
+                                <span class="title">Deep Cleaning (Standard)</span>
+                                <div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                                </li>
+                        <li>
+                            <div class="cleaningtype o4" data-val="deep-prm">
+                                <span class="title">Deep Cleaning (Premium)</span>
+                                <div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>-->
+
+
+
+
             </div>
           
-              <input type="button" id="end" class="mainBtn" value="Proceed to Quote Details" /> 
+             <!-- <input type="button" id="end" class="mainBtn" value="Proceed to Quote Details" /> -->
                 <br />
                 <br />
           </div>
 
         </div>
+        
 
         <!-- container for the sidebar content -->
         <div class="sidebar">
             <table>
             </table>
         </div>
+
 
         <!-- container for selecting the type of quote the user can make -->
         <div class="quotetype">
@@ -544,6 +584,116 @@
     </div>
 
 
+
+
+
+
+
+         <!--       <div class="roomgroupdiv">
+                    <div class="categoriesdiv">
+                        <ul class="categorieslist">
+                            <li><span>C1</span></li>
+                            <li><span>C2</span></li>
+                            <li><span>C3</span></li>
+                            <li><span>C4</span></li>
+                            <li><span>C5</span></li>
+                        </ul>
+                    </div>
+                    <div class="roomgrouplistcontainer">
+                        <ul class="roomgrouplist">
+                            <li><span class="title">R1</span>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><span class="title">R2</span>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><span class="title">R3</span>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><span class="title">R4</span>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><span class="title">R5</span>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                                <div class="appcont">
+                                    <div class="optioncont">
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                        <div class="option">Option</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+    -->
     <script>
    
     </script>

@@ -13,7 +13,8 @@
     <link href="~/Styles/mainmenu.css" rel="stylesheet" />
     <link href="~/Styles/atlasPageTransitions.css" rel="stylesheet" />
     
-    
+    <link rel="icon" type="image/png" href="~/Styles/img/icons/favicon.png" />
+
     <script src="Scripts/jquery-1.9.1.js"></script>
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/jquery.tipTip.js"></script>

@@ -401,7 +401,15 @@ public partial class admin_qQuote : System.Web.UI.Page
 
         return table;*/
         JavaScriptSerializer serializer = new JavaScriptSerializer(null);
-        return serializer.Serialize(rtq.getRoomData(roomname)); 
+        return serializer.Serialize(rtq.getRoomData(roomname, "routine-std")); 
+    }
+
+    // get all rooms and their options depending on cleaning type
+    [WebMethod()]
+    public static string callAllRooms(string cleaningtype)
+    {
+        JavaScriptSerializer serializer = new JavaScriptSerializer(null);
+        return serializer.Serialize(rtq.getAllRoomData(cleaningtype)); 
     }
 
 

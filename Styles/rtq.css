@@ -7,14 +7,24 @@
     box-sizing: border-box;
 }
 
-
+html
+{
+    height:100%;
+    width:100%;
+}
 body
 {
     margin: 0px;
     padding: 0px;
     position:relative;
     height:100%;
+    width:100%;
     overflow:hidden;
+        font-family: 'Ubuntu', sans-serif;
+   /* background-image:url('img/bg1.jpg');
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:cover;*/
 }
 
 .pad
@@ -187,16 +197,15 @@ body
 {
     width: 40%;
     min-width: 200px;
-    height: 55px;
+    height: 35px;
     color: white;
-    border-radius: 5px;
     border: 0px;
     background-color: #0094ff;
     font-size: 17px;
-    transition: all 0.4s;
+    transition: all 0.1s;
     box-shadow: 1px 1px 2px #808080;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 12px;
 }
 
     .mainBtn:hover, .mainBtnApply:hover
@@ -292,9 +301,12 @@ input[class^='doneBtn']
     position:absolute;
     top:50%;
     left:50%;
-    margin-top:-60px;
-    margin-left:-60px;
-    z-index:999999;
+    margin-top:-74px;
+    margin-left:-64px;
+    z-index:9999;
+    width:128px;
+    height:128px;
+    border-radius:25px;
 }
 
 #BathroomContainer
@@ -325,7 +337,7 @@ input[class^='doneBtn']
 .footer
 {
     padding-top:5px;
-    height:60px;
+    height:50px;
     font-size:0.8em;
     color:#9b9b9b;
     position:fixed;
@@ -353,6 +365,21 @@ input[class^='doneBtn']
             font-weight:500;
             color:#f2ab48;
         }
+
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: "";
+	clear: both;
+	height: 0;
+	}
+.clearfix { display: inline-table; }
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
 
 
 /* =========================================================================== */
@@ -977,7 +1004,6 @@ h3
 {
     margin-top:-65px;
     transition:all 0.3s ease-in-out;
-    position:relative !important;
 }
 
 .topBarDiv-pullup
@@ -1719,7 +1745,125 @@ table td
 
 
 
+/* ================================================ */
+/* Cleaning Types selection */
+/* ================================================ */
 
+.cleaningtypediv
+{
+    width:96%;
+    margin:auto;
+    height:100px;
+    position:relative;
+    margin-top:20px;
+}
+
+    .cleaningtypediv ul
+    {
+        list-style:none;
+        padding:0;
+        position:relative;
+    }
+        .cleaningtypediv ul li
+        {
+            display:inline-block;
+            position:absolute;
+        }
+            .cleaningtypediv .cleaningtype
+            {
+                display:block;
+                background-color:#83caff;
+                border-radius:2px;
+                box-shadow:0px 2px 1px 0px #808080;
+                color:#fafafa;
+                text-shadow:1px 1px 1px #52708a;
+                padding:10px;
+                font-size:1.1em;
+                transition:all 0.2s ease-in-out;
+                width:270px;
+            }
+                .cleaningtypediv .cleaningtype:hover
+                {
+                    cursor:pointer;
+                    /*background-color:#56b4fa;*/
+                    text-shadow:none;
+                }
+                .cleaningtypediv .cleaningtype:active
+                {
+                    margin-top:1px;
+                    box-shadow:inset 1px 1px 1px #4d8dbd;
+                }
+.cleaningtype span.title
+{
+    display:block;
+    width:70%;
+    margin:auto;
+}
+
+.cleaningtypediv div.desc
+{
+    display:none;
+    width:210px;
+    margin:auto;
+    text-align:left;
+    color:#f3f3f3;
+    font-size:0.75em;
+    font-weight:normal;
+    letter-spacing:0px;
+    text-shadow:none;
+}
+
+.small
+{
+    font-size:0.75em;
+    padding:1px;
+    padding-right:0;
+    width:25%;
+}
+.cleaningtype.o1
+{
+    background-color:#9bd07a;
+}
+    .cleaningtype.o1:hover
+    {
+        background-color:#6baa74;
+    }
+
+.cleaningtype.o2
+{
+    background-color:#cf7474;
+}
+    .cleaningtype.o2:hover
+    {
+        background-color:#b14747;
+    }
+
+.cleaningtype.o3
+{
+    background-color:#dd9157;
+}
+    .cleaningtype.o3:hover
+    {
+        background-color:#c86b1c;
+    }
+
+
+.cleaningtype.o4
+{
+    background-color:#3c95d8;
+}
+    .cleaningtype.o4:hover
+    {
+        background-color:#47709d;
+    }
+
+.cleaningtype.o1:active, .cleaningtype.o2:active,
+.cleaningtype.o3:active, .cleaningtype.o4:active
+{
+    box-shadow:inset 1px 1px 1px #4d8dbd;
+}
+
+/* =============================================================================================*/
 /* UI ELEMENTS */
 .atlas-radio
 {
@@ -1756,7 +1900,32 @@ table td
 
 
  ============================================================================================= */
-
+.sidebutton
+{
+    background-image:url('img/icons/editmenu.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+    width:25px;
+    height:25px;
+    display:none;
+    background-color:#aedcfe;
+    position:absolute;
+    left:101%;
+    top:50%;
+    margin-top:-12.5px;
+    box-shadow:1px 2px 1px 1px #808080;
+}
+    .sidebutton:hover
+    {
+        cursor:pointer;
+        background-color:#5b92b2;
+    }
+    .sidebutton.close, .curtain .close
+    {
+        background-image:url('img/icons/closeeditmenu.png');
+        background-repeat:no-repeat;
+        background-position:center center;
+    }
 .roomheader
 {
     position:absolute;
@@ -1777,36 +1946,46 @@ table td
 /* THE ROOM DATA THAT IS SELECTED */
 .rtqroom
 {
-    width:350px;
-    padding:2px;
+    width:460px;
+    padding:5px;
+   /* margin-top:10px;*/
+    float:left;
 }
 
-    .rtqroom .roomname
+    .rtqroom .roomname, .rtqroom .prev-title
     {
-        background-color:#73c2fb;
         color:white;
-        font-size:1.1em;
-        padding:2px;
+        font-size:1.05em;
+        padding:3px;
+        background-color:#8ecbff;
+        border-radius:3px;
     }
-    .rtqroom .app
+    .rtqroom .app, .extra-options .app
     {
         background-color:#ffb530;
         color:white;
-        font-size:0.8em;
+        font-size:0.85em;
         padding:1px;
-        margin-top:4px;
         position:relative;
         display:block;
+        width:170px;
+        float:left;
     }
         .rtqroom .app:hover
         {
             cursor:pointer;
         }
-        .rtqroom .app span.appname, .option span.optionname
+        .rtqroom .app span.appname, .rtqroom .option span.optionname,
+        .extra-options .app span.appname, .extra-options .option span.optionname
         {
-            width:90%;
+            width:96%;
             display:inline-block;
+            text-align:center;
         }
+    .rtqroom .optionname, .extra-options .optionname
+    {
+        text-align:left !important;
+    }
     .rtqroom .option, .extra-options .option
     {
         color:#5c5c5c;
@@ -1818,6 +1997,14 @@ table td
         border-radius:2px;
         position:relative;
     }
+    .rtqroom .option
+    {
+        font-size:0.85em;
+    }
+        .rtqroom .option:hover
+        {
+            cursor:pointer;
+        }
         .rtqroom .option .suboptions,  .extra-options .option .suboptions
         {
             width:250px;
@@ -1842,6 +2029,17 @@ table td
             margin-top:1px;
             font-size:0.9em;
         }
+            .rtqroom .option .sub:hover, .extra-options .option .sub:hover
+            {
+                background-color:#efefef;
+                cursor:pointer;
+            }
+        /* when a suboption is selected, it will disappear from the suboptions box */
+            .rtqroom .option .sub.selected
+            {
+                display: none;
+            }
+
     .rtqroom .suboptions .subclose, .extra-options .suboptions .subclose
     {
         display:inline-block;
@@ -1874,6 +2072,11 @@ table td
             top:50%;
             border-radius:99px;
         }
+.extra-options .remove-option
+{
+    width:16px;
+    height:16px;
+}
 
     .rtqroom .show-extra, .extra-options .show-extra
     {
@@ -1929,12 +2132,20 @@ table td
             box-shadow:none;
         }
 
-    .rtqroom .optionscontainer
+    .rtqroom .optionscontainer, .extra-options .optionscontainer
     {
         position:relative;
+        width:250px;
+        float:right;
+        text-align:left;
     }
     .rtqroom .appcontainer
     {
+        margin-top:3px;
+        margin-bottom:3px;
+        padding:5px;
+        border:1px solid #e6e6e6;
+        border-radius:2px;
     }
 
     .rtqroom .disableoptions
@@ -1950,13 +2161,12 @@ table td
 /* ALL AVAILABLE OPTIONS */
 .extra-options
 {
-    position:absolute;
-    right:10%;
-    width:550px;
-    height:50px;
-    top:50px;
-    border-radius:5px;
+    width:460px;
     padding:5px;
+    padding-left:10px;
+    display:block;
+    float:right;
+    /*margin-left:90px;*/
 }
     .extra-options .roomname
     {
@@ -1967,37 +2177,618 @@ table td
     }
     .extra-options .appcontainer
     {
-        display:inline-block;
-        width:250px;
-        margin-right:20px;
-        margin-top:20px !important;
+        display:block;
+        /*width:300px;*/
+        margin-right:3px;
+        margin-top:3px;
+        padding:5px;
+       /* margin-top:20px !important;*/
+       border:1px solid #e6e6e6;
+       border-radius:2px;
     }
     .extra-options .app
     {
         background-color:#86bfdc;
         color:white;
         font-size:0.9em;
-        padding:2px;
-        margin-top:4px;
+        padding:1px;
+        margin-top:2px;
         position:relative;
+        float:left;
         display:block;
+        text-align:center;
     }
     .extra-options .option
     {
-        font-size:0.7em;
+        font-size:0.85em;
         /*border:1px solid #c3c3c3;*/
         padding:2px !important;
         background-color:#c6e8ff
     }
 .extra-options .app span.appname
 {
-    font-size:0.85em;
+    font-size:0.9em;
 }
     .extra-options .remove-option.hover
     {
         cursor:pointer;
         background-color:#7dc2f6
     }
+    .extra-options .empty
+    {
+        font-size:0.80em;
+        color:#808080;
+        background-color:#eaeaea;
+        border-radius:2px;
+        padding:1px;
+        margin-top:1px;
+    }
+.rtqroom .empty
+{
+    font-size: 0.80em;
+    color: #f3f3f3;
+    background-color: #eeabab;
+    border-radius: 2px;
+    padding: 1px;
+    margin-top: 1px;
+}
+#quote-edit
+{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:75%;
+    background-color:white;
+    z-index:100;
+    text-align:center;
+    margin-left:-37.5%;
+    padding-bottom:25px;
+    box-shadow: 1px 1px 16px 1px #686868;
+        max-height:700px;
+}
+#quote-edit.transparent
+{
+    opacity:0.2;
+    /*margin-top:200px !important;*/
+    transition:all 0.2s ease-in-out;
+}
+    #quote-edit .cont
+    {
+        text-align:left;
+        width:98%;
+        margin:auto;
+        margin-bottom:20px;
+        padding:10px;
+        padding-bottom:20px;
+        display:block;
+        max-height:650px;
+        overflow-y:scroll;
+    }
+    #quote-edit .edit-title
+    {
+        display:block;
+        width:100%;
+        font-size:1.5em;
+        background-color:#458bcf;
+        color:white;
+        text-align:center;
+        position:relative;
+    }
+        #quote-edit .edit-title .close-edit
+        {
+            width:23px;
+            height:23px;
+            top:50%;
+            margin-top:-11.5px;
+            right:5px;
+            position:absolute;
+            background-image:url('img/icons/remove.png');
+            background-repeat:no-repeat;
+            background-position:center center;
+            background-color:#b3d7f8;
+            padding:3px;
+            border-radius:99px;
+        }
+            #quote-edit .edit-title .close-edit:hover
+            {
+                background-color:#43aaee;
+                cursor:pointer;
+            }
+            #quote-edit .edit-title .close-edit:active
+            {
+                margin-top:-10.5px;
+                box-shadow:inset 0 0 3px #3d6eaa;
+            }
+    #quote-edit .load-left
+    {
+        background-image:url('img/left.GIF');
+        background-repeat:no-repeat;
+        background-position:center center;
+        width:68px;
+        height:7px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-left:-34px;
+        display:none;
+        z-index:101;
+    }
+    #quote-edit .load-right
+    {
+        background-image:url('img/right.GIF');
+        background-repeat:no-repeat;
+        background-position:center center;
+        width:68px;
+        height:7px;
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-left:-34px;
+        display:none;
+        z-index:101;
+    }
+
+
+body .cover
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#808080;
+    opacity:0.1;
+    z-index:51;
+    display:none;
+}
+
+
+/* =============================================================================================
+   FOR THE QUOTE SUMMARY AT THE BOTTOM OF PAGE
+ ============================================================================================= */
+#serv
+{
+    height:200px;
+    z-index:99;
+    position:absolute;
+    left:0;
+    top:13%;
+    border:1px solid #ccc;
+    background-color:white;
+    box-shadow:0px 3px 3px 0px #808080;
+    transition:all 0.2s ease-in-out;
+}
+.ulserviceinfo
+{
+    height:100%;
+}
+.ulserviceinfo .information
+{
+    border:1px solid #d0d0d0;
+    font-size:0.7em;
+    margin-left:6px;
+    margin-top:10px;
+    display:none;
+    text-align:left;
+    border-radius:3px;
+    background-color:#fff;
+}
+
+.ulserviceinfo h1
+{
+    color:#5482a3;
+    font-size:0.9em;
+    letter-spacing:1px;
+    margin-bottom:5px;
+    margin-top:5px;
+}
+.ulserviceinfo li
+{
+    margin-top:5px;
+}
+    .ulserviceinfo .box
+    {
+        border-radius:0;
+        box-shadow:none;
+    }
+.ulserviceinfo.shelf
+{
+    padding:10px;
+    margin-left:-50%;
+}
+    .ulserviceinfo .information .title
+    {
+        font-size:1.3em;
+        color:#727272;
+        text-align:center;
+        background-color:#abdaf8;
+        display:block;
+        width:100%;
+    }
+    .ulserviceinfo .information span
+    {
+        display:inline-block;
+    }
+    .ulserviceinfo .information .blue
+    {
+        color:#379bd5;
+        font-size:1.1em;
+    }
+    .ulserviceinfo .information .green
+    {
+        color:#57a936;
+        font-size:1.1em;
+    }
+    .ulserviceinfo .information li
+    {
+        background-color:#eeeeee;
+        border-radius:3px;
+        margin-top:3px;
+        width:100%;
+        padding:2px;
+    }
+        .ulserviceinfo .information li .note
+        {
+            background-color:#dbdbdb;
+            border-radius:2px;
+            padding:2px;
+            color:#767676;
+        }
+        .ulserviceinfo .information li .emp
+        {
+            color:black #dcdcdc;
+        }
+#quoteSample
+{
+    text-align:left;
+    /*float:right;*/
+    width:100%;
+    height:100%;
+    border-radius:5px;
+    transition:all 1.0s ease-in-out;
+    position:absolute;
+    margin:auto;
+    top:0;
+    left:0;
+}
+    #quoteSample #rooms
+    {
+        width:100%;
+        height:100%;
+        position:relative;
+    }
+
+    #quoteSample .ctypetitle
+    {
+        display:block;
+        padding:2px;
+        color:#5ea9e1;
+        text-shadow:1px 0px 0px 1px #497494;
+        font-size:1em;
+        font-weight:600;
+        text-align:center;
+        margin-top:0px;
+    }
+    #quoteSample .title
+    {
+        display:block;
+        padding:0;
+        text-shadow:1px 0px 0px 1px #497494;
+        
+    }
+
+    #quoteSample .listcontainer
+    {
+        width:98%;
+        margin:auto;
+    }
+    #quoteSample .roomlist
+    {
+        list-style:none;
+        padding:0;
+        height:350px;
+        position:relative;
+        overflow:auto;
+        margin:auto;
+        padding-left:20px;
+        transition:all 0.3s;
+    }
+        #quoteSample .roomlist li
+        {
+            display:block;
+            margin-left:5px;
+            border-radius:2px;
+            position:absolute;
+            top:0;
+        }
+
+    #quoteSample .appnamecont
+    {
+        display:block;
+        width:125px;
+        background-color:#f6c476;
+        color:white;
+        padding:2px;
+        margin-top:4px;
+        font-size:1.1em;
+        text-align:center;
+        vertical-align:middle;
+        font-weight:bold;
+        position:relative;
+    }
+        #quoteSample .appnamecont .appnamespan
+        {
+            position:absolute;
+            top:50%;
+            width:95%;
+            margin:auto;
+            display:block;
+            color:#7c4501
+        }
+        
+.room-preview, .room-preview-categories
+{
+    font-size:0.75em;
+    overflow:hidden;
+    background-color:white;
+    position:relative;
+
+}
+.room-preview-categories
+{
+    font-size:0.75em;
+    position:absolute;
+    left:0px;
+}
+
+.room-preview:hover 
+{
+    cursor:pointer;
+    border:1px solid #5f5f5f;
+    box-shadow: 0 0 5px #888;
+    padding:2px;
+    padding-left:1px;
+    margin-left:-1px;
+    border-radius:2px;
+}
+    .room-preview:active
+    {
+        box-shadow: inset 0 0 4px #888;
+    }
+.room-preview-cont
+{
+    width:200px;
+    float:left;
+    margin-left:2px;
+}
+.room-preview-cont-cover
+{
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    background-color:#d8d8d8;
+    opacity:0;
+}
+.room-preview .prev-title, .room-preview-categories .prev-title
+{
+    font-size:1.1em;
+    padding:2px;
+    background-color:#c5e6ff;
+    color:#484848;
+    position:relative;
+    text-align:center;
+}
+.room-preview-categories .prev-title
+{
+    width: 140px;
+}
+    .room-preview .appname
+    {
+        background-color:#fed7a7;
+        margin-top:2px;
+        float:left;
+        width:150px;
+        padding:2px;
+        display:none;
+    }
+.room-preview .optionscontainer
+{
+    border:1px solid #b0b0b0;
+    transition:height 0.2s ease-in-out;
+    background-color:#f3f3f3
+}
+    .room-preview .option
+    {
+        background-color:#f3f3f3;
+        color:#656565;
+        padding:1px;
+        margin-top:0px;
+        position:relative;
+    }
+        .room-preview .option .optionname
+        {
+            width:95%;
+            display:inline-block;
+            font-size:0.96em;
+        }
+        .room-preview .option:hover
+        {
+            background-color:#cee1ea;
+            cursor:pointer;
+        }
+.room-preview .appcontainer
+{
+    margin-top:4px;
+}
+
+.room-preview .prev-remove
+{
+    width:9px;
+    height:9px;
+    display:block;
+    background-image:url('img/icons/removesmall.png');
+    background-repeat:no-repeat;
+    background-position:center center;
+    position:absolute;
+    right:2px;
+    top:50%;
+    margin-top:-4.5px;
+    opacity:0.7;
+    padding:2px;
+}
+.room-preview .option .prev-remove:hover
+{
+    background-color:#979797;
+    border:none;
+}
+.room-preview .prev-remove:hover
+{
+    cursor:pointer;
+    opacity:1;
+    border:1px solid #579fe4;
+}
+
+#quoteSample .cover
+{
+    position:absolute;
+    background-color:#efefef;
+    z-index:50;
+    opacity:0.2;
+}
+
+#quoteSample .edit, #quoteSample .finish
+{
+    background-color:#5fb1db;
+    padding:5px;
+    color:white;
+    text-align:center;
+    font-size:1.1em;
+    width:260px;
+    margin:auto;
+    display:inline-block;
+    margin-top:10px;
+}
+#quoteSample .edit
+{
+}
+#quoteSample .finish
+{
+    background-color:#98d481;
+}
+    #quoteSample .edit:hover, #quoteSample .finish:hover
+    {
+        background-color:#7bc1f7;
+        color:#484848;
+        cursor:pointer;
+    }
+    #quoteSample .finish:hover
+    {
+        background-color:#ccefb9;
+    }
+    #quoteSample .edit:active, #quoteSample .finish:active
+    {
+        margin-top:2px;
+        box-shadow: inset 1px 0 6px #295880;
+        background-color:#71b3eb
+    }
+    #quoteSample .finish:active
+    {
+        background-color:#89be6a;
+        box-shadow: inset 1px 0 6px #459429;
+    }
+
+    #quoteSample .wrap
+    {
+        margin:auto;
+        text-align:center;
+        padding:1px;
+        width:auto;
+    }
+
+
+/* ==================================== */
+/* GARBAGE */
+/* ==================================== */
+.garbage
+{
+    position:absolute;
+    bottom:40px;
+    left:35px;
+    height:60px;
+    background-color:white;
+    box-shadow:0px 2px 1px -1px #ccc;
+    border:1px solid #d9d9d9;
+    padding:2px;
+    display:none;
+}
+    .garbage .title
+    {
+        display:block;
+        width:100%;
+        font-size:0.8em;
+        background-color:#838383;
+        color:white;
+    }
+    .garbage .tilelist
+    {
+        padding:3px;
+    }
+    .garbage .tile
+    {
+        width:30px;
+        height:30px;
+        display:inline-block;
+        float:left;
+        margin-left:2px;
+        margin-top:3px;
+        opacity:0.6;
+    }
+        .garbage .tile:hover
+        {
+            border:1px solid #b4b4b4;
+            cursor:pointer;
+            opacity:1;
+        }
+        .garbage .tile.bathroom
+        {
+            background-image:url('img/icons/bath.png');
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+        .garbage .tile.bedroom
+        {
+            background-image:url('img/icons/bed.png');
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+        .garbage .tile.kitchen
+        {
+            background-image:url('img/icons/kitchen.png');
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+        .garbage .tile.diningroom
+        {
+            background-image:url('img/icons/dining.png');
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+        .garbage .tile.livingroom
+        {
+            background-image:url('img/icons/living.png');
+            background-position:center;
+            background-repeat:no-repeat;
+        }
+    .garbage.emp
+    {
+        border:5px;
+        background-color:#7ed0ff;
+        transition:all 0.3s ease-in-out;
+    }
+
 /* =============================================================================================
 
 
@@ -2218,7 +3009,6 @@ table td
             padding:9px;
             background-color:white;
             font-size:0.80em;
-            box-shadow: 0px 3px 1px -1px #999;
             border-radius:5px;
             margin-top:8px;
         }
@@ -2413,13 +3203,14 @@ table td
             display:none;
             margin-top:110px;
             text-align:center;
+            transition:all 0.3s cubic-bezier(2,3,5,2);
         }
             h3.prop
             {
                 color:#d3d3d3;
                 text-shadow:none;
                 text-align:center;
-                line-height:25px;
+                line-height:20px;
             }
         .propertyquestioninner
         {
@@ -2431,6 +3222,7 @@ table td
             text-align:center;
             margin:auto;
             padding:10px;
+            width:600px;
         }
         li.grid-half
         {
@@ -2448,17 +3240,19 @@ table td
             width:700px;
             margin:auto;
         }
-
+.servicequestionpart
+{
+    width:99%;
+}
         .propertydiv
         {
-            min-height:100px;
+            min-height:80px;
             border-radius:5px;
             background-color:#91cef6;
-            box-shadow: 0px 3px 1px -1px #999;
             margin:auto;
-            margin-top:6px;
-            margin-left:6px;
-            padding:20px;
+            margin-top:5px;
+            margin-left:3px;
+            padding:15px;
         }
 
             .propertydiv h1
@@ -2553,10 +3347,50 @@ table td
         html, form, body{ height: 100%; width:100%;  margin: 0px;
     padding: 0px }
 
+
+@media only screen and (max-width: 1400px)
+{
+    #quoteSample
+    {
+        width:99%;
+    }
+        #quoteSample .roomlist
+        {
+            height:350px;
+        }
+    #quoteSample .ctypetitle
+    {   
+        font-size:0.9em;
+        margin-top:-10px;
+    }
+
+}
+@media only screen and (max-width: 1500px) {
+    #quote-edit
+    {
+        width:95%;
+        margin-left:-47.5%;
+    }
+}
         @media only screen and (max-height: 400px)
         {
             form             {
                 overflow:auto;
+            }
+
+        }
+        @media only screen and (max-height:800px)
+        {
+            .page {
+                overflow:scroll !important;
+            }
+            .footer
+            {
+                font-size:0.65em;
+                height:45px;
+                text-align:right;
+                padding-right:20px;
+                /*visibility:hidden;*/
             }
 
         }
@@ -2690,3 +3524,359 @@ table td
                 padding-top:0px;
             }
         }
+
+
+/* ================================================================== */
+/* TEST */
+/* ================================================================== */
+
+.roomgroupdiv
+{
+    position:absolute;
+    z-index:50;
+    top:40px;
+    height:100%;
+    font-size:0.9em;
+}
+    .roomgroupdiv.full
+    {
+        width:95%;
+        margin-left:2.5%;
+    }
+
+    .roomgroupdiv.small
+    {
+        width:85%;
+        margin-left:7.5%;
+    }
+
+.categoriesdiv
+{
+    float:left;
+    width:10%;
+    padding:3px;
+}
+    .categoriesdiv .title
+    {
+        background-color:#a4d8f7;
+        color:#484848;
+        padding:2px;
+        font-size:1.05em;
+        text-align:center;
+    }
+    .categoriesdiv ul
+    {
+        list-style:none;
+        padding:0;
+    }
+        .categoriesdiv ul li
+        {
+            padding:3px;
+            background-color:#f3aa51;
+            border:1px solid #f3aa51;
+            margin-top:2px;
+            text-align:center;
+            position:relative;
+        }
+        .categoriesdiv ul li span
+        {
+            top:50%;
+            left:50%;
+            width:90%;
+            margin-left:-45%;
+            position:absolute;
+            display:block;
+        }
+.roomgrouplistcontainer
+{
+    float:left;
+    width:90%;
+    height:auto;
+}
+    .roomgrouplistcontainer ul
+    {
+        list-style:none;
+        padding:0;
+        font-size: 0;
+    }
+        .roomgrouplistcontainer ul li
+        {
+            float:left;
+            font-size:16px;
+            /*margin-left:0.5%;*/
+            transition:all 0.1s ease-in-out;
+            padding:2px;
+            position:relative;
+        }
+            .roomgrouplistcontainer ul li .room span.roomname
+            {
+                font-size:0.8em;
+                display:block;
+                background-color:#85ccfb;
+                padding:2px;
+                text-align:center;
+                margin-bottom:3px;
+            }
+            .roomgrouplistcontainer ul li:hover
+            {
+                box-shadow:1px 4px 4px 1px #808080;
+            }
+            .roomgrouplistcontainer ul li .cover-click:hover
+            {
+                background-color:rgba(126,187,238,0.4);
+                background-image:url('img/icons/editroom.png');
+                background-position:center center;
+                background-repeat:no-repeat;
+                cursor:pointer
+            }
+            .roomgrouplistcontainer ul li .cover-click
+            {
+                background-color:rgba(217,217,217,0.4);
+                position:absolute;
+                z-index:52;
+                top:0;
+                left:0;
+                
+            }
+
+            .roomgrouplistcontainer ul li .room.main
+            {
+                position:relative;
+                transition:all 0.2s;
+            }
+            .roomgrouplistcontainer ul li .room.extra
+            {
+                position:absolute;
+                left:0;
+                width:100%;
+                font-size:1em;
+                transition:all 0.2s;
+            }
+                .roomgrouplistcontainer ul li .room.extra .option
+                {
+                    background-color:#458ecc;
+                    color:white;
+                    box-shadow:0px 2px 1px 0px #386892
+                }
+                    .roomgrouplistcontainer ul li .room.extra .option:hover
+                    {
+                        background-color:#1f5883;
+                        cursor:pointer
+                    }
+                .roomgrouplistcontainer ul li .room.extra .app
+                {
+                    background-color:#3885b7;
+                    box-shadow:inset 2px 2px 1px 0px #355f74;
+                    position:relative;
+                }
+.roomgrouplistcontainer ul li .xtra.app .empty,
+.roomgrouplistcontainer ul li .mn.app .empty
+{
+    position:absolute;
+    background-color:#235f82;
+    border-radius:3px;
+    color:white;
+    font-size:11px;
+    padding:2px;
+    text-align:left;
+}
+            .roomgrouplistcontainer ul li .mn.app .empty
+            {
+                background-color:#a5a5a5;
+            }
+
+
+
+    .roomgrouplistcontainer .app
+    {
+        margin-top:2px;
+        border:1px solid #bfbfbf;
+        background-color:#f2f2f2;
+        position:relative;
+    }
+       /* this will show a floating categories beside the editable room */
+        .roomgrouplistcontainer .app .mn.catname
+        {
+            left:-53%;
+            width:50%;
+            position:absolute;
+            top:0;
+            height:auto;
+            display:none;
+            background-color:#f3aa51;
+            font-size:0.9em;
+            z-index:55;
+            text-align:center;
+            box-shadow:2px 3px 2px 0px #808080;
+            vertical-align:middle;
+        }
+            .roomgrouplistcontainer .app .mn.catname span
+            {
+                vertical-align:middle;
+                position:absolute;
+                top:50%;
+                left:50%;
+                width:96%;
+                margin-left:-48%;
+            }
+
+        .roomgrouplistcontainer .app .option
+        {
+            border-bottom:1px solid white;
+            color:#696969;
+            background-color:#f2f2f2;
+            position:relative;
+            padding:3px;
+            font-size:0.76em;
+        }
+            .roomgrouplistcontainer .app .option:hover
+            {
+                background-color:#93c7f3;
+                cursor:pointer
+            }
+            .roomgrouplistcontainer .app .option .optionname
+            {
+                display:inline-block;
+                width:95%;
+            }
+        /* for the x button on each option */
+        .roomgrouplistcontainer .app .option span.remove
+        {
+            background-image: url(img/icons/remove.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            display:inline-block;
+            width:17px;
+            height:17px;
+            color:white;
+            font-size:0.8em !important;
+            border:#808080;
+            text-align:center;
+            right:2px;
+            position:absolute;
+            top:50%;
+            margin-top:-8.5px;
+            border-radius:51px;
+        }
+            .roomgrouplistcontainer .app .option span.remove:hover
+            {
+                background-color:#ffbf89;
+                border-radius:25px;
+                cursor:pointer
+            }
+
+/* for the sub options */
+    .roomgrouplistcontainer .option .subs
+    {
+        position:absolute;
+        left:96%;
+        top:50%;
+        background-color:white;
+        border:1px solid #808080;
+        z-index:59;
+        width:200px;
+        padding:2px;
+        box-shadow:1px 2px 2px 0px #808080;
+    }
+        .roomgrouplistcontainer .option .subs ul li
+        {
+            margin-top:1px;
+            border:1px solid #808080;
+            width:100%;
+            color:rgb(72, 72, 72);
+        }
+            .roomgrouplistcontainer .option .subs ul li:hover
+            {
+                box-shadow:none;
+                background-color:#ccc;
+            }
+            .roomgrouplistcontainer .option .subs ul li .optionname
+            {
+                font-size:0.75em;
+            }
+                .roomgrouplistcontainer .option .subs ul li.hidden
+                {
+                    display:none;
+                }
+
+
+/* GLOBAL OUTER ELEMENTS */
+
+.curtain
+{
+    background-color:white;
+    opacity:0;
+    position:absolute;
+    z-index:55;
+    box-shadow:1px 3px 4px 1px #808080;
+    text-align:center;
+    padding:3px;
+}
+    .curtain.show
+    {
+        opacity:1;
+    }
+    .curtain .close
+    {
+        background-color:#b5d5e8;
+        position:absolute;
+        top:100%;
+        left:50%;
+        margin-left:-12px;
+        box-shadow:1px 3px 4px 1px #808080;
+        z-index:56;
+        width:24px;
+        height:24px;
+        display:inline-block;
+    }
+    .curtain .cont
+    {
+        width:98%;
+        margin:auto;
+        height:100%;
+        position:relative;
+        text-align:left;
+    }
+        .curtain .close:hover
+        {
+            cursor:pointer;
+            background-color:#5483a1;
+        }
+
+
+.nextGroup, .prevGroup
+{
+    height: 40px;
+    width: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    position:absolute;
+    top:80%;
+    left:90%;
+    opacity:0.6;
+    border-radius:99px;
+    z-index:99;
+    box-shadow:0px 3px 0px 0px #876300;
+}
+
+    .nextGroup:hover, .prevGroup:hover
+    {
+        cursor:pointer;
+        opacity:1;
+    }
+    .nextGroup:active, .prevGroup:active
+    {
+        margin-top:2px;
+        box-shadow:inset 1px 2px 2px 1px #9a7128;
+    }
+
+.nextGroup
+{
+    background-image: url(img/icons/down.png);
+}
+
+.prevGroup
+{
+    background-image: url(img/icons/up.png);
+}

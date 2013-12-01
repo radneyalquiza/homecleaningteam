@@ -86,21 +86,78 @@ public class RTQManager
     // RTQ OPTIONS BUILDER
     //=======================================================================================
 
-    public RoomDataOutDTO getRoomData(string roomname)
+    // this will usually return at least 2 RoomDataDTOs, which are
+    // 1. The filtered options by the cleaning type
+    // 2. All the available options
+    public List<RoomDataOutDTO> getRoomData(string roomname, string type)
     {
         Room room = db.Rooms.Where(i => i.name.ToLower().Trim() == roomname.ToLower().Trim()).FirstOrDefault();
         List<RTQApp> apps = db.RTQApps.Where(i => i.Room_Id == room.Id).ToList();
 
+        List<RoomDataOutDTO> rdtolist = new List<RoomDataOutDTO>();
+
         RoomDataOutDTO rdto = new RoomDataOutDTO();
+        RoomDataOutDTO rdtodefault = new RoomDataOutDTO();
+
+        rdtodefault.RoomName = roomname;
         rdto.RoomName = roomname;
         List<RoomDataOutDTO.App> applist = new List<RoomDataOutDTO.App>();
+        List<RoomDataOutDTO.App> applistDef = new List<RoomDataOutDTO.App>();
         foreach (RTQApp a in apps)
         {
             RoomDataOutDTO.App ap = new RoomDataOutDTO.App();
+            RoomDataOutDTO.App apdef = new RoomDataOutDTO.App();
             ap.AppName = a.name;
-            List<RTQOption> options = db.RTQOptions.Where(i => i.RTQApp_Id == a.Id).ToList();
+            apdef.AppName = a.name;
+
+            List<RTQOption> optionsdef = db.RTQOptions.Where(i => i.RTQApp_Id == a.Id).ToList(); // all
+            List<RTQOption> options = optionsdef.Where(x => x.ctype.Contains(type) || x.ctype.Contains("N/A")).ToList(); // filter
+            optionsdef = optionsdef.Where(x => !x.ctype.Contains(type)).ToList();
+
+            // THIS BLOCK IS FOR FILTERED OPTIONS
             List<RoomDataOutDTO.Option> dtoptions = new List<RoomDataOutDTO.Option>();
             foreach (RTQOption o in options)
+            {
+                RoomDataOutDTO.Option dtoo = new RoomDataOutDTO.Option();
+                dtoo.OptionName = o.name;
+
+                // if this option has multiple sub options (which makes this option's time a null),
+                // search for the suboptions that are linked to this option and save them into a
+                // collection to return to the application
+                if (o.time == null)
+                {
+                    // list of data from the db to map from
+                    // use this to filter subs: .Where(x => x.ctype.Contains(type))
+                    List<RTQOptionSub> subs = db.RTQOptionSubs.Where(i => i.RTQOption_Id == o.Id).ToList();
+                    // list of data created as a view to map into
+                    List<RoomDataOutDTO.Sub> dtosubs = new List<RoomDataOutDTO.Sub>();
+                    foreach (RTQOptionSub os in subs)
+                    {
+                        RoomDataOutDTO.Sub s = new RoomDataOutDTO.Sub();
+                        s.OptionName = os.name;
+                        s.TimeUnit = os.time.ToString();
+                        s.CType = os.ctype;
+                        dtosubs.Add(s);
+                    }
+                    dtoo.Subs = dtosubs.ToArray();
+                }
+                else
+                {
+                    // map the data to the RTQOptionData DTO
+                    dtoo.TimeUnit = o.time.ToString();
+                    dtoo.CType = o.ctype;
+                }
+                dtoptions.Add(dtoo);
+            }
+            // after the option loop, cast the option list into an option array
+            // and store the data into the dto's Apps.Options array
+            ap.Options = dtoptions.ToArray();
+            applist.Add(ap);
+
+
+            // THIS BLOCK IS FOR EXTRA OPTIONS
+            List<RoomDataOutDTO.Option> dtoptions2 = new List<RoomDataOutDTO.Option>();
+            foreach (RTQOption o in optionsdef)
             {
                 RoomDataOutDTO.Option dtoo = new RoomDataOutDTO.Option();
                 dtoo.OptionName = o.name;
@@ -130,18 +187,150 @@ public class RTQManager
                     dtoo.TimeUnit = o.time.ToString();
                     dtoo.CType = o.ctype;
                 }
-                dtoptions.Add(dtoo);
+                dtoptions2.Add(dtoo);
             }
             // after the option loop, cast the option list into an option array
             // and store the data into the dto's Apps.Options array
-            ap.Options = dtoptions.ToArray();
-            applist.Add(ap);
+            apdef.Options = dtoptions2.ToArray();
+            applistDef.Add(apdef);
         }
         rdto.Apps = applist.ToArray();
-        // at the end, we will have a room object that contains all apps and options
+        rdtodefault.Apps = applistDef.ToArray();
+        // at the end, we will have a room objects that contain all apps and options
         // for javascript to format
-        return rdto;
+        rdtolist.Add(rdto);
+        rdtolist.Add(rdtodefault);
+        return rdtolist;
     }
+
+    // get all rooms depending on cleaning type
+    public List<List<RoomDataOutDTO>> getAllRoomData(string cleaningtype)
+    {
+        // lookup data
+        List<Room> rooms = db.Rooms.OrderBy(x=>x.description).ToList();
+        // this will contain a list of roomdataouts that contain 2 more roomdataouts
+        List<List<RoomDataOutDTO>> roomsout = new List<List<RoomDataOutDTO>>();
+
+        foreach (Room r in rooms)
+        {
+            // create an internal list of roomdataout (1 is the filtered, 1 is the defaults)
+            List<RoomDataOutDTO> roomsoutinner = new List<RoomDataOutDTO>();
+            RoomDataOutDTO rdto = new RoomDataOutDTO();
+            RoomDataOutDTO rdtodefault = new RoomDataOutDTO();
+
+            List<RTQApp> apps = db.RTQApps.Where(i => i.Room_Id == r.Id).OrderBy(x=>x.description).ToList();
+
+            rdtodefault.RoomName = r.name;
+            rdto.RoomName = r.name;
+            List<RoomDataOutDTO.App> applist = new List<RoomDataOutDTO.App>();
+            List<RoomDataOutDTO.App> applistDef = new List<RoomDataOutDTO.App>();
+
+            foreach (RTQApp a in apps)
+            {
+                RoomDataOutDTO.App ap = new RoomDataOutDTO.App();
+                RoomDataOutDTO.App apdef = new RoomDataOutDTO.App();
+                ap.AppName = a.name;
+                apdef.AppName = a.name;
+
+                List<RTQOption> optionsdef = db.RTQOptions.Where(i => i.RTQApp_Id == a.Id).ToList(); // all
+                List<RTQOption> options = optionsdef.Where(x => x.ctype.Contains(cleaningtype) || x.ctype.Contains("N/A")).ToList(); // filter
+                optionsdef = optionsdef.Where(x => !x.ctype.Contains(cleaningtype) && !x.ctype.Contains("N/A")).ToList();
+
+                // THIS BLOCK IS FOR FILTERED OPTIONS
+                List<RoomDataOutDTO.Option> dtoptions = new List<RoomDataOutDTO.Option>();
+                foreach (RTQOption o in options)
+                {
+                    RoomDataOutDTO.Option dtoo = new RoomDataOutDTO.Option();
+                    dtoo.OptionName = o.name;
+
+                    // if this option has multiple sub options (which makes this option's time a null),
+                    // search for the suboptions that are linked to this option and save them into a
+                    // collection to return to the application
+                    if (o.time == null)
+                    {
+                        // list of data from the db to map from
+                        // use this to filter subs: .Where(x => x.ctype.Contains(type))
+                        List<RTQOptionSub> subs = db.RTQOptionSubs.Where(i => i.RTQOption_Id == o.Id).ToList();
+                        // list of data created as a view to map into
+                        List<RoomDataOutDTO.Sub> dtosubs = new List<RoomDataOutDTO.Sub>();
+                        foreach (RTQOptionSub os in subs)
+                        {
+                            RoomDataOutDTO.Sub s = new RoomDataOutDTO.Sub();
+                            s.OptionName = os.name;
+                            s.TimeUnit = os.time.ToString();
+                            s.CType = os.ctype;
+                            dtosubs.Add(s);
+                        }
+                        dtoo.CType = o.ctype;
+                        dtoo.Subs = dtosubs.ToArray();
+                    }
+                    else
+                    {
+                        // map the data to the RTQOptionData DTO
+                        dtoo.TimeUnit = o.time.ToString();
+                        dtoo.CType = o.ctype;
+                    }
+                    
+                    dtoptions.Add(dtoo);
+                }
+                // after the option loop, cast the option list into an option array
+                // and store the data into the dto's Apps.Options array
+                ap.Options = dtoptions.ToArray();
+                applist.Add(ap);
+
+
+                // THIS BLOCK IS FOR EXTRA OPTIONS
+                List<RoomDataOutDTO.Option> dtoptions2 = new List<RoomDataOutDTO.Option>();
+                foreach (RTQOption ox in optionsdef)
+                {
+                    RoomDataOutDTO.Option dtoo = new RoomDataOutDTO.Option();
+                    dtoo.OptionName = ox.name;
+
+                    // if this option has multiple sub options (which makes this option's time a null),
+                    // search for the suboptions that are linked to this option and save them into a
+                    // collection to return to the application
+                    if (ox.time == null)
+                    {
+                        // list of data from the db to map from
+                        List<RTQOptionSub> subs = db.RTQOptionSubs.Where(i => i.RTQOption_Id == ox.Id).ToList();
+                        // list of data created as a view to map into
+                        List<RoomDataOutDTO.Sub> dtosubs = new List<RoomDataOutDTO.Sub>();
+                        foreach (RTQOptionSub osx in subs)
+                        {
+                            RoomDataOutDTO.Sub s = new RoomDataOutDTO.Sub();
+                            s.OptionName = osx.name;
+                            s.TimeUnit = osx.time.ToString();
+                            s.CType = osx.ctype;
+                            dtosubs.Add(s);
+                        }
+                        dtoo.CType = ox.ctype;
+                        dtoo.Subs = dtosubs.ToArray();
+                    }
+                    else
+                    {
+                        // map the data to the RTQOptionData DTO
+                        dtoo.TimeUnit = ox.time.ToString();
+                        dtoo.CType = ox.ctype;
+                    }
+                    dtoptions2.Add(dtoo);
+                }
+                // after the option loop, cast the option list into an option array
+                // and store the data into the dto's Apps.Options array
+                apdef.Options = dtoptions2.ToArray();
+                applistDef.Add(apdef);
+            }
+            rdto.Apps = applist.ToArray();
+            rdtodefault.Apps = applistDef.ToArray();
+            // at the end, we will have a room objects that contain all apps and options
+            // for javascript to format
+            roomsoutinner.Add(rdto);
+            roomsoutinner.Add(rdtodefault);
+            // finally, add this list (2) of roomdataouts into the master list of rooms
+            roomsout.Add(roomsoutinner);
+        }
+        return roomsout;
+    }
+
 
 
 

@@ -3,6 +3,8 @@
 // by Radney Aaron Alquiza
 // v0.96 - Oct 27, 2013 : 1:18AM
 // v0.97 - Oct 27, 2013 : 4:06AM
+// v0.99 - Nov 16, 2013 : 1:51AM
+// v1.00 - Nov 16, 2013 : 2:16AM
 // ========================================================================================== //
 
 // this tooltip plugin can be applied to any element on the viewport
@@ -21,6 +23,20 @@ HOWEVER, this opens a possibility of a bug where you may add 2 tooltips in the s
 making one cover the other.
 */
 
+/* NEW - 0.99 */
+// setting the sticky variable from the settings will enable you to manually control
+// a tooltip's behaviour (show/hide). It will also have a "X" button on the side to show that the 
+// tooltip can be closed.
+// The code below will show a tooltip automatically and won't close until you click the X button
+// The X button has the "hide" method.
+// You can initialize a tooltip without the sticky property and still manually
+// show or hide the tooltip.
+// $('selector').atlasTooltip({pos:"left", contents:"Test tooltip", sticky:true});
+
+/* NEW - 1.00 */
+// - onCreate and onClose callbacks are implemented
+// - updatePosition can be called to adjust the position of the tooltip whenever
+//   the object tooltipped is re-positioned.
 
 (function ($) {
 
@@ -30,26 +46,32 @@ making one cover the other.
             textSize: '0.9em',
             contents: 'Default tooltip',
             pos: 'bottom',
+            onClose: null,
+            onCreate: null,
+            sticky: false
         };
 
         var domelement = null;
-        if (methods != null) {
+        if (atlastooltipmethods != null) {
             // if the parameter passed is nothing or a javascript object
             if (otherparams == null && options_or_method == null || (typeof options_or_method === 'object' && options_or_method != null)) {
                 if (domelement == null) {
                     this.data('atlastool', $.extend({}, atlastool, options_or_method));
-                    domelement = methods['initialize'](this, options_or_method);
+                    domelement = atlastooltipmethods['initialize'](this, options_or_method);
                 }
                 return domelement;
             }
                 // if the parameter passed is a string for a method
             else if (typeof options_or_method == "string" && otherparams == null) {
-                return methods[options_or_method](this.data('atlastool'));
+                return atlastooltipmethods[options_or_method](this.data('atlastool'));
             }
             else if (typeof options_or_method == "string" && otherparams != null) {
-                domelement = methods[options_or_method](this.data('atlastool'), otherparams);
+                domelement = atlastooltipmethods[options_or_method](this.data('atlastool'), otherparams);
                 return domelement;
             }
+            //else if (typeof options_or_method == 'function' && otherparams == null) { // make sure the callback is a function
+            //    options_or_method.call(this); // brings the scope to the callback
+            //}
         }
     }
 
@@ -127,17 +149,22 @@ making one cover the other.
                 });
                 break;
         }
+
+        var newoff = settings.thisobject.tooltip.offset();
+        if (newoff.left < 0)
+            settings.thisobject.tooltip.offset({ left: (newoff.left + (newoff.left * -1) + 5) });
+        if (newoff.top < 0)
+            settings.thisobject.tooltip.offset({ top: (newoff.top + (newoff.top * -1) + 5) });
+        if (newoff.bottom < 0)
+            settings.thisobject.tooltip.offset({ top: (newoff.bottom + (newoff.bottom * -1) + 5) });
+        if (newoff.right < 0)
+            settings.thisobject.tooltip.offset({ top: (newoff.right + (newoff.right * -1) + 5) });
+
     }
     function addTooltip(settings) {
 
         var posclass = decidePosition(settings.pos);
         var tool = $("<div class='atlas-tooltipContainer'></div>");
-
-        /*var parent = settings.thisobject.parents().filter(function () {
-// reduce to only relative position or "body" elements
-return $(this).is('body') || $(this).css('position') == 'relative';
-}).slice(0, 1); // grab only the "first"
-*/
 
         $('body').append(tool);
         settings.thisobject.tooltip = tool;
@@ -158,19 +185,27 @@ return $(this).is('body') || $(this).css('position') == 'relative';
     }
 
     function addEvents(settings) {
-        settings.thisobject.tooltip.hover(
-            function () { $(this).addClass('atlas-showTool-' + settings.pos); },
-            function () { $(this).removeClass('atlas-showTool-' + settings.pos); }
-        );
-        settings.thisobject.hover(
-            // hover in
-            function () { setPosition(settings); settings.thisobject.tooltip.addClass('atlas-showTool-' + settings.pos); },
-            // hover out
-            function () { setPosition(settings); settings.thisobject.tooltip.removeClass('atlas-showTool-' + settings.pos); }
-        );
+
+        if (settings.sticky == false) {
+            //settings.thisobject.tooltip.on('mouseenter', function () { $(this).addClass('atlas-showTool-' + settings.pos); });
+            //settings.thisobject.tooltip.on('mouseleave', function () { $(this).removeClass('atlas-showTool-' + settings.pos); });
+            settings.thisobject.on('mouseenter', function () { setPosition(settings); settings.thisobject.tooltip.addClass('atlas-showTool-' + settings.pos); });
+            settings.thisobject.on('mouseleave', function () { setPosition(settings); settings.thisobject.tooltip.removeClass('atlas-showTool-' + settings.pos); });
+        }
+        else {
+            atlastooltipmethods['show'](settings);
+            if (settings.thisobject.tooltip.find('.stickyclose').length > 0) {
+                settings.thisobject.tooltip.find('.stickyclose').click(function () {
+                    atlastooltipmethods['hide'](settings);
+                });
+            }
+        }
+        if (typeof settings.onCreate == 'function' && settings.onCreate != null) {
+            settings.onCreate.call();
+        }
     }
 
-    var methods = {
+    var atlastooltipmethods = {
         // =============================================================================
         // INITIALIZE - attach the plugin, attach events, attach css
         // =============================================================================
@@ -178,23 +213,56 @@ return $(this).is('body') || $(this).css('position') == 'relative';
 
 
             return object.each(function () {
-                var settings = $(this).data('atlastool');
-                settings.thisobject = $(this);
-
-                if (settings.tooltip == null) {
-                    addTooltip(settings);
+                if (!$(this).hasClass('hasTooltip')) {
+                    console.log('called');
+                    var settings = $(this).data('atlastool');
+                    settings.thisobject = $(this);
+                    if (settings.tooltip == null) {
+                        addTooltip(settings);
+                    }
+                    // bind the jquery reference to the element (the div or any container)
+                    $(this).data('data', $(this));
+                    $(this).addClass('hasTooltip');
+                    //options.onClose.call(this);
                 }
-
-                // bind the jquery reference to the element (the div or any container)
-                $(this).data('data', $(this));
             });
         },
         show: function (settings) {
+            if (settings.hasOwnProperty('thisobject')) {
+                if (settings.thisobject != null) {
+                    setPosition(settings);
+                    settings.thisobject.tooltip.addClass('atlas-showTool-' + settings.pos);
+                    if (settings.sticky == true) {
+                        if (settings.thisobject.tooltip.find('.stickyclose').length < 1)
+                            settings.thisobject.tooltip.find('div[class^="atlas-tool"]').append('<span class="stickyclose"></span>');
+                        settings.thisobject.tooltip.find('div[class^="atlas-tool"]').addClass('hassticky');
+                    }
+                }
+            }
         },
         hide: function (settings) {
+            if (settings.hasOwnProperty('thisobject')) {
+                if (settings.thisobject != null) {
+                    settings.thisobject.tooltip.removeClass('atlas-showTool-' + settings.pos);
+                    if (typeof settings.onClose == 'function' && settings.onClose != null) {
+                        settings.onClose.call();
+                    }
+                }
+            }
         },
-        destroy: function () {
-
+        updatePostion: function (settings) {
+            if (settings.hasOwnProperty('thisobject')) {
+                if (settings.thisobject != null) {
+                    setPosition(settings);
+                }
+            }
+        },
+        destroy: function (settings) {
+            if (settings.hasOwnProperty('thisobject')) {
+                if (settings.thisobject != null) {
+                    settings.thisobject.tooltip.remove();
+                }
+            }
         }
     }
 
