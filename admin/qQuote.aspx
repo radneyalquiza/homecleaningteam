@@ -132,6 +132,7 @@
     </div>
 
     <span class="nextGroup"></span>
+    <span class="prevGroup"></span>
 
     <div id="quote-edit">
         <span class="edit-title">EDIT MODE<span class="close-edit"></span></span>
@@ -139,7 +140,6 @@
         <span class="load-left"></span>
         <span class="load-right"></span>
     </div>
-
 
 
     <div id="rtqoutercont">

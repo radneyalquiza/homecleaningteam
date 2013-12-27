@@ -15,6 +15,9 @@ var showtoolsflag = false;
 var bathcount = 0;
 var bedcount = 0;
 
+var showing = 1;
+var pages = 1;
+
 // this will contain whatever is in the quote and whatever is
 // selected by the user
 var mainData;
@@ -100,7 +103,6 @@ function slideTopBar() {
 // return: long string
 // ===================================================================================================
 function callRooms(cleaningtype) {
-
     $("#loadercontainer").show();
     setTimeout(function () {
         $.ajax({
@@ -124,7 +126,8 @@ function callRooms(cleaningtype) {
                     // get the first room (kitchen) and get its apps for the categories
                     finaldata += formatCategories(roomData[0][0]);
                     // loop through all rooms
-                    finaldata += "<div class='roomgrouplistcontainer'><ul>";
+                    finaldata += "<div class='roomgrouplistcontainer'><div class='preview-cover'></div>";
+                    finaldata += "<ul class='page1'>";
                     for (var i = 0; i < roomData.length; i++) {
 
                         var filtered = roomData[i][0];
@@ -143,7 +146,7 @@ function callRooms(cleaningtype) {
                         }
                         // loop through the number of rooms ( 1 =< baths, and 1 for the rest)
                         for (var j = 0; j < rcount; j++) {
-                            finaldata += "<li>";
+                            finaldata += "<li class='listroom' data-roomname='" + filtered.RoomName.replace(' ', "").toLowerCase() + "'>";
                             if (filtered.RoomName == "Bathroom" || filtered.RoomName == "Bedroom") {
                                 finaldata += formatFiltered(filtered, j + 1, cleaningtype);
                                 finaldata += formatExtra(def, j + 1, cleaningtype);
@@ -155,14 +158,20 @@ function callRooms(cleaningtype) {
                             finaldata += "</li>";
                         }
                     }
-                    finaldata += "</ul></div>";  // closing for roomgrouplistcontainer
+                    finaldata += "</ul>";
+                    finaldata += "<ul class='page2'></ul>";   // extra container
+                    finaldata += "<ul class='page3'></ul>";   // extra container
+                    finaldata += "</div>";  // closing for roomgrouplistcontainer
                 }
                 finaldata += "</div>"; // closing for roomgroupdiv
+
+                // call needed functions
                 $("#quoteSample #rooms").html(finaldata);
                 attachOptionEvents($(".roomgrouplistcontainer .app .option"));
                 attachSubOptionEvents($(".roomgrouplistcontainer .app .option .subs li"));
-                setupDisplay();
+                distributeRooms($('.roomgroupdiv .roomgrouplistcontainer ul li.listroom'));
                 $("#loadercontainer").hide();
+                slideMenu($("#serv"), null);
             },
             error: function (data) {
                 alert("Something's wrong with our server. Please try again later.");
@@ -236,7 +245,7 @@ function formatExtra(data, num) {
     var apps = data.Apps;
     var room = data.RoomName + " " + num;
     
-    html += "<div class='room extra' data-roomname='" + room + "'><span>Available Options for " + room + "s</span>";
+    html += "<div class='room extra' data-roomname='" + room + "'><span>Extra " + $.trim(room) + " Cleaning Options</span>";
     for (var i = 0; i < apps.length; i++) {
         html += "<div class='xtra app' data-appname='" + apps[i].AppName + "'>";    // wrap all options inside a app container
         for (var j = 0; j < apps[i].Options.length; j++) {
@@ -302,6 +311,7 @@ function attachOptionEvents(optionlist) {
         option.hover(function (e) {
             e.stopPropagation();
             $(this).find('.remove').toggle(); // ALL options have remove buttons
+            $(this).find('.optionname').toggleClass('green');
         });
 
         option.find('.remove').on('click', function (e) {
@@ -363,6 +373,307 @@ function attachOptionEvents(optionlist) {
         });
     });
 }
+
+// ===================================================================================================
+// distributeRooms(rooms) - will divide the rooms into sections
+// params: room - a list of rooms
+// return:
+// ===================================================================================================
+function distributeRooms(rooms) {
+    console.log('dist');
+    var rms = $('.roomgrouplistcontainer ul li.listroom');
+    
+    // case 1
+    if (bathcount == 1 && bedcount == 1) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname') == 'bedroom' ||
+                $(this).data('roomname') == 'bathroom')
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 2;
+        pg1.each(function () { if($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+    }
+    // case 2
+    if (bathcount == 1 && bedcount == 2 || bathcount == 2 && bedcount == 1) {
+
+        if (bedcount == 2) {
+            var pg1 = rms.filter(function () {
+                if ($(this).data('roomname') == 'kitchen' ||
+                    $(this).data('roomname') == 'bathroom' ||
+                    $(this).data('roomname').indexOf('bedroom') > -1)
+                    return $(this);
+            });
+        }
+        if (bathcount == 2) {
+            var pg1 = rms.filter(function () {
+                if ($(this).data('roomname') == 'kitchen' ||
+                    $(this).data('roomname') == 'bedroom' ||
+                    $(this).data('roomname').indexOf('bathroom') > -1)
+                    return $(this);
+            });
+        }
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 2;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+
+        // pg1 kitchen,bed1,bed2,bath1
+        // or
+        // pg1 kitchen,bath1,bath2,bed1
+        // pg2 dining,living,office
+    }
+    // case 3
+    if (bathcount == 2 && bedcount == 2) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bathroom') > -1 ||
+                $(this).data('roomname').indexOf('bedroom') > -1)
+                return $(this);
+        });
+        pages = 2;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+
+        // pg1 kitchen, diningroom, livingroom, office
+        // pg2 bath1,bath2,bed1,bed2
+    }
+    // case 4
+    if (bathcount == 3 && bedcount == 0) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname').indexOf('bathroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 2;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+
+        // pg1 kitchen, bath1, bath2, bath3
+        // pg2 dinig, living, office
+    }
+    // case 5
+    if (bedcount == 3 && bathcount == 0) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname').indexOf('bedroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 2;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+
+        // pg1 kitchen, bed1, bed2, bed3
+        // pg2 dining, living, office
+    }
+    if (bathcount == 3 && bedcount == 3) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname').indexOf('bathroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bedroom') > -1)
+                return $(this);
+        });
+        var pg3 = rms.filter(function () {
+            if ($(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 3;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+        pg3.each(function () { if ($(this).parents('ul.page3').length < 1) $(this).appendTo('ul.page3'); });
+
+        // pg1 kitchen, bath1, bath2, bath3
+        // pg2 bed1, bed2, bed3
+        // pg3 dining, living, office
+    }
+    if (bathcount == 4 && bedcount == 4) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bathroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bedroom') > -1)
+                return $(this);
+        });
+        var pg3 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 3;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+        pg3.each(function () { if ($(this).parents('ul.page3').length < 1) $(this).appendTo('ul.page3'); });
+
+        // pg1 bath1, bath2, bath3, bath4
+        // pg2 bed1, bed2, bed3, bed4
+        // pg3 kitchen, dining, living, office
+    }
+    if (bathcount == 4 && bedcount == 0) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bathroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 2;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+
+        // pg1 bath1, bath2, bath3, bath4
+        // pg2 kitchen, dining, living, office
+    }
+    if (bedcount == 4 && bathcount == 0) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bedroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 2;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+
+        // pg1 bed1, bed2, bed3, bed4
+        // pg2 kitchen, dining, living, office
+    }
+    if (bathcount > 2 && bedcount < 3) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bathroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname').indexOf('bedroom') > -1)
+                return $(this);
+        });
+        var pg3 = rms.filter(function () {
+            if ($(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 3;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+        pg3.each(function () { if ($(this).parents('ul.page3').length < 1) $(this).appendTo('ul.page3'); });
+
+        // pg1 bath1, bathN
+        // pg2 kitchen, bed1, bed2
+        // OR pg2 kitchen, bed, dining, living, office
+        // OR pg3 dining, living, office
+    }
+
+    if (bedcount > 2 && bathcount < 3) {
+        var pg1 = rms.filter(function () {
+            if ($(this).data('roomname').indexOf('bedroom') > -1)
+                return $(this);
+        });
+        var pg2 = rms.filter(function () {
+            if ($(this).data('roomname') == 'kitchen' ||
+                $(this).data('roomname').indexOf('bathroom') > -1)
+                return $(this);
+        });
+        var pg3 = rms.filter(function () {
+            if ($(this).data('roomname') == 'diningroom' ||
+                $(this).data('roomname') == 'livingroom' ||
+                $(this).data('roomname') == 'office')
+                return $(this);
+        });
+        pages = 3;
+        pg1.each(function () { if ($(this).parents('ul.page1').length < 1) $(this).appendTo('ul.page1'); });
+        pg2.each(function () { if ($(this).parents('ul.page2').length < 1) $(this).appendTo('ul.page2'); });
+        pg3.each(function () { if ($(this).parents('ul.page3').length < 1) $(this).appendTo('ul.page3'); });
+
+        // pg1 bed1, bedN
+        // pg2 kitchen, bath1, bath2
+        // OR pg2 kitchen, bed, dining, living, office
+        // OR pg3 dining, living, office
+    }
+
+    // attach the events for paging IF there are a lot of rooms
+    $('.nextGroup').on('click', function (e) { e.stopPropagation(); nextGroup(); });
+    $('.prevGroup').on('click', function (e) { e.stopPropagation(); prevGroup(); });
+    //console.log('pages ' + pages);
+    setupDisplay();
+    $('.page2').hide();
+    $('.page3').hide();
+}
+
+function nextGroup() {
+    // at the beginning of the app, showing is 1
+    //console.log(showing + " " + pages);
+    if (showing < pages && showing > 0) {
+        var current = $('.page' + showing);
+        var next = $('.page' + (showing + 1));
+        if (next.length > 0 || next != null) {
+            current.hide(100, function () { next.show(200); });
+            recalcRoomsHeight($(".roomgrouplistcontainer>ul.page" + showing + ">li.listroom"));
+            showing++;
+        }
+    }
+}
+function prevGroup() {
+    // at the beginning of the app, showing is 1
+    //console.log(showing + " " + pages);
+    if (showing <= pages && showing > 1) {
+        var current = $('.page' + showing);
+        var prev = $('.page' + (showing - 1));
+        if (prev.length > 0 || prev != null) {
+            current.hide(100, function () { prev.show(200); });
+            recalcRoomsHeight($(".roomgrouplistcontainer>ul.page" + showing + ">li.listroom"));
+            showing--;
+        }
+    }
+}
+
 // ===================================================================================================
 // attachSubOptionEvents(suboptionlist) - events for the options themselves
 // param: suboptionlist - all suboptions
@@ -401,7 +712,34 @@ function setupDisplay() {
     $('.extra').hide(); // hide all extra options for all rooms
     $('.remove').hide(); // hide all x buttons inside the options
     $("#quoteSample").fadeIn(300);
-    resizeHandler($(".roomgrouplistcontainer>ul>li"));    // relayout the rooms for initial display or on window resize
+
+    $(".roomgroupdiv").addClass('part');
+   // console.log('pages ' + pages);
+    if (pages > 1) {
+        $('.nextGroup').show(100);
+        $('.prevGroup').show(100);
+    }
+    var pagesr = $(".roomgrouplistcontainer>ul");
+    var cont = $('.roomgrouplistcontainer');
+    //console.log('setup');
+    $.each(pagesr, function () {
+        var listrooms = $(this).find('li.listroom');
+        //console.log(listrooms);
+        if(listrooms.length > 0)
+            resizeHandler(listrooms);    // relayout the rooms for initial display or on window resize
+    });
+
+    setPreviewCoverAndSubs(cont);
+}
+
+function setPreviewCoverAndSubs(cont) {
+    var ht = cont.outerHeight();
+    var wt = cont.outerWidth();
+    $('.preview-cover').css({
+        'height': ht,
+        'width': wt
+    }).show();
+
     // before hiding the subs, set their positions relative to the options
     $('.subs').each(function () {
         $(this).css('margin-top', (($(this).height() / 2) * -1) + 'px');
@@ -454,36 +792,40 @@ function recalcRoomsHeight(list) {
 // return: 
 // ===================================================================================================
 function setRoomCover(roomlist) {
-    $.each(roomlist, function () {
-        var ht = $(this).outerHeight();
-        var wt = $(this).outerWidth();
-        var pos = $(this).offset();
-        var cover = $(this).find('.cover-click');
-        $(cover).css('height', ht+1);
-        $(cover).css('width', wt);
-        
-        // set the event here too
-        if (!$(cover).hasClass('hasEvent')) {
-            $(cover).click(function (e) {
-                e.stopPropagation();
-                $(this).parents('.roomgrouplistcontainer ul').find('.cover-click').show();
-                $(this).fadeOut(500);
-                var cov = $(this);
-                $(cov).addClass('hasEvent');
+    //console.log('covers:');
+    //console.log(roomlist);
+    if (roomlist.length > 0) {
+        //console.log(roomlist);
+        $.each(roomlist, function () {
+            var ht = $(this).outerHeight();
+            var wt = $(this).outerWidth();
+            var pos = $(this).offset();
+            var cover = $(this).find('.cover-click');
+            $(cover).css('height', ht + 1);
+            $(cover).css('width', wt);
 
-                // call the curtain
-                showExtras($(this).parents('.room.main'));
+            // set the event here too
+            if (!$(cover).hasClass('hasEvent')) {
+                console.log('no event for cover yet, add');
+                $(cover).click(function (e) {
+                    //console.log('open');
+                    e.stopPropagation();
+                    $(this).parents('.roomgrouplistcontainer ul').find('.cover-click').show();
+                    $(this).fadeOut(500);
+                    // call the curtain
+                    showExtras($(this).parents('.room.main'));
 
+                    /*$('body').click(function (e) {
+                        // if somewhere else is clicked and we're not editing, cover the rooms up
+                        if (e.target != $('.cover-click') || e.target != $('.roomgrouplistcontainer ul') && editing == false)
+                            $('.cover-click').show();
+                    });*/
+                });
+                $(cover).addClass('hasEvent');
+            }
 
-                /*$('body').click(function (e) {
-                    // if somewhere else is clicked and we're not editing, cover the rooms up
-                    if (e.target != $('.cover-click') || e.target != $('.roomgrouplistcontainer ul') && editing == false)
-                        $('.cover-click').show();
-                });*/
-            });
-        }
-
-    });
+        });
+    }
 }
 
 // ===================================================================================================
@@ -495,19 +837,40 @@ function setRoomCover(roomlist) {
 
 function setSideMenuEvents(menu) {
     var button = menu.find('.sidebutton');
-    button.on('click', function () { $(this).toggleClass('close'); slideMenu($(menu)); });
+    button.on('click', function () { $(this).toggleClass('close'); slideMenu($(menu), "hide"); });
 }
 
-function slideMenu(menu) {
+function slideMenu(menu, state) {
     var wt = $(menu).outerWidth();
     var pos = $(menu).position();
-    
-    if (pos.left < 0)
-        $(menu).css({ 'left': pos.left + wt });
-    else
-        $(menu).css({ 'left': pos.left - wt });
-
-    $(menu).find('.sidebutton').fadeIn(500);
+        
+    // if the state is "hide", hide the sidemenu
+    if (state == "hide") {
+        if (pos.left < 0) {
+            $(menu).css({ 'left': pos.left + wt });
+            $(".roomgroupdiv").addClass('part');
+            // get all pages
+            var conta = $(".roomgrouplistcontainer");
+            //setPreviewCoverAndSubs(conta);
+            var pagesr = $(".roomgrouplistcontainer>ul");
+            console.log('hey ' + pagesr.length);
+            $.each(pagesr, function () {
+                resizeHandler($(this).find('li.listroom'), "");
+            });
+        }
+        else {
+            $(menu).css({ 'left': pos.left - wt });
+            $(".roomgroupdiv").removeClass('part');
+            // get all pages
+            var conta = $(".roomgrouplistcontainer");
+            //setPreviewCoverAndSubs(conta);
+            var pagesr = $(".roomgrouplistcontainer>ul");
+            $.each(pagesr, function () {
+                resizeHandler($(this).find('li.listroom'), "");
+            });
+        }
+    }
+    $(menu).find('.sidebutton').fadeIn(500).addClass('close');
 }
 
 // ===================================================================================================
@@ -515,13 +878,15 @@ function slideMenu(menu) {
 // param: list of elements to resize amongst each other
 // return: 
 // ===================================================================================================
-function resizeHandler(list) {
+function resizeHandler(list, state) {
     var count = list.length;
     if (count > 4) {
-        $(list[0]).parents('.roomgroupdiv').addClass('full');
+        console.log('morethan4');
+        $(list[0]).parents('.roomgroupdiv').removeClass('small').addClass('full');
     }
     else {
-        $(list[0]).parents('.roomgroupdiv').addClass('small');
+        console.log('lessthan4');
+        $(list[0]).parents('.roomgroupdiv').removeClass('full').addClass('small');
     }
     $.each(list, function () {
         if (count > 4)
@@ -533,8 +898,9 @@ function resizeHandler(list) {
 
         //$(this).css('height', $(this).parent().parent().parent().height() + 'px');
     });
-    recalcRoomsHeight($(".roomgrouplistcontainer>ul>li"));
-    setRoomCover($('.room.main'));
+    if (typeof state != "string")
+        recalcRoomsHeight($(".roomgrouplistcontainer>ul>li.listroom"));
+    setRoomCover(list);
 }
 
 
@@ -570,13 +936,16 @@ function showExtras(room) {
     curt.css('top', room.outerHeight() * -1);
 
     curt.addClass('show');
-    curt.animate({ top: -40 }, 300);
+    curt.animate({ top: -100 }, 300);
     curt.animate({ top: -198 }, 50);
 
     room.parent().find('.extra').css('top', (curt.height() - room.parent().find('.extra').height()));
 
     setExtraOptionsEvents(room.parent().find('.extra'));
 
+    //console.log('lol');
+
+    $('.wrap').fadeOut(300);
 
     setCurtainEvents(curt);
 }
@@ -590,10 +959,12 @@ function setCurtainEvents(curtain) {
     var close = curtain.find('.close');
     close.on('click', function () {
         closeCurtain($(this));
+        $('.wrap').fadeIn(300);
     });
 }
 
 function closeCurtain(closebtn) {
+    //console.log('close');
     var curtain = closebtn.parents('.curtain');
     if (curtain.hasClass('show')) {
         curtain.animate({ top: (curtain.outerHeight() * -1) - 150 }, 300);
@@ -604,10 +975,10 @@ function closeCurtain(closebtn) {
             apps.find('.mn.catname').hide();
             var ct = apps.length;
             $.each(apps, function () {
-                console.log($(this).data('appname') + " " + $(this).data('currentHeight'));
+                //console.log($(this).data('appname') + " " + $(this).data('currentHeight'));
                 //$(this).outerHeight($(this).data('currentHeight'));
                 taperApp($(this));
-                if (!--ct) { recalcRoomsHeight($(".roomgrouplistcontainer>ul>li")); }
+                if (!--ct) { recalcRoomsHeight($(".roomgrouplistcontainer>ul.page" + showing + ">li")); }
             });
         });
     }
@@ -618,13 +989,13 @@ function taperApp(app) {
     //$.each(apps, function () {
         var ht = $(app).outerHeight();
         var options = $(app).find('.option');
-        console.log(options);
+        //console.log(options);
         var optionsheight = 0;
         options.each(function () { optionsheight += $(this).outerHeight(true); });
         
         if (optionsheight < 1)
             optionsheight = 23;
-        console.log(optionsheight);
+        //console.log(optionsheight);
         $(app).height(optionsheight);
     //});
 }
@@ -709,7 +1080,31 @@ function addEmptyMessage(app) {
 }
 
 
+// ===================================================================================================
+// recalcRoomHeightsByExtras(extra) - attach events to the curtain itself
+// param: extra - the extra options container for each room
+// return: 
+// ===================================================================================================
+function setPageEvents() {
+    var edit = $('.wrap .edit');
+    var finish = $('.wrap .finish');
 
+    edit.on('click', editPreview);
+    finish.on('click', finishQuote);
+}
+
+function editPreview() {
+    if ($('.preview-cover').is(':visible')) {
+        $('.preview-cover').hide();
+        $(this).text('Done editing');
+    }
+    else {
+        $('.preview-cover').show();
+        $(this).text('I need to make changes.');
+    }
+}
+function finishQuote() {
+}
 
 // ==============================================================================================
 // MAIN SEQUENCE
@@ -719,10 +1114,10 @@ $(function ($) {
     $(window).resize(resizeHandler);
 
     $("#cleaningtype").change(function () {
-        cleaningtypetext = $(this).find('option:selected').text();
+        //console.log('change');
+        $('.sidebutton').removeClass('close');
         //console.log($(this).val());
         callRooms($(this).val());
-        $('#quoteSample').find('.ctypetitle').html('This is how ' + cleaningtypetext + ' looks like');
         slideMenu($("#serv"));
     });
 
@@ -802,10 +1197,11 @@ $(function ($) {
             });*/
             $('#quoteSample').find('.ctypetitle').html('This is how Routine Cleaning looks like');
             slideTopBar();
-            $('.prop').css('margin-top', 0);
+            $('.prop').css('margin-top', 6);
+            setPageEvents();
             setTimeout(function () { setSideMenuEvents($("#serv")); }, 50);
-            setTimeout(function () { slideMenu($("#serv")); }, 500);
             setTimeout(function () { callRooms("routine-std"); }, 1000);
+            //setTimeout(function () { slideMenu($("#serv"), null); }, 1300);
             $("#cleaningtype").val('routine-std');
         });
     });
@@ -829,7 +1225,7 @@ $(function ($) {
                 quotetype = 'routine';
             else
                 quotetype = 'deep';
-            console.log($("#cleaningtype option:selected").text());
+            //console.log($("#cleaningtype option:selected").text());
 
             $(".tips#disclaimer").show(1, function () {
                 $(".tips#disclaimer").find('p:first-child').show(1, function () {
@@ -846,54 +1242,6 @@ $(function ($) {
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1031,7 +1379,7 @@ $(function ($) {
                 //console.log(datain);
                 $("#" + roomname + "Container").append(datain);
                 $("#" + roomname + "Container").append(datain2);
-                console.log('add');
+                //console.log('add');
                 setRTQRoomEvents(roomname);
                 $("#loadercontainer").show();
             },

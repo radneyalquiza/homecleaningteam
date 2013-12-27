@@ -203,8 +203,9 @@ body
     background-color: #0094ff;
     font-size: 17px;
     transition: all 0.1s;
-    box-shadow: 1px 1px 2px #808080;
+    box-shadow:0px 4px 0px 0px #2b658b, inset 0px 2px 0px 0px #98dcff;
     margin: auto;
+    border-radius:3px;
     margin-top: 12px;
 }
 
@@ -213,13 +214,12 @@ body
         background-color: #73c2fb;
         color: #333;
         cursor: pointer;
-        border: 1px solid #d9d9d9;
     }
 
     .mainBtn:active, .mainBtnApply:active
     {
         transition: background-color 0.1s;
-        box-shadow: 1px 0px 0px #808080;
+        box-shadow: inset 2px 2px 0px 0px #9b7d4e;
         background-color: #ffa65a;
         color: #3d6eaa;
     }
@@ -2700,13 +2700,7 @@ body .cover
         box-shadow: inset 1px 0 6px #459429;
     }
 
-    #quoteSample .wrap
-    {
-        margin:auto;
-        text-align:center;
-        padding:1px;
-        width:auto;
-    }
+
 
 
 /* ==================================== */
@@ -3549,6 +3543,16 @@ body .cover
         width:85%;
         margin-left:7.5%;
     }
+.roomgroupdiv.full.part
+{
+    width:75%;
+    margin-left:12%;
+}
+.roomgroupdiv.small.part
+{
+    width:75%;
+    margin-left:17%;
+}
 
 .categoriesdiv
 {
@@ -3631,7 +3635,7 @@ body .cover
             }
             .roomgrouplistcontainer ul li .cover-click
             {
-                background-color:rgba(217,217,217,0.4);
+                background-color:rgba(217,217,217,0.2);
                 position:absolute;
                 z-index:52;
                 top:0;
@@ -3709,6 +3713,7 @@ body .cover
             text-align:center;
             box-shadow:2px 3px 2px 0px #808080;
             vertical-align:middle;
+            border:1px solid #be5801
         }
             .roomgrouplistcontainer .app .mn.catname span
             {
@@ -3725,6 +3730,7 @@ body .cover
             border-bottom:1px solid white;
             color:#696969;
             background-color:#f2f2f2;
+            /*background-color:#a9d5e9;*/
             position:relative;
             padding:3px;
             font-size:0.76em;
@@ -3739,10 +3745,11 @@ body .cover
                 display:inline-block;
                 width:95%;
             }
+
         /* for the x button on each option */
         .roomgrouplistcontainer .app .option span.remove
         {
-            background-image: url(img/icons/remove.png);
+            background-image: url(img/icons/removeoption.png);
             background-repeat: no-repeat;
             background-position: center;
             display:inline-block;
@@ -3764,6 +3771,16 @@ body .cover
                 border-radius:25px;
                 cursor:pointer
             }
+    .roomgrouplistcontainer .xtra.app .option .remove
+    {
+        background-image: url(img/icons/addextra.png);
+        left:0px;
+    }
+    .roomgrouplistcontainer .xtra.app .optionname.green
+    {
+        margin-left:15px;
+        transition:all 0.2s ease-in-out;
+    }
 
 /* for the sub options */
     .roomgrouplistcontainer .option .subs
@@ -3852,12 +3869,17 @@ body .cover
     background-position: center;
     display: inline-block;
     position:absolute;
-    top:80%;
-    left:90%;
+    top:52.5%;
+    left:95%;
     opacity:0.6;
     border-radius:99px;
     z-index:99;
+    display:none;
     box-shadow:0px 3px 0px 0px #876300;
+}
+.prevGroup
+{
+    top:47.5%;
 }
 
     .nextGroup:hover, .prevGroup:hover
@@ -3879,4 +3901,23 @@ body .cover
 .prevGroup
 {
     background-image: url(img/icons/up.png);
+}
+
+    #quoteSample .wrap
+    {
+        margin:auto;
+        text-align:center;
+        padding:1px;
+        width:100%;
+        position:absolute;
+        top:86%;
+        z-index:50;
+    }
+
+.roomgroupdiv .preview-cover
+{
+    position:absolute;
+    z-index:101;
+    background-color:#eaeaea;
+    opacity:0.1;
 }
