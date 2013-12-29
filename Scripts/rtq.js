@@ -662,9 +662,15 @@ function nextGroup() {
         var current = $('.page' + showing);
         var next = $('.page' + (showing + 1));
         if (next.length > 0 || next != null) {
-            current.hide(100, function () { next.show(200); });
-            recalcRoomsHeight($(".roomgrouplistcontainer>ul.page" + showing + ">li.listroom"));
-            showing++;
+            current.hide(1, function () {
+                next.show(1, function () {
+                    var rooms = $(next).find("li.listroom");
+                    recalcRoomsHeight(rooms);
+                    $.each(rooms, function () { resizeCover($(this)); });
+                    showing++;
+                });
+            });
+            
         }
     }
 }
@@ -675,9 +681,14 @@ function prevGroup() {
         var current = $('.page' + showing);
         var prev = $('.page' + (showing - 1));
         if (prev.length > 0 || prev != null) {
-            current.hide(100, function () { prev.show(200); });
-            recalcRoomsHeight($(".roomgrouplistcontainer>ul.page" + showing + ">li.listroom"));
-            showing--;
+            current.hide(1, function () {
+                prev.show(1, function () {
+                    var rooms = $(prev).find("li.listroom");
+                    recalcRoomsHeight(rooms);
+                    $.each(rooms, function () { resizeCover($(this)); });
+                    showing--;
+                });
+            });
         }
     }
 }
@@ -791,11 +802,7 @@ function recalcRoomsHeight(list) {
             });
         }
     }
-    $.each(list, function () {
-        resizeCover($(this));
-    });
 }
-
 // ===================================================================================================
 // setRoomCover() - cover the rooms to propagate event
 // param: 
@@ -809,27 +816,17 @@ function setRoomCover(roomlist) {
         $.each(roomlist, function () {
             var pos = $(this).offset();
             var cover = $(this).find('.cover-click');
-            //$(cover).css('height', ht-1);
-            //$(cover).css('width', wt);
             resizeCover($(this));
 
             // set the event here too
             if (!$(cover).hasClass('hasEvent')) {
-                console.log('no event for cover yet, add');
                 $(cover).click(function (e) {
-                    //console.log('open');
                     e.stopPropagation();
                     $(this).parents('.roomgrouplistcontainer ul').find('.cover-click').show();
                     $(this).fadeOut(500);
                     
                     // call the curtain
                     showExtras($(this).parents('.room.main'));
-
-                    /*$('body').click(function (e) {
-                        // if somewhere else is clicked and we're not editing, cover the rooms up
-                        if (e.target != $('.cover-click') || e.target != $('.roomgrouplistcontainer ul') && editing == false)
-                            $('.cover-click').show();
-                    });*/
                 });
                 $(cover).addClass('hasEvent');
             }
@@ -847,13 +844,13 @@ function setRoomCover(roomlist) {
 
 function setSideMenuEvents(menu) {
     var button = menu.find('.sidebutton');
-    button.on('click', function () { $(this).toggleClass('close'); slideMenu($(menu), "hide"); });
+    button.on('click', function () { slideMenu($(menu), "hide"); });
 }
 
 function slideMenu(menu, state) {
     var wt = $(menu).outerWidth();
     var pos = $(menu).position();
-        
+
     // if the state is "hide", hide the sidemenu
     if (state == "hide") {
         if (pos.left < 0) {
@@ -862,11 +859,13 @@ function slideMenu(menu, state) {
             $(".roomgroupdiv").addClass('part');
             // get all pages
             var conta = $(".roomgrouplistcontainer");
-            //setPreviewCoverAndSubs(conta);
-            var pagesr = $(".roomgrouplistcontainer>ul");
-            console.log('hey ' + pagesr.length);
+            if(editing == false)
+                setPreviewCoverAndSubs(conta);
+            var pagesr = $(".roomgrouplistcontainer>ul[class^='page']");
             $.each(pagesr, function () {
-                resizeHandler($(this).find('li.listroom'), "");
+                var rooms = $(this).find('li.listroom');
+                console.log(rooms);
+                resizeHandler(rooms, "");
             });
         }
         else {
@@ -875,14 +874,17 @@ function slideMenu(menu, state) {
             $(".roomgroupdiv").removeClass('part');
             // get all pages
             var conta = $(".roomgrouplistcontainer");
-            //setPreviewCoverAndSubs(conta);
-            var pagesr = $(".roomgrouplistcontainer>ul");
+            if (editing == false)
+                setPreviewCoverAndSubs(conta);
+            var pagesr = $(".roomgrouplistcontainer>ul[class^='page']");
             $.each(pagesr, function () {
-                resizeHandler($(this).find('li.listroom'), "");
+                var rooms = $(this).find('li.listroom');
+                console.log(rooms);
+                resizeHandler(rooms, "");
             });
         }
     }
-    $(menu).find('.sidebutton').fadeIn(500).addClass('close');
+    $(menu).find('.sidebutton').fadeIn(500).toggleClass('close');
 }
 
 // ===================================================================================================
@@ -891,15 +893,13 @@ function slideMenu(menu, state) {
 // return: 
 // ===================================================================================================
 function resizeHandler(list, state) {
+    console.log('resizehandler()');
     var count = list.length;
-    if (count > 4) {
-        console.log('morethan4');
+    if (count > 4)
         $(list[0]).parents('.roomgroupdiv').removeClass('small').addClass('full');
-    }
-    else {
-        console.log('lessthan4');
+    else
         $(list[0]).parents('.roomgroupdiv').removeClass('full').addClass('small');
-    }
+
     $.each(list, function () {
         if (count > 4)
             $(this).css('width', (100 / count) + '%');
@@ -907,10 +907,8 @@ function resizeHandler(list, state) {
             $(this).css('margin-left', '0.3%');
             $(this).css('width', ((100 - (count / 3)) / count) + '%');
         }
-
-        //$(this).css('height', $(this).parent().parent().parent().height() + 'px');
     });
-    if (typeof state != "string")
+    if(state == null)
         recalcRoomsHeight($(".roomgrouplistcontainer>ul>li.listroom"));
     setRoomCover(list);
 }
@@ -1028,6 +1026,7 @@ function taperApp(app) {
 function resizeCover(room) {
     var ht = room.height();
     var wt = room.width();
+    console.log('height ' + ht + ', width ' + wt);
     var cov = room.find('.cover-click');
     cov.height(ht);
     cov.width(wt);
@@ -1123,10 +1122,13 @@ function editPreview() {
     if ($('.preview-cover').is(':visible')) {
         $('.preview-cover').hide();
         $(this).text('Done editing');
+        editing = true;
     }
     else {
         $('.preview-cover').show();
         $(this).text('I need to make changes.');
+        setPreviewCoverAndSubs($('.roomgrouplistcontainer'));
+        editing = false;
     }
 }
 function finishQuote() {
