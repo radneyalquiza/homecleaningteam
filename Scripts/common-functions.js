@@ -64,7 +64,11 @@ function selectRadio(object) {
 }
 
 
-
+// jquery
+$(window).resize(function () {
+    console.log('screen width: ' + $(this).outerWidth());
+    console.log('screen height: ' + $(this).outerHeight());
+});
 
 Array.prototype.contains = function (v) {
     for (var i = 0; i < this.length; i++) {

@@ -2349,7 +2349,7 @@ body .cover
  ============================================================================================= */
 #serv
 {
-    height:200px;
+    height:180px;
     z-index:99;
     position:absolute;
     left:0;
@@ -2358,6 +2358,8 @@ body .cover
     background-color:white;
     box-shadow:0px 3px 3px 0px #808080;
     transition:all 0.2s ease-in-out;
+    padding:5px;
+    width:220px;
 }
 .ulserviceinfo
 {
@@ -2848,6 +2850,17 @@ body .cover
                 height:22px;
                 font-size:0.85em;
                 margin-left:16px;
+            }
+
+            select#cleaningtype
+            {
+                width: 190px;
+                font-size: 0.8em;
+            }
+            select#daterange
+            {
+                width: 190px;
+                font-size: 0.8em;
             }
 
         /* inner container for an appliance */
@@ -3359,12 +3372,29 @@ body .cover
     }
 
 }
+@media only screen and (max-width: 1700px)
+{
+    .categoriesdiv ul li span
+    {
+        font-size:0.9em;
+    }
+}
+@media only screen and (max-width: 1600px)
+{
+    .categoriesdiv ul li span
+    {
+        font-size:0.85em;
+    }
+}
+
 @media only screen and (max-width: 1500px) {
     #quote-edit
     {
         width:95%;
         margin-left:-47.5%;
+
     }
+
 }
         @media only screen and (max-height: 400px)
         {
@@ -3529,9 +3559,18 @@ body .cover
     position:absolute;
     z-index:50;
     top:40px;
-    height:100%;
+    height:85%;
     font-size:0.9em;
+    transition:margin-left 0.3s;
+    transition:margin-top 0.1s;
+    transition:left 0.1s;
+    transition:top 0.1s;
 }
+    .roomgroupdiv.shifted
+    {
+        transition:margin-left 0.2s;
+        margin-left:-200px !important;
+    }
     .roomgroupdiv.full
     {
         width:95%;
@@ -3546,18 +3585,18 @@ body .cover
 .roomgroupdiv.full.part
 {
     width:75%;
-    margin-left:12%;
+    margin-left:255px;
 }
 .roomgroupdiv.small.part
 {
     width:75%;
-    margin-left:17%;
+    margin-left:255px;
 }
 
 .categoriesdiv
 {
     float:left;
-    width:10%;
+    width:11%;
     padding:3px;
 }
     .categoriesdiv .title
@@ -3576,8 +3615,8 @@ body .cover
         .categoriesdiv ul li
         {
             padding:3px;
-            background-color:#f3aa51;
-            border:1px solid #f3aa51;
+            background-color:#f2ba6d;
+            border:1px solid #f2ba6d;
             margin-top:2px;
             text-align:center;
             position:relative;
@@ -3587,6 +3626,7 @@ body .cover
             top:50%;
             left:50%;
             width:90%;
+            color:white;
             margin-left:-45%;
             position:absolute;
             display:block;
@@ -3594,7 +3634,7 @@ body .cover
 .roomgrouplistcontainer
 {
     float:left;
-    width:90%;
+    width:89%;
     height:auto;
 }
     .roomgrouplistcontainer ul
@@ -3901,6 +3941,29 @@ body .cover
 .prevGroup
 {
     background-image: url(img/icons/up.png);
+}
+
+/* glowing/pulsating animation for the next button for multiple pages */
+@keyframes glow
+{
+    0%
+    {
+        opacity: 0.1;
+    }
+    50%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        opacity: 0.1;
+    }
+}
+
+
+.nextGroup.pulse
+{
+    animation:glow 1.5s infinite;
 }
 
     #quoteSample .wrap

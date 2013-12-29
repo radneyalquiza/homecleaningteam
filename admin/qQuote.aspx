@@ -288,7 +288,7 @@
             </div>
             <div class="servicequestionpart">
                 <h3 class="prop">Your Realtime Quote</h3>
-                <div class="propertydesc equalize" id="serv" style="width:280px">
+                <div class="propertydesc equalize" id="serv">
                     <ul class="ulserviceinfo">
                         <li>
                             <div class="box">

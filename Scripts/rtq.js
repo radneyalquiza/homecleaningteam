@@ -80,7 +80,15 @@ var quotetype = "";
 
 var currentRoom = 0;
 
+// address of the quote file saved
 var quotepath = "";
+
+// if the side menu is being shown
+var isside = true;
+// if the room group div has been shifted to the left
+var shifted = false;
+// position of the room group div before shifting
+var beforeshift = 0;
 
 // ====================================================
 // SIMPLE ANIMATION FOR THE TOPBAR
@@ -639,7 +647,7 @@ function distributeRooms(rooms) {
     }
 
     // attach the events for paging IF there are a lot of rooms
-    $('.nextGroup').on('click', function (e) { e.stopPropagation(); nextGroup(); });
+    $('.nextGroup').on('click', function (e) { e.stopPropagation(); if ($(this).hasClass('pulse')) $(this).removeClass('pulse'); nextGroup(); });
     $('.prevGroup').on('click', function (e) { e.stopPropagation(); prevGroup(); });
     //console.log('pages ' + pages);
     setupDisplay();
@@ -718,6 +726,8 @@ function setupDisplay() {
     if (pages > 1) {
         $('.nextGroup').show(100);
         $('.prevGroup').show(100);
+
+        $('.nextGroup').addClass('pulse');
     }
     var pagesr = $(".roomgrouplistcontainer>ul");
     var cont = $('.roomgrouplistcontainer');
@@ -797,12 +807,11 @@ function setRoomCover(roomlist) {
     if (roomlist.length > 0) {
         //console.log(roomlist);
         $.each(roomlist, function () {
-            var ht = $(this).outerHeight();
-            var wt = $(this).outerWidth();
             var pos = $(this).offset();
             var cover = $(this).find('.cover-click');
-            $(cover).css('height', ht + 1);
-            $(cover).css('width', wt);
+            //$(cover).css('height', ht-1);
+            //$(cover).css('width', wt);
+            resizeCover($(this));
 
             // set the event here too
             if (!$(cover).hasClass('hasEvent')) {
@@ -812,6 +821,7 @@ function setRoomCover(roomlist) {
                     e.stopPropagation();
                     $(this).parents('.roomgrouplistcontainer ul').find('.cover-click').show();
                     $(this).fadeOut(500);
+                    
                     // call the curtain
                     showExtras($(this).parents('.room.main'));
 
@@ -847,6 +857,7 @@ function slideMenu(menu, state) {
     // if the state is "hide", hide the sidemenu
     if (state == "hide") {
         if (pos.left < 0) {
+            isside = true;
             $(menu).css({ 'left': pos.left + wt });
             $(".roomgroupdiv").addClass('part');
             // get all pages
@@ -859,6 +870,7 @@ function slideMenu(menu, state) {
             });
         }
         else {
+            isside = false;
             $(menu).css({ 'left': pos.left - wt });
             $(".roomgroupdiv").removeClass('part');
             // get all pages
@@ -920,33 +932,39 @@ function showExtras(room) {
         room.append("<div class='curtain'><span class='close'></span><div class='cont'></div></div>");
     var curt = room.find('.curtain');
     var pos = room.offset();
+    var timeout = 0;
 
     room.parent().find('.extra').appendTo(curt.find('.cont')).show();
 
     curt.css('height', room.outerHeight(true) + 55);
     curt.css('width', room.outerWidth());
     curt.css('top', (room.outerHeight() + 50) * -1);
-    if ((curt.outerWidth() + pos.left + room.outerWidth()) < $(window).outerWidth())
-        curt.css('left', '102%');
-    else
-        curt.css('left', '-102%');
 
+    if ((curt.outerWidth() + pos.left + room.outerWidth()) > $(window).outerWidth()) {
+        if(isside)
+            slideMenu($('#serv'), "hide");
+        $(".roomgroupdiv").addClass('shifted');
+        timeout = 350;
+        shifted = true;
+    }
+
+    curt.css('left', '102%');
     recalcRoomHeightByExtras(room);
     curt.css('height', room.outerHeight(true) + 202);
     curt.css('top', room.outerHeight() * -1);
 
-    curt.addClass('show');
-    curt.animate({ top: -100 }, 300);
-    curt.animate({ top: -198 }, 50);
+    setTimeout(function () {  
+        curt.addClass('show');
+        curt.animate({ top: -100 }, 300);
+        curt.animate({ top: -198 }, 50);
+    }, timeout);
 
     room.parent().find('.extra').css('top', (curt.height() - room.parent().find('.extra').height()));
 
     setExtraOptionsEvents(room.parent().find('.extra'));
-
-    //console.log('lol');
-
+    
     $('.wrap').fadeOut(300);
-
+    timeout = 0;
     setCurtainEvents(curt);
 }
 
@@ -967,7 +985,13 @@ function closeCurtain(closebtn) {
     //console.log('close');
     var curtain = closebtn.parents('.curtain');
     if (curtain.hasClass('show')) {
-        curtain.animate({ top: (curtain.outerHeight() * -1) - 150 }, 300);
+        curtain.animate({ top: (curtain.outerHeight() * -1) - 150 }, 200, function () {
+            // if the whole quote view has been shifted due to a space management method,
+            // shift it back
+            if (shifted)
+                $('.roomgroupdiv').removeClass('shifted');
+        });
+
         //$(closebtn).parents('.room.main').find('.mn.app').removeAttr('style');
         $(closebtn).parents('.room.main').find('.cover-click').fadeIn(200, function () {
             curtain.removeClass('show');
@@ -1002,9 +1026,11 @@ function taperApp(app) {
 
 // if the room height changed, resize the cover
 function resizeCover(room) {
-    var ht = room.outerHeight();
+    var ht = room.height();
+    var wt = room.width();
     var cov = room.find('.cover-click');
-    cov.outerHeight(ht);
+    cov.height(ht);
+    cov.width(wt);
 }
 
 // ===================================================================================================
@@ -1061,9 +1087,9 @@ function setExtraOptionsEvents(extra) {
 function addEmptyMessage(app) {
     if ($(app).find('.option').length < 1) {
         if ($(app).find('.empty').length < 1) {
-            if($(app).hasClass('xtra'))
-                $(app).append('<div class="empty">This category has been upgraded enough.</div>');
-            else
+            if(!$(app).hasClass('xtra'))
+                //$(app).append('<div class="empty">This category has been upgraded enough.</div>');
+            //else
                 $(app).append('<div class="empty">No options selected.</div>');
             var empt = $(app).find('.empty');
             empt.css({
