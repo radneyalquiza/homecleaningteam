@@ -180,6 +180,8 @@ function callRooms(cleaningtype) {
                 distributeRooms($('.roomgroupdiv .roomgrouplistcontainer ul li.listroom'));
                 $("#loadercontainer").hide();
                 slideMenu($("#serv"), null);
+                $('.wrap .edit').text('I need to make changes');
+                $('#serv .sidebutton').addClass('close');
             },
             error: function (data) {
                 alert("Something's wrong with our server. Please try again later.");
@@ -647,8 +649,22 @@ function distributeRooms(rooms) {
     }
 
     // attach the events for paging IF there are a lot of rooms
-    $('.nextGroup').on('click', function (e) { e.stopPropagation(); if ($(this).hasClass('pulse')) $(this).removeClass('pulse'); nextGroup(); });
-    $('.prevGroup').on('click', function (e) { e.stopPropagation(); prevGroup(); });
+    if (!$('.nextGroup').hasClass('hasEvent')) {
+        $('.nextGroup').on('click', function (e) {
+            e.stopPropagation();
+            if ($(this).hasClass('pulse'))
+                $(this).removeClass('pulse');
+            nextGroup();
+        });
+        $('.nextGroup').addClass('hasEvent');
+    }
+    if (!$('.prevGroup').hasClass('hasEvent')) {
+        $('.prevGroup').on('click', function (e) {
+            e.stopPropagation();
+            prevGroup();
+        });
+        $('.prevGroup').addClass('hasEvent');
+    }
     //console.log('pages ' + pages);
     setupDisplay();
     $('.page2').hide();
@@ -657,7 +673,7 @@ function distributeRooms(rooms) {
 
 function nextGroup() {
     // at the beginning of the app, showing is 1
-    //console.log(showing + " " + pages);
+    console.log(showing + " " + pages);
     if (showing < pages && showing > 0) {
         var current = $('.page' + showing);
         var next = $('.page' + (showing + 1));
@@ -676,7 +692,7 @@ function nextGroup() {
 }
 function prevGroup() {
     // at the beginning of the app, showing is 1
-    //console.log(showing + " " + pages);
+    console.log(showing + " " + pages);
     if (showing <= pages && showing > 1) {
         var current = $('.page' + showing);
         var prev = $('.page' + (showing - 1));
@@ -1000,7 +1016,11 @@ function closeCurtain(closebtn) {
                 //console.log($(this).data('appname') + " " + $(this).data('currentHeight'));
                 //$(this).outerHeight($(this).data('currentHeight'));
                 taperApp($(this));
-                if (!--ct) { recalcRoomsHeight($(".roomgrouplistcontainer>ul.page" + showing + ">li")); }
+                if (!--ct) {
+                    var rooms = $(".roomgrouplistcontainer>ul.page" + showing + ">li");
+                    recalcRoomsHeight(rooms);
+                    $.each(rooms, function () { resizeCover($(this)); });
+                }
             });
         });
     }
@@ -1113,20 +1133,20 @@ function addEmptyMessage(app) {
 function setPageEvents() {
     var edit = $('.wrap .edit');
     var finish = $('.wrap .finish');
-
-    edit.on('click', editPreview);
-    finish.on('click', finishQuote);
+    
+    edit.on('click', function() { editPreview($(this)); });
+    finish.on('click', function () { finishQuote($(this)); });
 }
 
-function editPreview() {
+function editPreview(btn) {
     if ($('.preview-cover').is(':visible')) {
         $('.preview-cover').hide();
-        $(this).text('Done editing');
+        $(btn).text('Done editing');
         editing = true;
     }
     else {
         $('.preview-cover').show();
-        $(this).text('I need to make changes.');
+        $(btn).text('I need to make changes.');
         setPreviewCoverAndSubs($('.roomgrouplistcontainer'));
         editing = false;
     }
