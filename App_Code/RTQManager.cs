@@ -234,7 +234,8 @@ public class RTQManager
 
                 List<RTQOption> optionsdef = db.RTQOptions.Where(i => i.RTQApp_Id == a.Id).ToList(); // all
                 List<RTQOption> options = optionsdef.Where(x => x.ctype.Contains(cleaningtype) || x.ctype.Contains("N/A")).ToList(); // filter
-                optionsdef = optionsdef.Where(x => !x.ctype.Contains(cleaningtype) && !x.ctype.Contains("N/A")).ToList();
+                //if (cleaningtype != "deep-prm")
+                //optionsdef = optionsdef.Where(x => !x.ctype.Contains(cleaningtype) && !x.ctype.Contains("N/A")).ToList();
 
                 // THIS BLOCK IS FOR FILTERED OPTIONS
                 List<RoomDataOutDTO.Option> dtoptions = new List<RoomDataOutDTO.Option>();
@@ -293,6 +294,7 @@ public class RTQManager
                     {
                         // list of data from the db to map from
                         List<RTQOptionSub> subs = db.RTQOptionSubs.Where(i => i.RTQOption_Id == ox.Id).ToList();
+                        //&& i.ctype.Contains("routine-std,routine-prm,deep-std,deep-prm")
                         // list of data created as a view to map into
                         List<RoomDataOutDTO.Sub> dtosubs = new List<RoomDataOutDTO.Sub>();
                         foreach (RTQOptionSub osx in subs)

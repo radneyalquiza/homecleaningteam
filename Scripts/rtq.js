@@ -129,6 +129,8 @@ function callRooms(cleaningtype) {
                     roomData = JSON.parse(data);
                 allroomdata = roomData;
 
+                cleaningtypetext = cleaningtype;
+
                 var finaldata = "<div class='roomgroupdiv'>";
                 if (roomData.length > 0) {
                     // get the first room (kitchen) and get its apps for the categories
@@ -155,13 +157,14 @@ function callRooms(cleaningtype) {
                         // loop through the number of rooms ( 1 =< baths, and 1 for the rest)
                         for (var j = 0; j < rcount; j++) {
                             finaldata += "<li class='listroom' data-roomname='" + filtered.RoomName.replace(' ', "").toLowerCase() + "'>";
+
                             if (filtered.RoomName == "Bathroom" || filtered.RoomName == "Bedroom") {
                                 finaldata += formatFiltered(filtered, j + 1, cleaningtype);
-                                finaldata += formatExtra(def, j + 1, cleaningtype);
+                                finaldata += formatExtra(def, filtered, j + 1);
                             }
                             else {
                                 finaldata += formatFiltered(filtered, "", cleaningtype);
-                                finaldata += formatExtra(def, "", cleaningtype);
+                                finaldata += formatExtra(def, filtered, "");
                             }
                             finaldata += "</li>";
                         }
@@ -180,7 +183,8 @@ function callRooms(cleaningtype) {
                 distributeRooms($('.roomgroupdiv .roomgrouplistcontainer ul li.listroom'));
                 $("#loadercontainer").hide();
                 slideMenu($("#serv"), null);
-                $('.wrap .edit').text('I need to make changes');
+                $('.wrap .edit').text('I need to make changes').show();
+                $('.wrap .finish').show();
                 $('#serv .sidebutton').addClass('close');
             },
             error: function (data) {
@@ -226,14 +230,14 @@ function formatFiltered(data, num, cleaningtype) {
                             break;
                         }
                     }
-                    html += "  <div class='subs'><ul>";
-                    for (var k = 0; k < option.Subs.length; k++) {
-                        if (option.Subs[k].CType.indexOf(cleaningtype) < 0)
-                            html += "  <li><span class='optionname'>" + option.Subs[k].OptionName + "</span></li>";
-                        else
-                            html += "  <li class='hidden'><span class='optionname'>" + option.Subs[k].OptionName + "</span></li>";
-                    }
-                    html += "    </ul></div>";  // closing for subs div and subs list
+                    //html += "  <div class='subs'><ul>";
+                    //for (var k = 0; k < option.Subs.length; k++) {
+                    //    if (option.Subs[k].CType.indexOf(cleaningtype) < 0)
+                    //        html += "  <li><span class='optionname'>" + option.Subs[k].OptionName + "</span></li>";
+                    //    else
+                    //        html += "  <li class='hidden'><span class='optionname'>" + option.Subs[k].OptionName + "</span></li>";
+                    //}
+                    //html += "    </ul></div>";  // closing for subs div and subs list
                 }
 
                 html += "</div>";       // closing for option div
@@ -250,29 +254,65 @@ function formatFiltered(data, num, cleaningtype) {
 // param: data, (JSON) string
 // return: long string
 // ===================================================================================================
-function formatExtra(data, num) {
+function formatExtra(data, datafilter, num) {
     var html = "";
     var apps = data.Apps;
     var room = data.RoomName + " " + num;
-    
+    var apps2 = datafilter.Apps;
+
     html += "<div class='room extra' data-roomname='" + room + "'><span>Extra " + $.trim(room) + " Cleaning Options</span>";
     for (var i = 0; i < apps.length; i++) {
+
+        // look for the corresponding appliance from the filtered one
+        var apptest = $.grep(apps2, function (el) {
+            return el.AppName === apps[i].AppName;
+        });
+
         html += "<div class='xtra app' data-appname='" + apps[i].AppName + "'>";    // wrap all options inside a app container
         for (var j = 0; j < apps[i].Options.length; j++) {
             var option = apps[i].Options[j];
-            if (option.TimeUnit != null)
-                html += "<div class='option'><span class='optionname'>" + option.OptionName + "</span></div>";
+
+            // look for the corresponding option from the filtered one
+            // (grep() returns an array, always get the first element)
+            var option2 = $.grep(apptest[0].Options, function (el) {
+                return el.OptionName === option.OptionName;  
+            });
+
+            if (option.TimeUnit != null) {
+                if( option2.length < 1)
+                    html += "<div class='option'><span class='optionname'>" + option.OptionName + "</span></div>";
+            }
             else {
                 var foundname = false;
-                html += "<div class='option hasSub'>";
-                html += "<span class='optionname'>" + option.OptionName + "</span>";
-                html += "  <div class='subs'><ul>";
+                //html += "<div class='option hasSub'>";
+                //html += "<span class='optionname'>" + option.OptionName + "</span>";
+                //html += "  <div class='subs'><ul>";
+                
                 for (var k = 0; k < option.Subs.length; k++) {
-                        html += "  <li><span class='optionname'>" + option.Subs[k].OptionName + "</span></li>";
+                    console.log(option.Subs[k].OptionName + " " + option.Subs[k].CType + " contains " + cleaningtypetext + " = " + (option.Subs[k].CType.indexOf(cleaningtypetext) != -1));
+                    // look for the subs corresponding to the current option's subs
+                    var subs2;
+                    subs2 = null;
+                    if (option.Subs[k].CType.indexOf(cleaningtypetext) != -1)
+                        console.log("Dont put in extras " + option.Subs[k].OptionName);
+                    else {
+                        if (option2.length > 0) {
+                            subs2 = $.grep(option2[0].Subs, function (e) {
+                                return e.OptionName === option.Subs[k].OptionName;
+                            });
+                        }
+                        console.log(subs2);
+                        //if (subs2 == null || subs2.length < 1) {
+                            html += "  <div class='option'><span class='optionname'>" + option.Subs[k].OptionName + "</span></div>";
+                            console.log("Put in extras " + option.Subs[k].OptionName);
+                        //}
+                    }
+
                 }
-                html += "    </ul></div>";  // closing for subs div and subs list
-                html += "</div>";       // closing for option div
+                //html += "    </ul></div>";  // closing for subs div and subs list
+                //html += "</div>";       // closing for option div
             }
+            
         }
         html += "</div>";   // closing for app
     }

@@ -3747,13 +3747,13 @@ body .cover
             top:0;
             height:auto;
             display:none;
-            background-color:#f3aa51;
+            background-color:rgba(243, 170, 81,0.9);
             font-size:0.9em;
             z-index:55;
             text-align:center;
             box-shadow:2px 3px 2px 0px #808080;
             vertical-align:middle;
-            border:1px solid #be5801
+            border:1px solid rgba(243, 170, 81,1)
         }
             .roomgrouplistcontainer .app .mn.catname span
             {
@@ -3772,7 +3772,8 @@ body .cover
             background-color:#f2f2f2;
             /*background-color:#a9d5e9;*/
             position:relative;
-            padding:3px;
+            padding:1px;
+            padding-left:3px;
             font-size:0.76em;
         }
             .roomgrouplistcontainer .app .option:hover
