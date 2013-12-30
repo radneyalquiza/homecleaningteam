@@ -3772,14 +3772,15 @@ body .cover
             background-color:#f2f2f2;
             /*background-color:#a9d5e9;*/
             position:relative;
-            padding:1px;
+            padding:1.5px;
             padding-left:3px;
             font-size:0.76em;
         }
             .roomgrouplistcontainer .app .option:hover
             {
                 background-color:#93c7f3;
-                cursor:pointer
+                cursor:pointer;
+                color:white;
             }
             .roomgrouplistcontainer .app .option .optionname
             {
@@ -3803,24 +3804,40 @@ body .cover
             right:2px;
             position:absolute;
             top:50%;
-            margin-top:-8.5px;
+            margin-top:-6.5px;
             border-radius:51px;
+            opacity:0;
         }
-            .roomgrouplistcontainer .app .option span.remove:hover
+          /*  .roomgrouplistcontainer .app .option span.remove:hover
             {
                 background-color:#ffbf89;
                 border-radius:25px;
                 cursor:pointer
-            }
-    .roomgrouplistcontainer .xtra.app .option .remove
+            }*/
+
+/* HOVER EFFECTS ON OPTIONS - SHOW THE ARROWS BESIDE THEM */
+
+    .roomgrouplistcontainer .mn.app .option:hover .remove
+    {
+        opacity:1;
+        margin-top:-8.5px;
+        transition:margin-top 0.2s ease-in-out;
+    }
+
+
+
+    .roomgrouplistcontainer .xtra.app .option:hover .remove
     {
         background-image: url(img/icons/addextra.png);
         left:0px;
+        opacity:1;
+        margin-top:-8.5px;
+        transition:margin-top 0.2s ease-in-out;
     }
-    .roomgrouplistcontainer .xtra.app .optionname.green
+    .roomgrouplistcontainer .xtra.app .option:hover .optionname
     {
         margin-left:15px;
-        transition:all 0.2s ease-in-out;
+        transition:all 0.1s ease-in-out;
     }
 
 /* for the sub options */

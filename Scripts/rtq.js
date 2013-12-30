@@ -350,20 +350,80 @@ function attachOptionEvents(optionlist) {
         option.append('<span class="remove"></span>');
 
         // FOR CLICKS ON OPTIONS
-        if (option.hasClass('hasSub')) {
+       /* if (option.hasClass('hasSub')) {
             option.on('click', function (e) {
                 e.stopPropagation();
                 $(this).find('.subs').show(100);
             });
-        }
+        }*/
 
         // FOR HOVER OVER OPTIONS
-        option.hover(function (e) {
+      /*  option.hover(function (e) {
             e.stopPropagation();
             $(this).find('.remove').toggle(); // ALL options have remove buttons
             $(this).find('.optionname').toggleClass('green');
+        });*/
+
+        option.on('click', function (e) {
+            e.stopPropagation();
+            var origoptionheight = $(this).outerHeight();
+            $(this).slideUp(100, function () {
+                var appname = $(this).parent().data('appname');
+                var cont;   // destination of the clicked option
+                var origcont; // the origin of the clicked option
+                var curtain = $(this).parents('.room.main').find('.curtain');
+                var cat = $(this).parents('.room.main').find('.mn.catname').filter(function () {
+                    return $(this).data('appname') === appname;
+                });
+
+                if ($(this).parents('.app').hasClass('mn')) {
+                    cont = $(this).parents('.room.main').find('.xtra.app').filter(function () {
+                        return $(this).data('appname') === appname;
+                    });
+                    origcont = $(this).parents('.room.main').find('.mn.app').filter(function () {
+                        return $(this).data('appname') === appname;
+                    });
+                }
+                else {
+                    cont = $(this).parents('.room.main').find('.mn.app').filter(function () {
+                        return $(this).data('appname') === appname;
+                    });
+                    origcont = $(this).parents('.room.main').find('.xtra.app').filter(function () {
+                        return $(this).data('appname') === appname;
+                    });
+
+                }
+                var appheight = cont.outerHeight();
+                var options = cont.find('.option');
+                var optionsheight = 0;
+                options.each(function () { optionsheight += $(this).outerHeight(); });
+                //console.log(appheight + " vs " + (optionsheight + origoptionheight));
+                if (appheight < (optionsheight + origoptionheight)) {
+                    if (optionsheight + origoptionheight < 1)
+                        cont.outerHeight(23);
+                    else
+                        cont.outerHeight(optionsheight + origoptionheight);
+                    origcont.outerHeight(optionsheight + origoptionheight);
+                    curtain.outerHeight(curtain.outerHeight() + origoptionheight);
+                }
+                origcont.outerHeight(cont.outerHeight());
+                cat.outerHeight(cont.outerHeight());
+
+                //cont.data('currentHeight', cont.outerHeight());
+                //recalcRoomHeightByExtras($(this).parents('.room.main'));
+
+                $(this).appendTo(cont).slideDown(100, function () {
+                    //if(origcont.hasClass('xtra'))
+                    addEmptyMessage(origcont);
+
+                    //if(cont.hasClass('xtra'))
+                    addEmptyMessage(cont);
+                });
+            });
         });
 
+
+        /*
         option.find('.remove').on('click', function (e) {
             e.stopPropagation();
             var origoptionheight = $(this).parent().outerHeight();
@@ -421,6 +481,7 @@ function attachOptionEvents(optionlist) {
                 });
             });
         });
+        */
     });
 }
 
@@ -785,7 +846,7 @@ function attachExtraOptionEvents(extraoptionlist) {
 // ===================================================================================================
 function setupDisplay() {
     $('.extra').hide(); // hide all extra options for all rooms
-    $('.remove').hide(); // hide all x buttons inside the options
+    //$('.remove').hide(); // hide all x buttons inside the options
     $("#quoteSample").fadeIn(300);
 
     $(".roomgroupdiv").addClass('part');
@@ -1013,7 +1074,7 @@ function showExtras(room) {
         curt.animate({ top: -198 }, 50);
     }, timeout);
 
-    room.parent().find('.extra').css('top', (curt.height() - room.parent().find('.extra').height()));
+    room.parent().find('.extra').css('top', (curt.height() - room.parent().find('.extra').height()) - 5);
 
     setExtraOptionsEvents(room.parent().find('.extra'));
     
